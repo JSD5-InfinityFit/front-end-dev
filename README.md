@@ -1,6 +1,14 @@
 # Front End Development
 
+The project follows a standard fork-and-pull model for contributions via GitHub. Here's a step-by-step guide:
 
+1. **Fork the Repository:** Start by forking the main project repository to your GitHub account.
+2. **Clone the Repository:** Once forked, clone the repository to your local machine.
+3. **Set Up the Project:** Follow the setup instructions to get the project running locally.
+4. **Create a Branch:** Create a new branch for each issue you work on. This keeps your work organized and prevents conflicts.
+5. **Make Changes:** Implement your feature or bug fix on the branch you created.
+6. **Commit and Push Changes:** Once your changes are ready, commit them with a meaningful commit message, and push the branch to your forked repository.
+7. **Submit a Pull Request:** From your repository, submit a pull request to the main repository. In the PR description, include a detailed explanation of your changes and link the PR to the corresponding issue in the main repository.
 
 🤝 How to Contribute:
 
@@ -9,7 +17,7 @@ Following are the steps to run the project locally:
 1.  Go to preferred folder in your computer and paste the following command after forking our repository (Only one of it if you don't have ssh setup then go with HTTP command)
 
 ```
-git clone https://github.com/<YOUR-USERNAME>/linter.git
+git clone https://github.com/<YOUR-USERNAME>/<REPO>.git
 ```
 
 2.  Navigate to the project folder
@@ -20,7 +28,7 @@ cd linter
 
 3. Add a reference(remote) to the original repository.
 ```
-git remote add upstream https://github.com/dear-digital/linter.git
+git remote add upstream https://github.com/<YOUR-USERNAME>/<REPO>.git
 ```
 
 4. Check the remotes for this repository.
