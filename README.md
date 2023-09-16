@@ -23,12 +23,12 @@ git clone https://github.com/<YOUR-USERNAME>/<REPO>.git
 2.  Navigate to the project folder
 
 ```
-cd linter
+cd <PROJECT-NAME>
 ```
 
 3. Add a reference(remote) to the original repository.
 ```
-git remote add upstream https://github.com/<YOUR-USERNAME>/<REPO>.git
+git remote add upstream https://github.com/<YOUR-USERNAME>/<PROJECT-NAME>.git
 ```
 
 4. Check the remotes for this repository.
