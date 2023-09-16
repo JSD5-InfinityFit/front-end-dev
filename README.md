@@ -88,7 +88,6 @@ npm run client
 
 We are committed to fostering a community that’s inclusive, respectful, and productive. All participants in the project are expected to adhere to our Code of Conduct, which includes:
 
-Respect: Treat everyone with kindness and respect. No forms of harassment, discrimination, or inappropriate behavior are tolerated.
-Collaboration: Be open to feedback and be respectful when providing it. Strive to help others when you can and recognize everyone's contributions.
-Inclusivity: Foster an environment that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to, members of any race, ethnicity, culture, national origin, color, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.
-Breaching this Code of Conduct may lead to consequences including, but not limited to, removal from the project and forfeiture of accumulated points.
+1. **Respect:** Treat everyone with kindness and respect. No forms of harassment, discrimination, or inappropriate behavior are tolerated.
+2. **Collaboration:** Be open to feedback and be respectful when providing it. Strive to help others when you can and recognize everyone's contributions.
+3. **Inclusivity:** Foster an environment that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to, members of any race, ethnicity, culture, national origin, color, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.
