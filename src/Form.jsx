@@ -100,7 +100,6 @@ function Form (){
               onChange={handleInputChange}
             />
 
-           
           </div>
   
           <button className='add-button' type="submit">ADD</button>

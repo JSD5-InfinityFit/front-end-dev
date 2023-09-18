@@ -80,6 +80,7 @@ button:focus-visible {
 
 .mobile {
   display: block;
+  background-color: white;
 }
 
 @media (prefers-color-scheme: light) {
@@ -107,3 +108,6 @@ button:focus-visible {
   }
 }
 
+.icons {
+  width: 15px;
+}

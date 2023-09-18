@@ -6,6 +6,7 @@ const Setting = () => {
     return (
         <Layout>
             <h1>Setting Page</h1>
+            
         </Layout>
     )
 }
