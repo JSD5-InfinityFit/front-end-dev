@@ -1,31 +1,42 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+.activeform{
+  margin: 70px;
+  height: 800px;
+  background-color: #1B1B1B;
+  
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+label{
+  width: 200px;
+  height: 50px;
+  background-color:#061A40;
+  color: white;
+  border-radius: 5px;
+  font-size: larger;
+  align-items: center;
+  padding: 10px;
+  margin: 30px;
+  
+ 
+  
 }
-a:hover {
-  color: #535bf2;
+textarea{
+  width: auto;
+  height: 314px;
+  flex-shrink: 0;
+ 
 }
 
+input {
+  width: 200px;
+  margin: 20px;
+}
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -34,6 +45,9 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button {
@@ -55,6 +69,18 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.desktop {
+  display: block;
+}
+.mobile {
+  display: block;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -66,4 +92,15 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-} */
+}
+@media screen and (min-width: 640px) {
+    .mobiles {
+      display: none;
+    }
+}
+@media screen and (max-width: 640px) {
+  .desktop {
+    display: none;
+  }
+}
+
