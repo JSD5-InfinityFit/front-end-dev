@@ -2,7 +2,7 @@ import { useState } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Form (){
+function ActivityForm (){
 
     // value for the img 
     let swim = 'https://images.unsplash.com/photo-1560089000-7433a4ebbd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3012&q=80'
@@ -42,59 +42,60 @@ function Form (){
      * A meaningful error message is displayed when a form field is invalid
      */
       const errorMessage = "";
-      if (typeof name != string){
-        errorMessage.push('Activity Name is not a string');
-        return errorMessage;
+      if (typeof name != 'string'){
+        toast('Activity Name is not a string');
+        return false;
       }
       if (!name.length){
-        errorMessage.push('Activity Name is empty');
-        return errorMessage;
+        toast('Activity Name is empty');
+        return false;
       } 
-      if (typeof type != string) {
-        errorMessage.push('Activity Type is not a string');
-        throw Error('Activity Type is not a string');
+      if (typeof type != 'string') {
+        toast('Activity Type is not a string');
+        return false;
       }
       if (!ACTIVITY_TYPES.includes(type)) {
-        errorMessage.push('Activity Type is not valid');
-        return errorMessage;
+        toast('Activity Type is not valid');
+        return false;
       }
-      if (typeof description != string) {
-        errorMessage.push('Activity Description is not a string');
+      if (typeof description != 'string') {
+        toast('Activity Description is not a string');
         return errorMessage;
     } 
       if (!description.length) {
-        errorMessage.push('Activity Description is empty');
+        toast('Activity Description is empty');
         return errorMessage;
     }
     if (typeof date != Date) {
-      errorMessage.push('Activity Date is not a Date');
-      return errorMessage;
+      toast('Activity Date is not a Date');
+      return false;
     }
     if (date > new Date()) {
-      errorMessage.push('Activity Date is in the future');
-      return errorMessage;
+      toast('Activity Date is in the future');
+      return false;
     }
-    if (typeof durationTime != Number) {
-      errorMessage.push('Activity Duration is not a valid number');
-      return errorMessage;
+    if (typeof durationTime != 'number') {
+      toast('Activity Duration is not a valid number');
+      return false;
     }
     if (!durationTime.length) {
-      errorMessage.push('Activity Duration is empty');
-      return errorMessage;
+      toast('Activity Duration is empty');
+      return false;
     }
-    console.log('Activity Form Submission is valid');
+    toast('Activity Form Submission is valid');
     return true;
   }
 
     // validateForm code here
   
     const handleSubmit = (e) =>{
-      const currentDate = new Date();
       e.preventDefault();
-      setFormData({...formData, date: currentDate.toISOString().split('T')[0]});
-      const activityValid = handleActivitySubmit(formData.activityName, formData.activityType, formData.description, formData.date, (formData.hour * 60 + formData.min));
+      console.log(formData);
+      const activityValid = handleActivitySubmit(formData.activityName, formData.activityType, formData.description, new Date(), (formData.hour * 60 + formData.min));
+      toast(activityValid);
       if(activityValid) {
         // post to server
+        toast(formData);
       }
     }
 
@@ -174,4 +175,4 @@ function Form (){
       )
 }
 
-export default Form
+export default ActivityForm
