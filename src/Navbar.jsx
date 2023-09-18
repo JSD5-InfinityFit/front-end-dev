@@ -3,10 +3,10 @@ import React from 'react';
 const Navbar = () => {
     return (
         <div className='navbar'>
-            <button><a href={'/'}>Home</a></button>
-            <button><a href={'/activity'}>Activity</a></button>
-            <button><a href={'/setting'}>Setting</a></button>
-            <button><a href={'/profile'}>Profile</a></button>
+            <a href={'/'}>Home</a>
+            <a href={'/activity'}>Activity</a>
+            <a href={'/setting'}>Setting</a>
+            <a href={'/profile'}>Profile</a>
         </div>
     )
 }
