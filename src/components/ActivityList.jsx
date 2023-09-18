@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import './App.css'
-import Modal from './Components/Modal';
+import './ActivityList.css'
 
-function App() {
+function ActivityList() {
   const [cards,setCards ] = useState([
     {
       id: "u-1",
@@ -103,6 +102,5 @@ function App() {
     </>
   )
 }
-{/* <Modal /> */}
 
-export default App
+export default ActivityList
