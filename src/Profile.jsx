@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "./Layout.jsx";
+import './App.css'
 
 const Profile = () => {
   return (

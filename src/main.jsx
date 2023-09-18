@@ -5,9 +5,11 @@ import Home from './Home.jsx'
 import Activity from './Activity.jsx'
 import Setting from './Setting.jsx'
 import Profile from './Profile.jsx'
-import './App.css'
+// import './App.css'
+import './index.css'
 
 const router = createBrowserRouter([
+  
   {path: '/', element: <Home />},
   {path: '/activity', element: <Activity />},
   {path: '/setting', element: <Setting />},
@@ -15,5 +17,6 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <div className="mobile">
+  <RouterProvider router={router} /></div>
 )
