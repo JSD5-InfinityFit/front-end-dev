@@ -31,7 +31,7 @@ function CardActivity() {
   };
 
   return (
-    <div class="grid grid-cols-[200px_minmax(900px,_1fr)_100px]">
+    <div className="text-3xl font-bold underline">
       <label>Active Name</label>
       <input
         type='text'

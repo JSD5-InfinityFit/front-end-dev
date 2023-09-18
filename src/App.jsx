@@ -1,6 +1,6 @@
 import './App.css'
 import React from 'react'
-import Actitviycard from './component/Activitycard';
+import Actitviycard from './components/Activitycard';
 
 
 

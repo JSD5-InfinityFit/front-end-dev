@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from './Layout.jsx'
 import Form from './Form'
+import ActivityCard from './components/Activitycard.jsx'
 
 const Activity = () => {
 
@@ -8,6 +9,7 @@ const Activity = () => {
         <Layout>
             <h1>Activity Page</h1>
             <Form/>
+            
         </Layout>
     )
 }
