@@ -16,7 +16,7 @@ function ActivityForm (){
     const [formData,setFormData] = useState({
         activityName : '',
         description : '',
-        activityType : null,
+        activityType : 'run',
         min: 0,
         hour: 0,
         date: null,
@@ -46,9 +46,8 @@ function ActivityForm (){
      * @param {Date} date - Date of the Activity
      * @param {number} durationTime - Duration of the Activity in minutes
      */
-      // debug
       console.log(name, type, description, date, durationTime);
-
+      
       if (typeof name != 'string'){
         toast('Error! Activity Name is not a string');
         return false;
@@ -73,7 +72,7 @@ function ActivityForm (){
         toast('Error! Activity Description is empty');
         return errorMessage;
     }
-    if (typeof date != 'Date') {
+    if (!(date instanceof Date)) {
       toast('Error! Activity Date is not a Date');
       return false;
     }
@@ -81,15 +80,15 @@ function ActivityForm (){
       toast('Error! Activity Date is in the future');
       return false;
     }
-    if (typeof durationTime != 'number') {
-      toast('Error! Activity Duration is not a valid number');
-      return false;
-    }
-    if (!durationTime.length) {
+    if (!durationTime) {
       toast('Error! Activity Duration is empty');
       return false;
     }
-    toast('Error! Activity Form Submission is valid');
+    if (!Number.isFinite(durationTime)) {
+      toast('Error! Activity Duration is not a valid number');
+      return false;
+    }
+    toast('Activity Form Submission is valid');
     return true;
   }
 
@@ -99,10 +98,11 @@ function ActivityForm (){
       e.preventDefault();
       const currentDate = new Date();
       setFormData({ ...formData, date: currentDate });
-      const activityValid = validateActivity(formData.activityName, formData.activityType, formData.description, formData.date, (formData.hour * 60 + formData.min));
+      const activityValid = validateActivity(formData.activityName, formData.activityType, formData.description, currentDate, parseInt(formData.hour * 60 + formData.min));
+      console.log(activityValid);
+      console.log(formData);
       if(activityValid) {
         // post to server
-        toast(formData);
       }
     }
 
@@ -166,8 +166,6 @@ function ActivityForm (){
               value={formData.min}
               onChange={handleInputChange}
             />
-
-           
           </div>
   
           <button 
