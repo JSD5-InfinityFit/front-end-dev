@@ -5,7 +5,6 @@ import Home from './Home.jsx'
 import Activity from './Activity.jsx'
 import Setting from './Setting.jsx'
 import Profile from './Profile.jsx'
-// import './App.css'
 import './index.css'
 
 const router = createBrowserRouter([

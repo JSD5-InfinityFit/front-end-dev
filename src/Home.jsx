@@ -1,11 +1,12 @@
 import './App.css'
 import Layout from './Layout.jsx'
+import Actitviycard from './components/Activitycard';
 
 const Home = () => {
 
   return (
     <Layout>
-      <h1>Home Page</h1>
+          <Actitviycard />
     </Layout>
   )
 }
