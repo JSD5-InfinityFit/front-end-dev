@@ -16,10 +16,10 @@ function ActivityForm (){
     const [formData,setFormData] = useState({
         activityName : '',
         description : '',
-        activityType : '',
-        min: '',
-        hour: '',
-        date: '',
+        activityType : null,
+        min: 0,
+        hour: 0,
+        date: null,
     })
 
     const handleInputChange = (e) => {
@@ -36,53 +36,60 @@ function ActivityForm (){
 
     const ACTIVITY_TYPES = ["run", "bicycle", "ride", "swim", "walk", "hike", "dance", "badminton", "yoga"];
 
-    const handleActivitySubmit = (name, type, description, date, durationTime) => {
+    const validateActivity = (name, type, description, date, durationTime) => {
     /**
-     * All form fields are validated on form submission(Name, Description, ActivityType:[run, bicycle, ride, swim, walk, hike], Duration, Date)
+     * All form fields are validated on form submission(Name, Description, ActivityType:[ACTIVITY_TYPES], Duration, Date)
      * A meaningful error message is displayed when a form field is invalid
+     * @param {string} name - Name of the Activity
+     * @param {string} type - Type of the Activity
+     * @param {string} description - Description of the Activity
+     * @param {Date} date - Date of the Activity
+     * @param {number} durationTime - Duration of the Activity in minutes
      */
-      const errorMessage = "";
+      // debug
+      console.log(name, type, description, date, durationTime);
+
       if (typeof name != 'string'){
-        toast('Activity Name is not a string');
+        toast('Error! Activity Name is not a string');
         return false;
       }
       if (!name.length){
-        toast('Activity Name is empty');
+        toast('Error! Activity Name is empty');
         return false;
       } 
       if (typeof type != 'string') {
-        toast('Activity Type is not a string');
+        toast('Error! Activity Type is not a string');
         return false;
       }
       if (!ACTIVITY_TYPES.includes(type)) {
-        toast('Activity Type is not valid');
+        toast('Error! Activity Type is not valid');
         return false;
       }
       if (typeof description != 'string') {
-        toast('Activity Description is not a string');
+        toast('Error! Activity Description is not a string');
         return errorMessage;
     } 
       if (!description.length) {
-        toast('Activity Description is empty');
+        toast('Error! Activity Description is empty');
         return errorMessage;
     }
-    if (typeof date != Date) {
-      toast('Activity Date is not a Date');
+    if (typeof date != 'Date') {
+      toast('Error! Activity Date is not a Date');
       return false;
     }
     if (date > new Date()) {
-      toast('Activity Date is in the future');
+      toast('Error! Activity Date is in the future');
       return false;
     }
     if (typeof durationTime != 'number') {
-      toast('Activity Duration is not a valid number');
+      toast('Error! Activity Duration is not a valid number');
       return false;
     }
     if (!durationTime.length) {
-      toast('Activity Duration is empty');
+      toast('Error! Activity Duration is empty');
       return false;
     }
-    toast('Activity Form Submission is valid');
+    toast('Error! Activity Form Submission is valid');
     return true;
   }
 
@@ -90,9 +97,9 @@ function ActivityForm (){
   
     const handleSubmit = (e) =>{
       e.preventDefault();
-      console.log(formData);
-      const activityValid = handleActivitySubmit(formData.activityName, formData.activityType, formData.description, new Date(), (formData.hour * 60 + formData.min));
-      toast(activityValid);
+      const currentDate = new Date();
+      setFormData({ ...formData, date: currentDate });
+      const activityValid = validateActivity(formData.activityName, formData.activityType, formData.description, formData.date, (formData.hour * 60 + formData.min));
       if(activityValid) {
         // post to server
         toast(formData);
@@ -116,7 +123,6 @@ function ActivityForm (){
               name="activityName"
               value={formData.activityName}
               onChange={handleInputChange}
-              required
             />
           </div>
   
@@ -133,7 +139,7 @@ function ActivityForm (){
           <div className="form-group">
           <label htmlFor="activity">Choose a Activity:</label>
 
-            <select id="activity" name="activityType" onChange={handleInputChange} required >
+            <select id="activity" name="activityType" onChange={handleInputChange}>
                 <option defaultValue value="run" >Run</option>
                 <option value="dance">Dance</option>
                 <option value="swim">Swim</option>
@@ -151,7 +157,6 @@ function ActivityForm (){
               name="hour"
               value={formData.hour}
               onChange={handleInputChange}
-              required
             />
             <input
               min="0" 
@@ -160,7 +165,6 @@ function ActivityForm (){
               name="min"
               value={formData.min}
               onChange={handleInputChange}
-              required
             />
 
            
@@ -170,6 +174,7 @@ function ActivityForm (){
             className='add-button'
             type="submit"
           >ADD</button>
+          <ToastContainer />
         </form> 
       </div>
       )
