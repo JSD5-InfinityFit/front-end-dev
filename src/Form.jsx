@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Form (){
 
@@ -32,11 +34,68 @@ function Form (){
 
     // formErrors code here
 
+    const ACTIVITY_TYPES = ["run", "bicycle", "ride", "swim", "walk", "hike", "dance", "badminton", "yoga"];
+
+    const handleActivitySubmit = (name, type, description, date, durationTime) => {
+    /**
+     * All form fields are validated on form submission(Name, Description, ActivityType:[run, bicycle, ride, swim, walk, hike], Duration, Date)
+     * A meaningful error message is displayed when a form field is invalid
+     */
+      const errorMessage = "";
+      if (typeof name != string){
+        errorMessage.push('Activity Name is not a string');
+        return errorMessage;
+      }
+      if (!name.length){
+        errorMessage.push('Activity Name is empty');
+        return errorMessage;
+      } 
+      if (typeof type != string) {
+        errorMessage.push('Activity Type is not a string');
+        throw Error('Activity Type is not a string');
+      }
+      if (!ACTIVITY_TYPES.includes(type)) {
+        errorMessage.push('Activity Type is not valid');
+        return errorMessage;
+      }
+      if (typeof description != string) {
+        errorMessage.push('Activity Description is not a string');
+        return errorMessage;
+    } 
+      if (!description.length) {
+        errorMessage.push('Activity Description is empty');
+        return errorMessage;
+    }
+    if (typeof date != Date) {
+      errorMessage.push('Activity Date is not a Date');
+      return errorMessage;
+    }
+    if (date > new Date()) {
+      errorMessage.push('Activity Date is in the future');
+      return errorMessage;
+    }
+    if (typeof durationTime != Number) {
+      errorMessage.push('Activity Duration is not a valid number');
+      return errorMessage;
+    }
+    if (!durationTime.length) {
+      errorMessage.push('Activity Duration is empty');
+      return errorMessage;
+    }
+    console.log('Activity Form Submission is valid');
+    return true;
+  }
 
     // validateForm code here
-
+  
     const handleSubmit = (e) =>{
-
+      const currentDate = new Date();
+      e.preventDefault();
+      setFormData({...formData, date: currentDate.toISOString().split('T')[0]});
+      const activityValid = handleActivitySubmit(formData.activityName, formData.activityType, formData.description, formData.date, (formData.hour * 60 + formData.min));
+      if(activityValid) {
+        // post to server
+      }
     }
 
     return (
@@ -56,6 +115,7 @@ function Form (){
               name="activityName"
               value={formData.activityName}
               onChange={handleInputChange}
+              required
             />
           </div>
   
@@ -72,7 +132,7 @@ function Form (){
           <div className="form-group">
           <label htmlFor="activity">Choose a Activity:</label>
 
-            <select id="activity" name="activityType" onChange={handleInputChange} >
+            <select id="activity" name="activityType" onChange={handleInputChange} required >
                 <option defaultValue value="run" >Run</option>
                 <option value="dance">Dance</option>
                 <option value="swim">Swim</option>
@@ -90,6 +150,7 @@ function Form (){
               name="hour"
               value={formData.hour}
               onChange={handleInputChange}
+              required
             />
             <input
               min="0" 
@@ -98,12 +159,16 @@ function Form (){
               name="min"
               value={formData.min}
               onChange={handleInputChange}
+              required
             />
 
            
           </div>
   
-          <button className='add-button' type="submit">ADD</button>
+          <button 
+            className='add-button'
+            type="submit"
+          >ADD</button>
         </form> 
       </div>
       )
