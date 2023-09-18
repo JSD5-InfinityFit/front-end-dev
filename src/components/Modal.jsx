@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Modal.css";
-import App from "../Exercise_List";
 
 export default function Modal() {
   const [modal, setModal] = useState(false);
@@ -41,7 +40,6 @@ export default function Modal() {
           </div>
         </div>
       )}
-      {/*  */}
     </>
   );
 }

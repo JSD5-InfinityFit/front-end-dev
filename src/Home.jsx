@@ -1,11 +1,12 @@
-import './App.css'
-import Layout from './Layout.jsx'
+import './App.css';
+import Layout from './Layout.jsx';
+import ActivityList from './components/ActivityList';
 
 const Home = () => {
 
   return (
     <Layout>
-      <h1 class="text-blue-600">Home Page</h1>
+      <ActivityList />
     </Layout>
   )
 }
