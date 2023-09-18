@@ -1,11 +1,12 @@
 import React from 'react';
+
 const Navbar = () => {
     return (
         <div className="navbar">
-            <a href={'/'}>Infinity Fit</a>
-            <a href={'/activity'}>Activity</a>
-            <a href={'/setting'}>Setting</a>
-            <a href={'/profile'}>Profile</a>
+            <button className="rounded-none bg-indigo-900"><a href={'/'}>Infinity Fit</a></button>
+            <button className="rounded-none bg-indigo-900"><a href={'/activity'}>Activity</a></button>
+            <button className="rounded-none bg-indigo-900"><a href={'/setting'}>Setting</a></button>
+            <button className="rounded-none bg-indigo-900"><a href={'/profile'}>Profile</a></button>
         </div>
     )
 }
