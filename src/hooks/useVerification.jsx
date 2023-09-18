@@ -36,7 +36,7 @@ const useVerification = () => {
     if (!durationTime.length) {
       throw Error('Activity Duration is empty');
     }
-
+    console.log('Activity Form Submission is valid');
     return true;
   }
 
