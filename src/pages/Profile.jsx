@@ -4,7 +4,7 @@ import Layout from "../Layout.jsx";
 const Profile = () => {
   return (
     <Layout>
-      <h1>Profile Page</h1>
+      <div className="container"><h1>Profile Page</h1></div>
     </Layout>
   );
 };
