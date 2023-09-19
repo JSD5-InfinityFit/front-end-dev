@@ -2,29 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-.activeform{
+ /* .activeform{
   margin: 70px;
   height: 800px;
   background-color: #1B1B1B;
 }
 
 label{
-  width: 200px;
-  height: 50px;
   background-color:#061A40;
   color: white;
   border-radius: 5px;
   font-size: larger;
   align-items: center;
-  padding: 10px;
-  margin: 30px;  
 }
 
 textarea{
   width: auto;
   height: 314px;
   flex-shrink: 0;
+ 
+}  */
+html{
+  background-color: #1B1B1B;
 }
+
 
 input {
   width: 200px;
@@ -70,6 +71,7 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  height: 100%;
 }
 
 .desktop {
@@ -80,7 +82,7 @@ button:focus-visible {
 
 .mobile {
   display: block;
-  background-color: #312e81;
+  /* background-color: #312e81; */
 }
 
 @media (prefers-color-scheme: light) {
@@ -110,10 +112,4 @@ button:focus-visible {
 
 .icons {
   width: 30px;
-}
-
-.container {
-  height: 610px;
-  width: auto;
-  background-color: whitesmoke;
 }

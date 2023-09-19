@@ -1,10 +1,11 @@
 import React from 'react';
-import homeLogo from './assets/icons/home.gif'
-import screenLogo from './assets/icons/activity.gif'
-import gearLogo from './assets/icons/setting.gif'
-import profileLogo from './assets/icons/user.gif'
+import homeLogo from '../assets/icons/home.gif'
+import screenLogo from '../assets/icons/activity.gif'
+import gearLogo from '../assets/icons/setting.gif'
+import profileLogo from '../assets/icons/user.gif'
+import './Navbar.css'
 
-const Navbar = () => {
+const NavbarMB = () => {
     return (
         <div className="navbar">
             <a href={'/'}><img src={homeLogo} className="icons" alt="home logo" /></a>
@@ -15,4 +16,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar;
+export default NavbarMB;
