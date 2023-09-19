@@ -5,7 +5,7 @@ import './App.css'
 const Profile = () => {
   return (
     <Layout>
-      <h1>Profile Page</h1>
+      <div className="container"><h1>Profile Page</h1></div>
     </Layout>
   );
 };

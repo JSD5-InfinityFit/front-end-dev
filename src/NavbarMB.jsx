@@ -1,8 +1,8 @@
 import React from 'react';
-import homeLogo from './assets/icons/home.svg'
-import gearLogo from './assets/icons/gear.svg'
-import profileLogo from './assets/icons/profile.svg'
-import screenLogo from './assets/icons/screen.svg'
+import homeLogo from './assets/icons/home.gif'
+import screenLogo from './assets/icons/activity.gif'
+import gearLogo from './assets/icons/setting.gif'
+import profileLogo from './assets/icons/user.gif'
 
 const Navbar = () => {
     return (
