@@ -52,6 +52,24 @@ label{
     object-fit: cover;
     border-radius: 11px;
     margin-left: 3vw;
+    z-index: 1;
+}
+.camera-icon {
+    z-index: 2;
+    position: absolute;
+    right: 0%;
+    bottom: 2%;
+    color: #f6f4f4;
+    height: 100px;
+    
+}
+.camera-icon:hover {
+    cursor: pointer;
+}
+
+.img-parent{
+    position: relative;
+
 }
 
 
