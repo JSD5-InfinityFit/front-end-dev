@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.activeform{
+ /* .activeform{
   margin: 70px;
   height: 800px;
   background-color: #1B1B1B;
@@ -22,7 +21,11 @@ textarea{
   height: 314px;
   flex-shrink: 0;
  
+}  */
+html{
+  background-color: #1B1B1B;
 }
+
 
 input {
   width: 200px;

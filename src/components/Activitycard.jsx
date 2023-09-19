@@ -31,18 +31,23 @@ function CardActivity() {
   };
 
   return (
-    <div className="text-3xl font-bold underline">
-      <label>Active Name</label>
-      <input
+    <div class="m-36">
+      <form class="flex flex-col ">
+      <div class="h-46" >
+      <label class="bg-rose-600 w-14 p-4 rounded-md" >Active Name</label>
+      <input class="border-2"
         type='text'
+        placeholder='Enter Name'
         name='activeName'
         value={formData.activeName}
         onChange={handleInputChange}
-      />
+      /></div>
+
 
       <label >Active Type</label>
       <input
         type='dropdown'
+        placeholder='Selected Type'
         name='activeType'
         value={formData.activeType}
         onChange={handleInputChange}
@@ -73,8 +78,9 @@ function CardActivity() {
   
       <button onClick={handleSaveClick}>Save</button>
       <button onClick={handleDeleteClick}>Delete</button>
-    </div>
-    
+     </form>
+      </div>
+  
   );
 }
 
