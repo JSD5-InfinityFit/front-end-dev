@@ -109,11 +109,11 @@ button:focus-visible {
 }
 
 .icons {
-  width: 15px;
+  width: 30px;
 }
 
 .container {
-  height: 600px;
+  height: 610px;
   width: auto;
   background-color: whitesmoke;
 }
