@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './Activitycard.css' 
+
 
 function CardActivity() {
   const [formData, setFormData] = useState({
@@ -53,15 +55,17 @@ function CardActivity() {
         onChange={handleInputChange}
       /></div>
 
-      <div class="flex flex-col">
+      
+      <div class="flex flex-row">
       <label>Date</label>
       <input
         type='date'
         name='date'
         value={formData.date}
         onChange={handleInputChange}
-      />
+      /></div>
 
+      <div class="flex flex-row">
       <label>Duration</label>
       <input
         type='text'
@@ -69,6 +73,7 @@ function CardActivity() {
         value={formData.duration}
         onChange={handleInputChange}
       /></div>
+
 
       <label>Description</label>
       <textarea
