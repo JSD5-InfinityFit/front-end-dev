@@ -32,9 +32,9 @@ function CardActivity() {
 
   return (
     <div class="m-36">
-      <form class="flex flex-col ">
+      <form class="flex flex-col">
       <div class="h-46" >
-      <label class="bg-rose-600 w-14 p-4 rounded-md" >Active Name</label>
+      <label class="	base-100 w-14 p-4 rounded-md" >Active Name</label>
       <input class="border-2"
         type='text'
         placeholder='Enter Name'
@@ -43,16 +43,17 @@ function CardActivity() {
         onChange={handleInputChange}
       /></div>
 
-
-      <label >Active Type</label>
-      <input
+      <div class="h-46" >
+      <label class="	bg-success-content w-14 p-4 rounded-md">Active Type</label>
+      <input class="border-2"
         type='dropdown'
         placeholder='Selected Type'
         name='activeType'
         value={formData.activeType}
         onChange={handleInputChange}
-      />
+      /></div>
 
+      <div class="flex flex-col">
       <label>Date</label>
       <input
         type='date'
@@ -67,7 +68,7 @@ function CardActivity() {
         name='duration'
         value={formData.duration}
         onChange={handleInputChange}
-      />
+      /></div>
 
       <label>Description</label>
       <textarea
