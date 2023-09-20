@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './Activitycard.css' 
 import { useParams } from 'react-router-dom';
-import Navbar from './Navbar';
+import Layout from '../Layout';
+import Navbar from '../components/Navbar'
+import NavbarDT from '../components/NavbarDT';
 
 
 function CardActivity() {
@@ -59,8 +61,9 @@ useEffect(() => {
   };
 
   return (
+  <Layout>
     <>
-    <Navbar/>
+    {/* <Navbar /> */}
     <div class="m-36">
       <form class="flex flex-col">
       <div class="bg-gray-100 w-3/5 rounded-md shadow-lg">
@@ -118,7 +121,9 @@ useEffect(() => {
       </div> 
     </form>
   </div>
-  </>
+  
+  </> 
+  </Layout>
   );
 }
 
