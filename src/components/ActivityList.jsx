@@ -1,97 +1,121 @@
 import { useState } from 'react'
 import './ActivityList.css'
 
+import React from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import CardActivity from './Activitycard';
+
 function ActivityList() {
   const [cards,setCards ] = useState([
     {
       id: "u-1",
-      img:"",
-      Active_type: "Run",
-      Active_name:"Run for you",
-      Start: "06:00 PM",
-      Date: "Mon 14",
-      Duration : "15 minutes",
-      Activity: "I'm feel good",
+      imgURL:"",
+      activityType: "Run",
+      activityName:"Run for you",
+      date: "Mon 14",
+      duration : "15 minutes",
+      activityDescription: "I'm feel good",
     },
     {
       id: "u-2",
-      Active_type: "Badminton",
-      Active_name:"This game for you",
-      Start: "06:00 PM",
-      Date: "Sun 13",
-      Duration : "15 minutes",
-      Activity: "I don't think i can be any happier right now",
+      imgURL: "",
+      activityType: "Badminton",
+      activityName:"This game for you",
+      date: "Sun 13",
+      duration : "15 minutes",
+      activityDescription: "I don't think i can be any happier right now",
     },
     {
       id: "u-3",
-      img:"",
-      Active_type: "Dance",
-      Active_name:"Dance for you",
-      Start: "05:00 PM",
-      Date: "Sat 12",
-      Duration : "15 minutes",
-      Activity: "",
+      imgURL:"",
+      activityType: "Dance",
+      activityName:"Dance for you",
+      date: "Sat 12",
+      duration : "15 minutes",
+      activityDescription: "",
     },
     {
       id: "u-4",
-      img:"",
-      Active_type: "Dance",
-      Active_name: "Dance for Health",
-      Start: "05:00 PM",
-      Date: "Thu 10 ",
-      Duration : "20 minutes",
-      Activity: "",
+      imgURL:"",
+      activityType: "Dance",
+      activityName: "Dance for Health",
+      date: "Thu 10 ",
+      duration : "20 minutes",
+      activityDescription: "",
     },
     {
       id: "u-5",
-      img:"",
-      Active_type: "Swimming",
-      Active_name: "Swimming for you",
-      Start: "05:00 PM",
-      Date: "Wed 9",
-      Duration : "30 minutes",
-      Activity: "",
+      imgURL:"",
+      activityType: "Swimming",
+      activityName: "Swimming for you",
+      date: "Wed 9",
+      duration : "30 minutes",
+      activityDescription: "",
     },
     {
       id: "u-6",
-      img:"",
-      Active_type: "Yoga",
-      Active_name: "yoga for health",
-      Start: "05:00 PM",
-      Date: "Mon 7",
-      Duration : "30 minutes",
-      Activity: "I'm very happy right now",
+      imgURL:"",
+      activityType: "Yoga",
+      activityName: "yoga for health",
+      date: "Mon 7",
+      duration : "30 minutes",
+      activityDescription: "I'm very happy right now",
     },
     {
       id: "u-7",
-      img:"",
-      Active_type: "Swimming",
-      Active_name: "Swimming for health",
-      Start: "05:00 PM",
-      Date: "Sat 5",
-      Duration : "30 minutes",
-      Activity: "It's been a tough day",
+      imgURL:"",
+      activityType: "Swimming",
+      activityName: "Swimming for health",
+      date: "Sat 5",
+      duration : "30 minutes",
+      activityDescription: "It's been a tough day",
     },
 
   ]);
 
   return (
     <>
-      {/* <List getCards={cards}/> */}
-        <section>
-          <div className='container'>
-            <h1>Exercise List</h1>
-              <div className='cards'>
-              {cards.map((card,i) =>(
-                  <div key={i} className='card'>
-                    <div className='date_Exercise'>
-                      <h2>{card.Date}</h2>
+        <section className='box-border bg-[#F0F8FF]'>
+          <div className='container max-w-screen-xl w-full m-auto '>
+            <h1 className='text-5xl	'>Exercise List</h1>
+              <div className='cards flex flex-wrap justify-between grid grid-cols-4 gap-3 mt-3'>
+                {cards.map((card,i) =>(
+                  <div key={i} className='card bg-blue-950 flex flex-0 flex-shrink-0 flex-basis-calc
+                  max-w-calc w-full p-3 flex-row '>
+                    <div className='date_Exercise text-white font-black	text-4xl'>
+                      <h2>{card.date}</h2>
                     </div>
-                    <div div className='information'>
-                      <h3>{card.Active_type}</h3>
-                      <h3>{card.Active_name}</h3>
-                      <h5>{card.Duration}</h5>
-                    </div> 
+
+                    <div div className='information text text-white font-semibold m-3'>
+                      <h3>{card.activityType}</h3>
+                      <h3>{card.activityName}</h3>
+                      <h5>{card.duration}</h5>
+                  
+                      <div className='trigger m-2'>
+                        <Popup trigger=
+                        {<button className='bg-slate-400'> Show more </button>}
+                        // {<button> < ActivityList /> </button>}
+                        modal nested>
+                        {
+                          close => (
+                              <div className='modal'>
+                                  <div className='content'>
+                                      {/* <CardActivity /> */}
+                                      Welcome to GFG!!!
+                                  </div>
+                                  <div>
+                                      <button onClick=
+                                          {() => close()}>
+                                              Close modal
+                                      </button>
+                                  </div>
+                              </div>
+                            )
+                        }
+                      </Popup>
+                      </div>
+                    </div>
                   </div> 
                 ))
               }
