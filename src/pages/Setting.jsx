@@ -1,11 +1,11 @@
 import React from 'react'
-import Layout from './Layout.jsx'
+import Layout from '../Layout.jsx'
 
 const Setting = () => {
 
     return (
         <Layout>
-            <h1>Setting Page</h1>
+            <div className="container"><h1>Setting Page</h1></div>
         </Layout>
     )
 }

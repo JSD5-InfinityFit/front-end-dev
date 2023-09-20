@@ -1,0 +1,125 @@
+
+label{
+    margin: 10px;
+    padding: 10px;
+    width: 140px;
+}
+
+.in{
+    width: 80px;
+    padding: 6px;
+    border-bottom: 1px solid grey;
+}
+
+#activity{
+    height: 50px;
+    margin-left: 20px;
+    width: 40%;
+}
+
+.grid{
+    padding-top: 7vh;
+}
+
+
+.row-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 100vw;
+}
+
+.form{
+    padding: 20px;
+    width: 40%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 11px;
+    background-color: white;
+    margin-right: 3vw;
+}
+
+.img-parent{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 40%;
+}
+
+.image{  
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 11px;
+    margin-left: 3vw;
+    z-index: 1;
+}
+.camera-icon {
+    z-index: 2;
+    position: absolute;
+    right: 0%;
+    bottom: 2%;
+    color: #f6f4f4;
+    height: 100px;
+    
+}
+.camera-icon:hover {
+    cursor: pointer;
+}
+
+.img-parent{
+    position: relative;
+
+}
+
+
+.form-group{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.row-2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40vh;
+    width: 100vw;
+}
+
+.text{
+    border-radius: 11px;
+    margin-left: calc(7vw + 18px);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    width: 60%;
+    height: 50%;
+    padding: 10px;
+}
+
+.buttons{
+    width: 25%;
+}
+
+.add-button{
+    width: 10vw;
+    min-width: 88px;
+    border-radius: 15px;
+    background: #0353A4;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-weight: bold  ;
+}
+
+.cancel-button{
+    margin-top: 10px;
+    width: 10vw;
+    min-width: 88px;
+    border-radius: 15px;
+    background: #D52B42;
+    color: #ffffff;
+    font-weight: bold  ;
+}
+
+.btn-seperator{
+    height: 20%;
+}

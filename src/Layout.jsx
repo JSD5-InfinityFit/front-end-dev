@@ -1,15 +1,16 @@
 import React from 'react';
-import Navbar from './Navbar.jsx'
+import NavbarDT from './components/NavbarDT.jsx'
+import NavbarMB from './components/NavbarMB.jsx'
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
     return (
         <div>
             <div className="desktop">
-            <Navbar />
+                <NavbarDT />
             </div>
             {children}
             <div className="mobiles">
-            <Navbar/>
+                <NavbarMB />
             </div>
         </div>
     )
