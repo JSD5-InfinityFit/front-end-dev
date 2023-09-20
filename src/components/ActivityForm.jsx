@@ -74,10 +74,6 @@ function ActivityForm() {
       toast('Error! Activity Description is not a string');
       return errorMessage;
     }
-    if (!description.length) {
-      toast('Error! Activity Description is empty');
-      return errorMessage;
-    }
     if (!(date instanceof Date)) {
       toast('Error! Activity Date is not a Date');
       return false;
@@ -117,7 +113,7 @@ function ActivityForm() {
     <div className="row-1">
       <div className="form">
 
-        <form onSubmit={handleSubmit}>
+        <form>
 
           <div className="form-group">
             <label>Activity Name</label>
@@ -188,10 +184,15 @@ function ActivityForm() {
       <textarea placeholder="How did you feel during exercise?" className="text"></textarea>
 
       <div className="buttons">
-        <button className='add-button'>
+        <button className='add-button'
+          onClick={handleSubmit}
+        >
           Add
         </button>
-        <ToastContainer />
+        <ToastContainer 
+          position="top-center"
+          pauseOnHover
+        />
         <div className="btn-seperator"></div>
         <button className='cancel-button'>
           Cancel

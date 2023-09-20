@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Activitycard.css' 
+import { useParams } from 'react-router-dom';
+import Navbar from './Navbar';
 
 
 function CardActivity() {
@@ -11,6 +13,30 @@ function CardActivity() {
     description: '',
   });
 
+  //////////////////////////////////////////////////////////////////
+
+  const { id } = useParams();
+
+useEffect(() => {
+  const fetchActivityData = async () => {
+    try {
+      const res = await fetch(`/api/activities/${id}`);
+      if (res.ok) {
+        const data = await res.json();
+        setFormData(data);
+      } else {
+        console.error('Failed to fetch activity data');
+      }
+    } catch (error) {
+      console.error('Error fetching activity data:', error);
+    }
+  };
+
+  fetchActivityData();
+}, [id]);
+
+
+  ////////////////////////// handle //////////////////////////////////////
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -33,10 +59,14 @@ function CardActivity() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div class="m-36">
       <form class="flex flex-col">
+      <div class="bg-gray-100 w-3/5 rounded-md shadow-lg">
       <div class="h-46" >
-      <label class="	base-100 w-14 p-4 rounded-md" >Active Name</label>
+        
+      <label class="bg-violet-800 w-14 p-4 rounded-md" >Active Name</label>
       <input class="border-2"
         type='text'
         placeholder='Enter Name'
@@ -46,7 +76,7 @@ function CardActivity() {
       /></div>
 
       <div class="h-46" >
-      <label class="	bg-success-content w-14 p-4 rounded-md">Active Type</label>
+      <label class="	bg-violet-800 w-14 p-4 rounded-md">Active Type</label>
       <input class="border-2"
         type='dropdown'
         placeholder='Selected Type'
@@ -73,20 +103,22 @@ function CardActivity() {
         value={formData.duration}
         onChange={handleInputChange}
       /></div>
+      </div>
 
-
+      
       <label>Description</label>
-      <textarea
+      <textarea class="w-5/6 shadow-lg h-52"
         name='description'
         value={formData.description}
         onChange={handleInputChange}
       />
-  
-      <button onClick={handleSaveClick}>Save</button>
-      <button onClick={handleDeleteClick}>Delete</button>
-     </form>
-      </div>
-  
+       <div className="relative left-20 buttom-20">
+      <button className="btn btn-outline btn-success absolute right-20  " onClick={handleSaveClick}>Save</button>
+      <button className="btn btn-error absolute right-20 bottom-0.5"onClick={handleDeleteClick}>Delete</button>
+      </div> 
+    </form>
+  </div>
+  </>
   );
 }
 
