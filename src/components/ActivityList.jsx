@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './ActivityList.css'
+import { Link } from 'react-router-dom';
 
 import React from 'react';
 import Popup from 'reactjs-popup';
@@ -117,10 +118,15 @@ function ActivityList() {
                       </div>
                     </div>
                   </div> 
+                  
                 ))
               }
               </div>
           </div>
+          
+          <Link to={`/activity-card`} className="btn btn-outline btn-primary">
+          Edit
+        </Link>
         </section>
       
     </>
