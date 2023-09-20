@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './ActivityList.css'
+import { Link } from 'react-router-dom';
 
 function ActivityList() {
   const [cards,setCards ] = useState([
@@ -83,6 +84,7 @@ function ActivityList() {
             <h1>Exercise List</h1>
               <div className='cards'>
               {cards.map((card,i) =>(
+                
                   <div key={i} className='card'>
                     <div className='date_Exercise'>
                       <h2>{card.Date}</h2>
@@ -93,10 +95,15 @@ function ActivityList() {
                       <h5>{card.Duration}</h5>
                     </div> 
                   </div> 
+                  
                 ))
               }
               </div>
           </div>
+          
+          <Link to={`/activity-card`} className="btn btn-outline btn-primary">
+          Edit
+        </Link>
         </section>
       
     </>
