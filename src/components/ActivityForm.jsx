@@ -18,6 +18,7 @@ function ActivityForm() {
 
   const [img, setImg] = useState(run)
   const [value, setValue] = useState(dayjs());
+  const [fileInput, setFileInput] = useState()
 
   const [formData, setFormData] = useState({
     activityName: '',
@@ -27,6 +28,15 @@ function ActivityForm() {
     hour: 'Hours',
     date: null,
   })
+
+  const handleFileSelect = (e) =>{
+    let [ file ] = e.target.files
+
+    // To display them as images as is, Have to transform them to dataUrl using the URL.createObjectURL method.
+    let pic = URL.createObjectURL(file)
+    
+    setImg(pic)
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -108,98 +118,129 @@ function ActivityForm() {
     }
   }
 
+  const cancel = () => {
+    setFormData({
+      activityName: '',
+      description: '',
+      activityType: 'run',
+      min: 'Minutes',
+      hour: 'Hours',
+      date: null,
+    })
+
+    setValue(dayjs())
+    setImg(run)
+
+  }
+
+
+
   return (
-  <div className="grid">
-    <div className="row-1">
-      <div className="form">
+    <div className="grid">
+      <div className="row-1">
+        <div className="form">
 
-        <form>
+          <form>
 
-          <div className="form-group">
-            <label>Activity Name</label>
-            <input
-              style={{padding: '6px', borderBottom: '1px solid grey'}}
-              placeholder='Activity Name'
-              type="text"
-              name="activityName"
-              value={formData.activityName}
-              onChange={handleInputChange}
-            />
-          </div>
+            <div className="form-group">
+              <label>Activity Name</label>
+              <input
+                style={{ padding: '6px', borderBottom: '1px solid grey' }}
+                placeholder='Activity Name'
+                type="text"
+                name="activityName"
+                value={formData.activityName}
+                onChange={handleInputChange}
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="activity">Activity Type</label>
+            <div className="form-group">
+              <label htmlFor="activity">Activity Type</label>
 
-            <select id="activity" name="activityType" onChange={handleInputChange}>
-              <option defaultValue value="run" >Run</option>
-              <option value="dance">Dance</option>
-              <option value="swim">Swim</option>
-              <option value="badminton">Badminton</option>
-              <option value="yoga">Yoga</option>
-            </select>
-          </div>
+              <select id="activity" value={formData.activityType} name="activityType" onChange={handleInputChange}>
+                <option value="run" >Run</option>
+                <option value="dance">Dance</option>
+                <option value="swim">Swim</option>
+                <option value="badminton">Badminton</option>
+                <option value="yoga">Yoga</option>
+              </select>
+            </div>
 
-          <div className="form-group">
-            <label  style={{marginRight: '20px'}} htmlFor="duration">Date</label>
-            <DateTimePicker
-            format="DD/MM/YYYY hh:mm"
-              value={value}
-              onChange={(newValue) => setValue(newValue)}
-            />
-          </div>
+            <div className="form-group">
+              <label style={{ marginRight: '20px' }} htmlFor="duration">Date</label>
+              <DateTimePicker
+                format="DD/MM/YYYY hh:mm"
+                value={value}
+                onChange={(newValue) => setValue(newValue)}
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="duration">Duration</label>
-            <input
-            className="in"
-              min="0"
-              placeholder='Hour'
-              type="number"
-              name="hour"
-              value={formData.hour}
-              onChange={handleInputChange}
-            />
-            <input
-              min="0"
-              max={59}
-              className="in"
-              placeholder='Minute'
-              type="number"
-              name="min"
-              value={formData.min}
-              onChange={handleInputChange}
-            />
-          </div>
+            <div className="form-group">
+              <label htmlFor="duration">Duration</label>
+              <input
+                className="in"
+                min="0"
+                placeholder='Hour'
+                type="number"
+                name="hour"
+                value={formData.hour}
+                onChange={handleInputChange}
+              />
+              <input
+                min="0"
+                max={59}
+                className="in"
+                placeholder='Minute'
+                type="number"
+                name="min"
+                value={formData.min}
+                onChange={handleInputChange}
+              />
+            </div>
 
-        </form>
+          </form>
+        </div>
+
+        <div className="img-parent">
+
+          <img className="image" src={img} />
+          <input
+            type="file"
+            accept="image/*" // Specify accepted file types
+            onChange={handleFileSelect}
+            style={{ display: 'none' }}
+            ref={(inputRef) => setFileInput(inputRef)} //Create a reference to the input element to interact with it
+          />
+
+          <svg className='camera-icon w-10 h-10' onClick={() => {fileInput.click() }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+          </svg>
+
+        </div>
+
       </div>
 
-      <div className="img-parent">
-        <img className="image" src={img} /> 
-      </div>
+      <div className="row-2">
+        <textarea placeholder="How did you feel during exercise?  ( Optional )" className="text"></textarea>
 
+        <div className="buttons">
+          <button className='add-button'
+            onClick={handleSubmit}
+          >
+            Add
+          </button>
+          <ToastContainer
+            position="top-center"
+            pauseOnHover
+          />
+          <div className="btn-seperator"></div>
+          <button className='cancel-button' onClick={cancel} >
+            Cancel
+          </button>
+        </div>
+      </div>
     </div>
-
-    <div className="row-2">
-      <textarea placeholder="How did you feel during exercise?" className="text"></textarea>
-
-      <div className="buttons">
-        <button className='add-button'
-          onClick={handleSubmit}
-        >
-          Add
-        </button>
-        <ToastContainer 
-          position="top-center"
-          pauseOnHover
-        />
-        <div className="btn-seperator"></div>
-        <button className='cancel-button'>
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
   )
 }
 

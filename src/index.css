@@ -6,7 +6,6 @@
   margin: 70px;
   height: 800px;
   background-color: #1B1B1B;
-  
 }
 
 label{
@@ -16,6 +15,7 @@ label{
   font-size: larger;
   align-items: center;
 }
+
 textarea{
   width: auto;
   height: 314px;
@@ -31,6 +31,7 @@ input {
   width: 200px;
   margin: 20px;
 }
+
 body {
   margin: 0;
   place-items: center;
@@ -60,6 +61,7 @@ button {
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -67,14 +69,20 @@ button:focus-visible {
 
 .navbar {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-around;
+  height: 100%;
 }
+
 .desktop {
   display: block;
+  background-color: #312e81;
+  color: white;
 }
+
 .mobile {
   display: block;
+  /* background-color: #312e81; */
 }
 
 @media (prefers-color-scheme: light) {
@@ -89,14 +97,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
 @media screen and (min-width: 640px) {
     .mobiles {
       display: none;
     }
 }
+
 @media screen and (max-width: 640px) {
   .desktop {
     display: none;
   }
 }
 
+.icons {
+  width: 30px;
+}
