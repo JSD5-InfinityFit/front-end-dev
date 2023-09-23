@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -103,3 +103,13 @@ h1{
       max-width: 100%;
     }
 }
+
+.modal {
+  font-size: 12px;
+}
+
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+ */
