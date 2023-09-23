@@ -3,9 +3,10 @@ import './ActivityList.css'
 import { Link } from 'react-router-dom';
 
 import React from 'react';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+
 import CardActivity from './Activitycard';
+import Popup from './Popup'
+
 
 function ActivityList() {
   const [cards,setCards ] = useState([
@@ -75,6 +76,15 @@ function ActivityList() {
 
   ]);
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
   return (
     <>
         <section className='box-border bg-[#F0F8FF]'>
@@ -82,8 +92,10 @@ function ActivityList() {
             <h1 className='text-5xl	'>Exercise List</h1>
               <div className='cards flex flex-wrap justify-between grid grid-cols-4 gap-3 mt-3'>
                 {cards.map((card,i) =>(
-                  <div key={i} className='card bg-blue-950 flex flex-0 flex-shrink-0 flex-basis-calc
-                  max-w-calc w-full p-3 flex-row '>
+                  <div 
+                  key={i} 
+                  className='card bg-blue-950 flex flex-0 flex-shrink-0 flex-basis-calc
+                  max-w-calc w-full p-3 flex-row'>
                     <div className='date_Exercise text-white font-black	text-4xl'>
                       <h2>{card.date}</h2>
                     </div>
@@ -94,31 +106,18 @@ function ActivityList() {
                       <h5>{card.duration}</h5>
                   
                       <div className='trigger m-2'>
-                        <Popup trigger=
-                        {<button className='bg-slate-400'> Show more </button>}
-                        // {<button> < ActivityList /> </button>}
-                        modal nested>
-                        {
-                          close => (
-                              <div className='modal'>
-                                  <div className='content'>
-                                      {/* <CardActivity /> */}
-                                      Welcome to GFG!!!
-                                  </div>
-                                  <div>
-                                      <button onClick=
-                                          {() => close()}>
-                                              Close modal
-                                      </button>
-                                  </div>
-                              </div>
-                            )
-                        }
-                      </Popup>
+                        
+                        <div className="text-center mt-20 static">
+                          <button onClick={handleOpenPopup} className="bg-blue-500 hover:bg-blue-700
+                           text-white font-bold rounded absolute bottom-4 right-4">
+                            Show more
+                          </button>
+                          {isPopupOpen && <Popup onClose={handleClosePopup} />}
+                        </div>
+                        
                       </div>
                     </div>
                   </div> 
-                  
                 ))
               }
               </div>
@@ -128,7 +127,6 @@ function ActivityList() {
           Edit
         </Link>
         </section>
-      
     </>
   )
 }
