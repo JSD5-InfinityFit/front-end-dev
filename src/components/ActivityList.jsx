@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import React from 'react';
 
-import CardActivity from './ActivityCard';
+import ActivityCard from './ActivityCard';
 import Popup from './Popup'
 
 
@@ -88,28 +88,26 @@ function ActivityList() {
   return (
     <>
         <section className='box-border bg-[#F0F8FF]'>
-          <div className='container max-w-screen-xl w-full m-auto '>
-            <h1 className='text-5xl	'>Exercise List</h1>
-              <div className='cards flex flex-wrap justify-between grid grid-cols-4 gap-3 mt-3'>
+          <div className='container w-full max-w-screen-xl m-auto '>
+            <h1 className='text-5xl '>Exercise List</h1>
+              <div className='flex grid flex-wrap justify-between grid-cols-4 gap-3 mt-3 cards'>
                 {cards.map((card,i) =>(
                   <div 
                   key={i} 
-                  className='card bg-blue-950 flex flex-0 flex-shrink-0 flex-basis-calc
-                  max-w-calc w-full p-3 flex-row'>
-                    <div className='date_Exercise text-white font-black	text-4xl'>
+                  className='flex flex-row flex-shrink-0 w-full p-3 card bg-blue-950 flex-0 flex-basis-calc max-w-calc'>
+                    <div className='text-4xl font-black text-white date_Exercise'>
                       <h2>{card.date}</h2>
                     </div>
 
-                    <div div className='information text text-white font-semibold m-3'>
+                    <div div className='m-3 font-semibold text-white information text'>
                       <h3>{card.activityType}</h3>
                       <h3>{card.activityName}</h3>
                       <h5>{card.duration}</h5>
                   
-                      <div className='trigger m-2'>
+                      <div className='m-2 trigger'>
                         
-                        <div className="text-center mt-20 static">
-                          <button onClick={handleOpenPopup} className="bg-blue-500 hover:bg-blue-700
-                           text-white font-bold rounded absolute bottom-4 right-4">
+                        <div className="static mt-20 text-center">
+                          <button onClick={handleOpenPopup} className="absolute font-bold text-white bg-blue-500 rounded hover:bg-blue-700 bottom-4 right-4">
                             Show more
                           </button>
                           {isPopupOpen && <Popup onClose={handleClosePopup} />}

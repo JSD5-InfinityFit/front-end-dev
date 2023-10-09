@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './Activitycard.css' 
 import { useParams } from 'react-router-dom';
 import Layout from '../Layout';
 import Navbar from './Navbar'
