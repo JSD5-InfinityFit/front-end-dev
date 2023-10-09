@@ -11,7 +11,6 @@ function ActivityList() {
   }, []);
 
   const getDataFromAPI = async () => {
-    // get data from API https://infinity-fit-backend.onrender.com/activities using axios
     await axios.get('https://infinity-fit-backend.onrender.com/activities')
     .catch((err) => {
       console.log('Error', err)
