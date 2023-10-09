@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import React from 'react';
 
-import CardActivity from './Activitycard';
+import CardActivity from './ActivityCard';
 import Popup from './Popup'
 
 

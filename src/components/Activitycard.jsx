@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Activitycard.css' 
 import { useParams } from 'react-router-dom';
 import Layout from '../Layout';
-import Navbar from '../components/Navbar'
-import NavbarDT from '../components/NavbarDT';
+import Navbar from './Navbar'
+import NavbarDT from './NavbarDT';
 
 
 function CardActivity() {
