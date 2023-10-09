@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import React from 'react';
 
-import CardActivity from './ActivityCard';
+import ActivityCard from './ActivityCard.jsx';
 import Popup from './Popup'
 
 
@@ -90,7 +90,7 @@ function ActivityList() {
         <section className='box-border bg-[#F0F8FF]'>
           <div className='container max-w-screen-xl w-full m-auto '>
             <h1 className='text-5xl	'>Exercise List</h1>
-              <div className='cards flex flex-wrap justify-between grid grid-cols-4 gap-3 mt-3'>
+              <div className='cards flex-wrap justify-between grid grid-cols-4 gap-3 mt-3'>
                 {cards.map((card,i) =>(
                   <div 
                   key={i} 
