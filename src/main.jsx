@@ -6,6 +6,7 @@ import Activity from './pages/Activity.jsx'
 import Setting from './pages/Setting.jsx'
 import Profile from './pages/Profile.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
+import ActivityCard from './pages/ActivityCard.jsx';
 import './index.css'
 
 const router = createBrowserRouter([
@@ -21,6 +22,9 @@ const router = createBrowserRouter([
   },{ 
     path: '/profile',
     element: <Profile /> 
+  },{
+    path: '/activities/:id',
+    element: <ActivityCard />
   },{ 
     path: "*",
     element: <PageNotFound />
