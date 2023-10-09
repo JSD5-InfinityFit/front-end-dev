@@ -3,8 +3,6 @@ import './ActivityList.css'
 import { Link } from 'react-router-dom';
 
 import React from 'react';
-
-import ActivityCard from './ActivityCard';
 import Popup from './Popup'
 
 
