@@ -6,7 +6,7 @@ import Navbar from './Navbar'
 import NavbarDT from './NavbarDT';
 
 
-function CardActivity() {
+function Activitycard() {
   const [formData, setFormData] = useState({
     activeName: '',
     activeType: '',
@@ -15,7 +15,6 @@ function CardActivity() {
     description: '',
   });
 
-  //////////////////////////////////////////////////////////////////
 
   const { id } = useParams();
 
@@ -38,7 +37,6 @@ useEffect(() => {
 }, [id]);
 
 
-  ////////////////////////// handle //////////////////////////////////////
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -55,15 +53,11 @@ useEffect(() => {
   const handleDeleteClick = () => {
     const shouldDelete = window.confirm('Are you sure you want to delete this activity?');
 
-    if (shouldDelete) {
-      
-    }
   };
 
   return (
   <Layout>
     <>
-    {/* <Navbar /> */}
     <div class="m-36">
       <form class="flex flex-col">
       <div class="bg-gray-100 w-3/5 rounded-md shadow-lg">
@@ -127,4 +121,4 @@ useEffect(() => {
   );
 }
 
-export default CardActivity;
+export default Activitycard;
