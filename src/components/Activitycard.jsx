@@ -6,7 +6,7 @@ import Navbar from './Navbar'
 import NavbarDT from './NavbarDT';
 
 
-function CardActivity() {
+function ActivityCard() {
   const [formData, setFormData] = useState({
     activeName: '',
     activeType: '',
@@ -116,7 +116,7 @@ useEffect(() => {
         onChange={handleInputChange}
       />
        <div className="relative left-20 buttom-20">
-      <button className="btn btn-outline btn-success absolute right-20  " onClick={handleSaveClick}>Save</button>
+      <button className="absolute btn btn-outline btn-success right-20 " onClick={handleSaveClick}>Save</button>
       <button className="btn btn-error absolute right-20 bottom-0.5"onClick={handleDeleteClick}>Delete</button>
       </div> 
     </form>
@@ -127,4 +127,4 @@ useEffect(() => {
   );
 }
 
-export default CardActivity;
+export default ActivityCard;
