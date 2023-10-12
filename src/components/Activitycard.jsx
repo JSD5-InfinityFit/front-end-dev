@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar'
 import NavbarDT from '../components/NavbarDT';
 
 
-function CardActivity() {
+function ActivityCard() {
   const [formData, setFormData] = useState({
     activeName: '',
     activeType: '',
@@ -127,4 +127,4 @@ useEffect(() => {
   );
 }
 
-export default CardActivity;
+export default ActivityCard;

@@ -1,23 +1,76 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import ActivityCard from './ActivityCard';
 
 import React from 'react';
 import Popup from './Popup'
 
 function ActivityList() {
-  const [cards,setCards ] = useState([]);
+  const [cards,setCards ] = useState([
+    {
+      id: "u-1",
+      imgURL:"",
+      activityType: "Run",
+      activityName:"Run for you",
+      date: "Mon 14",
+      duration : "15 minutes",
+      activityDescription: "I'm feel good",
+    },
+    {
+      id: "u-2",
+      imgURL: "",
+      activityType: "Badminton",
+      activityName:"This game for you",
+      date: "Sun 13",
+      duration : "15 minutes",
+      activityDescription: "I don't think i can be any happier right now",
+    },
+    {
+      id: "u-3",
+      imgURL:"",
+      activityType: "Dance",
+      activityName:"Dance for you",
+      date: "Sat 12",
+      duration : "15 minutes",
+      activityDescription: "",
+    },
+    {
+      id: "u-4",
+      imgURL:"",
+      activityType: "Dance",
+      activityName: "Dance for Health",
+      date: "Thu 10 ",
+      duration : "20 minutes",
+      activityDescription: "",
+    },
+    {
+      id: "u-5",
+      imgURL:"",
+      activityType: "Swimming",
+      activityName: "Swimming for you",
+      date: "Wed 9",
+      duration : "30 minutes",
+      activityDescription: "",
+    },
+    {
+      id: "u-6",
+      imgURL:"",
+      activityType: "Yoga",
+      activityName: "yoga for health",
+      date: "Mon 7",
+      duration : "30 minutes",
+      activityDescription: "I'm very happy right now",
+    },
+    {
+      id: "u-7",
+      imgURL:"",
+      activityType: "Swimming",
+      activityName: "Swimming for health",
+      date: "Sat 5",
+      duration : "30 minutes",
+      activityDescription: "It's been a tough day",
+    },
 
-  const fetchPost = async () =>{
-    const responsePosts = await axios.get(`https://infinity-fit-backend.onrender.com/activities`);
-    // fetch(`https://infinity-fit-backend.onrender.com/activities`).then(response => response.json()).then((json) => setCards(json));
-    setCards(responsePosts.data)
-  }
-
-  useEffect(() =>{
-    fetchPost();
-  },[])
+  ]);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -34,18 +87,19 @@ function ActivityList() {
           <div className='container max-w-screen-xl w-full m-auto '>
             <h1 className='text-5xl'>Exercise List</h1>
               <div className='cards flex flex-wrap justify-between grid grid-cols-4 gap-3 mt-3'>
-                {cards.map((post, index) =>(
-                  <div key={index} 
-                    className='card bg-blue-950 flex flex-0 flex-shrink-0 flex-basis-calc
-                    max-w-calc w-full p-3 flex-row'>
+                {cards.map((card,i) =>(
+                  <div 
+                  key={i} 
+                  className='card bg-blue-950 flex flex-0 flex-shrink-0 flex-basis-calc
+                  max-w-calc w-full p-3 flex-row'>
                     <div className='date_Exercise text-white font-black	text-4xl'>
                       <h2>{card.date}</h2>
                     </div>
 
                     <div div className='information text text-white font-semibold m-3'>
-                      <h3>{post.name}</h3>
-                      <h3>{post.description}</h3>
-                      <h5>{post.duration}</h5>
+                      <h3>{card.activityType}</h3>
+                      <h3>{card.activityName}</h3>
+                      <h5>{card.duration}</h5>
                   
                       <div className='trigger m-2'>
                         
@@ -72,25 +126,6 @@ function ActivityList() {
               ADD
           </Link>
         </section>
-
-
-        {/* <div>
-          {
-            cards.map((post, index) =>
-            <div key={index}>
-              {post.name}
-              <div>
-                {post.description}
-              </div>
-              <div>
-                {post.duration}
-              </div>
-              <hr />
-            </div>
-            )
-          }
-        </div> */}
-
     </>
   )
 }
