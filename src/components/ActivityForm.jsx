@@ -4,8 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './ActivityForm.css'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
-
-
+import axios from 'axios'; 
 
 function ActivityForm() {
 
@@ -21,12 +20,13 @@ function ActivityForm() {
   const [fileInput, setFileInput] = useState()
 
   const [formData, setFormData] = useState({
-    activityName: '',
+    name: '',
     description: '',
-    activityType: 'run',
-    min: 'Minutes',
-    hour: 'Hours',
-    date: null,
+    type: 'run',
+    min: 0,
+    hour: 0,
+    date: new Date(),
+    imageURL: '',
   })
 
   const handleFileSelect = (e) =>{
@@ -36,14 +36,15 @@ function ActivityForm() {
     let pic = URL.createObjectURL(file)
     
     setImg(pic)
+    setFormData({ ...formData, imageURL: pic });
   }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    // if activityType is changed, Update the picture.
-    if (name === 'activityType') {
+    // if type is changed, Update the picture.
+    if (name === 'type') {
       setImg(eval(value))
     }
   };
@@ -54,7 +55,7 @@ function ActivityForm() {
 
   const validateActivity = (name, type, description, date, durationTime) => {
     /**
-     * All form fields are validated on form submission(Name, Description, ActivityType:[ACTIVITY_TYPES], Duration, Date)
+     * All form fields are validated on form submission(Name, Description, type:[ACTIVITY_TYPES], Duration, Date)
      * A meaningful error message is displayed when a form field is invalid
      * @param {string} name - Name of the Activity
      * @param {string} type - Type of the Activity
@@ -100,7 +101,7 @@ function ActivityForm() {
       toast('Error! Activity Duration is not a valid number');
       return false;
     }
-    toast('Activity Form Submission is valid');
+    console.log('Activity Form Submission is valid');
     return true;
   }
 
@@ -110,22 +111,50 @@ function ActivityForm() {
     e.preventDefault();
     const currentDate = new Date();
     setFormData({ ...formData, date: currentDate });
-    const activityValid = validateActivity(formData.activityName, formData.activityType, formData.description, currentDate, parseInt(formData.hour * 60 + formData.min));
+    const activityValid = validateActivity(formData.name, formData.type, formData.description, currentDate, parseInt(formData.hour * 60 + formData.min));
     console.log(activityValid);
     console.log(formData);
+
     if (activityValid) {
       // post to server
+      postData();
     }
+  }
+
+  const postData = async () => {
+    const config = {
+      // set headers for axios.post
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    };
+    const postObject = {
+      name: formData.name,
+      type: formData.type,
+      description: formData.description,
+      duration: parseInt(formData.hour * 60 + formData.min),
+      date: formData.date,
+      userID: '60f9b0b3c9b0a40015f1b0a4',
+    };
+    await axios.post('https://infinity-fit-backend.onrender.com/activities',postObject, config)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
   const cancel = () => {
     setFormData({
-      activityName: '',
+      name: '',
       description: '',
-      activityType: 'run',
-      min: 'Minutes',
-      hour: 'Hours',
-      date: null,
+      type: 'run',
+      min: 0,
+      hour: 0,
+      date: new Date(),
     })
 
     setValue(dayjs())
@@ -148,8 +177,8 @@ function ActivityForm() {
                 style={{ padding: '6px', borderBottom: '1px solid grey' }}
                 placeholder='Activity Name'
                 type="text"
-                name="activityName"
-                value={formData.activityName}
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
               />
             </div>
@@ -157,7 +186,7 @@ function ActivityForm() {
             <div className="form-group">
               <label htmlFor="activity">Activity Type</label>
 
-              <select id="activity" value={formData.activityType} name="activityType" onChange={handleInputChange}>
+              <select id="activity" value={formData.type} name="type" onChange={handleInputChange}>
                 <option value="run" >Run</option>
                 <option value="dance">Dance</option>
                 <option value="swim">Swim</option>
@@ -212,7 +241,7 @@ function ActivityForm() {
             ref={(inputRef) => setFileInput(inputRef)} //Create a reference to the input element to interact with it
           />
 
-          <svg className='camera-icon w-10 h-10' onClick={() => {fileInput.click() }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
+          <svg className='w-10 h-10 camera-icon' onClick={() => {fileInput.click() }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
             <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
           </svg>
@@ -222,7 +251,13 @@ function ActivityForm() {
       </div>
 
       <div className="row-2">
-        <textarea placeholder="How did you feel during exercise?  ( Optional )" className="text"></textarea>
+        <textarea 
+          placeholder="How did you feel during exercise?  ( Optional )" 
+          className="text"
+          onChange={handleInputChange}
+          name="description"
+          value={formData.description}
+        ></textarea>
 
         <div className="buttons">
           <button className='add-button'

@@ -1,95 +1,58 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import './ActivityList.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import ActivityCard from './ActivityCard';
-
-import React from 'react';
-import Popup from './Popup'
 
 function ActivityList() {
   const [cards,setCards ] = useState([]);
+  
+  useEffect(() => {
+    getDataFromAPI();
+  }, []);
 
-  const fetchPost = async () =>{
-    const responsePosts = await axios.get(`https://infinity-fit-backend.onrender.com/activities`);
-    // fetch(`https://infinity-fit-backend.onrender.com/activities`).then(response => response.json()).then((json) => setCards(json));
-    setCards(responsePosts.data)
-  }
-
-  useEffect(() =>{
-    fetchPost();
-  },[])
-
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
+  const getDataFromAPI = async () => {
+    await axios.get('https://infinity-fit-backend.onrender.com/activities')
+    .catch((err) => {
+      console.log('Error', err)
+    })
+    .then((res) => {
+      console.log('Success', res.data)
+      setCards(res.data);
+      console.log(cards);
+    })
   };
-
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
-  };
+  
   return (
     <>
         <section className='box-border bg-[#F0F8FF]'>
-          <div className='container max-w-screen-xl w-full m-auto '>
-            <h1 className='text-5xl'>Exercise List</h1>
-              <div className='cards flex flex-wrap justify-between grid grid-cols-4 gap-3 mt-3'>
-                {cards.map((post, index) =>(
-                  <div key={index} 
-                    className='card bg-blue-950 flex flex-0 flex-shrink-0 flex-basis-calc
-                    max-w-calc w-full p-3 flex-row'>
-                    <div className='date_Exercise text-white font-black	text-4xl'>
-                      <h2>{card.date}</h2>
+          <div className='container w-full max-w-screen-xl m-auto '>
+            <h1 className='text-5xl '>Exercise List</h1>
+              <div className='flex grid flex-wrap justify-between grid-cols-4 gap-3 mt-3 cards'>
+                {cards.map((card) =>(
+                  <Link to={`/activities/${card._id}`} key={card._id} >
+                  <div 
+                  className='flex flex-row flex-shrink-0 w-full p-3 card bg-blue-950 flex-0 flex-basis-calc max-w-calc'>
+                    <div className='text-4xl font-black text-white date_Exercise'>
+                      {/* <h2>{card.date}</h2> */}
                     </div>
 
-                    <div div className='information text text-white font-semibold m-3'>
-                      <h3>{post.name}</h3>
-                      <h3>{post.description}</h3>
-                      <h5>{post.duration}</h5>
+                    <div div className='m-3 font-semibold text-white information text'>
+                      <h3>{card.type}</h3>
+                      <h3>{card.name}</h3>
+                      <h5>{card.duration}</h5>
                   
-                      <div className='trigger m-2'>
-                        
-                        <div className="text-center mt-20 static">
-                          <button onClick={handleOpenPopup} className="bg-blue-500 hover:bg-blue-700
-                           text-white font-bold rounded absolute bottom-4 right-4">
-                            Show more
-                          </button>
-                          {isPopupOpen && <Popup onClose={handleClosePopup} />}
-                        </div>
-                        
+                      <div className='m-2 trigger'>
                       </div>
                     </div>
                   </div> 
+                  </Link>
                 ))
               }
               </div>
           </div>
-          
-          <Link to={`/activity-card`} className="btn btn-outline btn-primary">
-            Edit
-          </Link>
-          <Link to={`/activity-card` } className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-              ADD
-          </Link>
         </section>
 
 
-        {/* <div>
-          {
-            cards.map((post, index) =>
-            <div key={index}>
-              {post.name}
-              <div>
-                {post.description}
-              </div>
-              <div>
-                {post.duration}
-              </div>
-              <hr />
-            </div>
-            )
-          }
-        </div> */}
 
     </>
   )
