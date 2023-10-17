@@ -137,7 +137,7 @@ function ActivityForm() {
       date: formData.date,
       userID: '60f9b0b3c9b0a40015f1b0a4',
     };
-    await axios.post('https://infinity-fit-backend.onrender.com/activities',postObject, config)
+    await axios.post('https://infinityfitbackenddev.onrender.com',postObject, config)
     .then(res => {
       console.log(res);
       console.log(res.data);

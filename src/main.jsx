@@ -6,7 +6,7 @@ import Activity from './pages/Activity.jsx'
 import Setting from './pages/Setting.jsx'
 import Profile from './pages/Profile.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
-import ActivityCard from './components/ActivityCard.jsx';
+import ActivityCard from './pages/ActivityCard.jsx';
 import Login from './components/Login.jsx'
 import Register from './components/Register.jsx'
 import './index.css'

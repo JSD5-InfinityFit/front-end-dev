@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react'
 import './ActivityList.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import ActivityCard from './ActivityCard.jsx';
-import Popup from './Popup'
+import ActivityCard from '../pages/ActivityCard.jsx';
 import Login from './Login.jsx'
 import Register from './Register.jsx'
-
 
 function ActivityList() {
   const [cards,setCards ] = useState([]);
