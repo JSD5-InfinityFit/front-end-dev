@@ -26,12 +26,13 @@ function ActivityList() {
       console.log(cards);
     })
   };
+  
   return (
     <>
         <section className='box-border bg-[#F0F8FF]'>
           <div className='container w-full max-w-screen-xl m-auto '>
             <h1 className='text-5xl '>Exercise List</h1>
-              <div className=' grid flex-wrap justify-between grid-cols-4 gap-3 mt-3 cards'>
+              <div className='grid flex-wrap justify-between grid-cols-4 gap-3 mt-3 cards'>
                 {cards.map((card) =>(
                   <Link to={`/activities/${card._id}`} key={card._id} >
                   <div 

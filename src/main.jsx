@@ -24,6 +24,9 @@ const router = createBrowserRouter([
   },{ 
     path: '/profile',
     element: <Profile /> 
+  },{
+    path: '/activities/:id',
+    element: <ActivityCard />
   },{ 
     path: "*",
     element: <PageNotFound />

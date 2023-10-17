@@ -1,40 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../Layout';
-import Navbar from './Navbar'
-import NavbarDT from './NavbarDT';
+import axios from 'axios';
 
-
-function Activitycard() {
+function ActivityCard() {
   const [formData, setFormData] = useState({
-    activeName: '',
-    activeType: '',
-    date: '',
-    duration: '',
+    name: '',
+    type: '',
     description: '',
+    duration: 0,
+    date: '',
+    userID: '60f9b0b3c9b0a40015f1b0a4',
   });
-
-
   const { id } = useParams();
 
-useEffect(() => {
+  useEffect(() => {
+    fetchActivityData();
+  }, [id]);
+
   const fetchActivityData = async () => {
-    try {
-      const res = await fetch(`/api/activities/${id}`);
-      if (res.ok) {
-        const data = await res.json();
-        setFormData(data);
-      } else {
-        console.error('Failed to fetch activity data');
-      }
-    } catch (error) {
-      console.error('Error fetching activity data:', error);
-    }
+    await axios.get(`http://localhost:3000/activities/${id}`)
+      .then((res) => {
+        setFormData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
-  fetchActivityData();
-}, [id]);
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,21 +36,50 @@ useEffect(() => {
     });
   };
 
-  const handleSaveClick = () => {
-
+  const handleSaveClick = async (e) => {
+    e.preventDefault(); // prevent default form submission behavior
     console.log(formData);
+    const config = {
+      // set headers for axios.post
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    };
+    await axios.put(`http://localhost:3000/activities/${id}`, {
+      name: formData.name,
+      type: formData.type,
+      description: formData.description,
+      duration: formData.duration,
+      date: formData.date,
+      userID: '60f9b0b3c9b0a40015f1b0a4',
+    }, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = async () => {
     const shouldDelete = window.confirm('Are you sure you want to delete this activity?');
-
+    if (shouldDelete) {
+      await axios.delete(`http://localhost:3000/activities/${id}`)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
   <Layout>
     <>
     <div class="m-36">
-      <form class="flex flex-col">
+      <form class="flex flex-col" onSubmit={handleSaveClick}>
       <div class="bg-gray-100 w-3/5 rounded-md shadow-lg">
       <div class="h-46" >
         
@@ -66,8 +87,8 @@ useEffect(() => {
       <input class="border-2"
         type='text'
         placeholder='Enter Name'
-        name='activeName'
-        value={formData.activeName}
+        name='name'
+        value={formData.name}
         onChange={handleInputChange}
       /></div>
 
@@ -76,8 +97,8 @@ useEffect(() => {
       <input class="border-2"
         type='dropdown'
         placeholder='Selected Type'
-        name='activeType'
-        value={formData.activeType}
+        name='type'
+        value={formData.type}
         onChange={handleInputChange}
       /></div>
 
@@ -109,7 +130,7 @@ useEffect(() => {
         onChange={handleInputChange}
       />
        <div className="relative left-20 buttom-20">
-      <button className="btn btn-outline btn-success absolute right-20  " onClick={handleSaveClick}>Save</button>
+      <button className="absolute btn btn-outline btn-success right-20 " type="submit">Save</button>
       <button className="btn btn-error absolute right-20 bottom-0.5"onClick={handleDeleteClick}>Delete</button>
       </div> 
     </form>
@@ -120,4 +141,4 @@ useEffect(() => {
   );
 }
 
-export default Activitycard;
+export default ActivityCard;
