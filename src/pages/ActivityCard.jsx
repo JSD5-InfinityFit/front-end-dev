@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Layout from '../Layout';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import Layout from "../Layout";
+import ActivityDisplay from "../components/ActivityDisplay";
+import ActivityEditForm from "../components/ActivityEditForm";
 
 function ActivityCard() {
-  const [formData, setFormData] = useState({
-    name: '',
-    type: '',
-    description: '',
+  const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [activityData, setActivityData] = useState({
+    name: "",
+    type: "",
+    description: "",
     duration: 0,
-    date: '',
-    userID: '60f9b0b3c9b0a40015f1b0a4',
+    date: "",
+    userID: "60f9b0b3c9b0a40015f1b0a4",
   });
   const { id } = useParams();
 
@@ -19,9 +24,15 @@ function ActivityCard() {
   }, [id]);
 
   const fetchActivityData = async () => {
-    await axios.get(`http://localhost:3000/activities/${id}`)
+    await axios
+      .get(`https://infinity-fit-backend.onrender.com/activities/${id}`)
       .then((res) => {
-        setFormData(res.data);
+        setActivityData(res.data);
+        console.error(res.data)
+        if(activityData) {
+          console.error(activityData)
+          setIsLoading(false);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -30,30 +41,35 @@ function ActivityCard() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setActivityData({
+      ...activityData,
       [name]: value,
     });
   };
 
   const handleSaveClick = async (e) => {
     e.preventDefault(); // prevent default form submission behavior
-    console.log(formData);
+    console.log(activityData);
     const config = {
       // set headers for axios.post
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      }
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
     };
-    await axios.put(`http://localhost:3000/activities/${id}`, {
-      name: formData.name,
-      type: formData.type,
-      description: formData.description,
-      duration: formData.duration,
-      date: formData.date,
-      userID: '60f9b0b3c9b0a40015f1b0a4',
-    }, config)
+    await axios
+      .put(
+        `https://infinity-fit-backend.onrender.com/activities/${id}`,
+        {
+          name: activityData.name,
+          type: activityData.type,
+          description: activityData.description,
+          duration: activityData.duration,
+          date: activityData.date,
+          userID: "60f9b0b3c9b0a40015f1b0a4",
+        },
+        config
+      )
       .then((res) => {
         console.log(res);
       })
@@ -63,9 +79,12 @@ function ActivityCard() {
   };
 
   const handleDeleteClick = async () => {
-    const shouldDelete = window.confirm('Are you sure you want to delete this activity?');
+    const shouldDelete = window.confirm(
+      "Are you sure you want to delete this activity?"
+    );
     if (shouldDelete) {
-      await axios.delete(`http://localhost:3000/activities/${id}`)
+      await axios
+        .delete(`https://infinity-fit-backend.onrender.com/activities/${id}`)
         .then((res) => {
           console.log(res);
         })
@@ -74,70 +93,29 @@ function ActivityCard() {
         });
     }
   };
-
+  console.log(activityData);
+  console.log(isEditing);
   return (
-  <Layout>
-    <>
-    <div class="m-36">
-      <form class="flex flex-col" onSubmit={handleSaveClick}>
-      <div class="bg-gray-100 w-3/5 rounded-md shadow-lg">
-      <div class="h-46" >
-        
-      <label class="bg-violet-800 w-14 p-4 rounded-md" >Active Name</label>
-      <input class="border-2"
-        type='text'
-        placeholder='Enter Name'
-        name='name'
-        value={formData.name}
-        onChange={handleInputChange}
-      /></div>
-
-      <div class="h-46" >
-      <label class="	bg-violet-800 w-14 p-4 rounded-md">Active Type</label>
-      <input class="border-2"
-        type='dropdown'
-        placeholder='Selected Type'
-        name='type'
-        value={formData.type}
-        onChange={handleInputChange}
-      /></div>
-
-      
-      <div class="flex flex-row">
-      <label>Date</label>
-      <input
-        type='date'
-        name='date'
-        value={formData.date}
-        onChange={handleInputChange}
-      /></div>
-
-      <div class="flex flex-row">
-      <label>Duration</label>
-      <input
-        type='text'
-        name='duration'
-        value={formData.duration}
-        onChange={handleInputChange}
-      /></div>
-      </div>
-
-      
-      <label>Description</label>
-      <textarea class="w-5/6 shadow-lg h-52"
-        name='description'
-        value={formData.description}
-        onChange={handleInputChange}
-      />
-       <div className="relative left-20 buttom-20">
-      <button className="absolute btn btn-outline btn-success right-20 " type="submit">Save</button>
-      <button className="btn btn-error absolute right-20 bottom-0.5"onClick={handleDeleteClick}>Delete</button>
-      </div> 
-    </form>
-  </div>
-  
-  </> 
-  </Layout>
+    <Layout>
+      { isLoading ? (
+        <div className="flex items-center justify-center text-center">Loading ... please wait</div>
+      ) : isEditing ? (
+          <ActivityEditForm
+            activityData={activityData}
+            handleInputChange={handleInputChange}
+            handleSaveClick={handleSaveClick}
+            handleDeleteClick={handleDeleteClick}
+            setIsEditing={setIsEditing}
+          />
+          )
+        : (
+          <ActivityDisplay 
+            activityData={activityData} 
+            onEditClick={() => setIsEditing(true)}
+            onDeleteClick={handleDeleteClick}
+          />
+          )}
+    </Layout>
   );
 }
 
