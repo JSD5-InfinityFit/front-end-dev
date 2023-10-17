@@ -10,10 +10,24 @@ import ActivityCard from './pages/ActivityCard.jsx';
 import './index.css'
 import ActivityList from './components/ActivityList.jsx';
 import ActivityListPage from './pages/ActivityListPage.jsx';
+import WelcomePage from './pages/welcome-page.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+
 
 const router = createBrowserRouter([
   { 
     path: '/', 
+    element: <WelcomePage/> 
+  },
+  { 
+    path: '/register', 
+    element: <RegisterPage/> 
+  },{ 
+    path: '/login', 
+    element: <LoginPage/> 
+  },{ 
+    path: '/home', 
     element: <Home /> 
   },{ 
     path: '/activity',
