@@ -8,6 +8,8 @@ import Profile from './pages/Profile.jsx'
 import PageNotFound from './pages/PageNotFound.jsx';
 import ActivityCard from './pages/ActivityCard.jsx';
 import './index.css'
+import ActivityList from './components/ActivityList.jsx';
+import ActivityListPage from './pages/ActivityListPage.jsx';
 
 const router = createBrowserRouter([
   { 
@@ -15,7 +17,11 @@ const router = createBrowserRouter([
     element: <Home /> 
   },{ 
     path: '/activity',
-    element: <Activity /> 
+    element: <ActivityListPage/> 
+  }
+  ,{
+    path: '/activityform',
+    element: <Activity/>
   },{ 
     path: '/setting',
     element: <Setting /> 
