@@ -20,7 +20,7 @@ function ActivityCard() {
 
   const fetchActivityData = async () => {
     await axios
-      .get(`http://localhost:3000/activities/${id}`)
+      .get(`https://infinity-fit-backend.onrender.com/activities/${id}`)
       .then((res) => {
         setFormData(res.data);
       })
@@ -49,7 +49,7 @@ function ActivityCard() {
     };
     await axios
       .put(
-        `http://localhost:3000/activities/${id}`,
+        `https://infinity-fit-backend.onrender.com/activities/${id}`,
         {
           name: formData.name,
           type: formData.type,
@@ -77,7 +77,7 @@ function ActivityCard() {
     );
     if (shouldDelete) {
       await axios
-        .delete(`http://localhost:3000/activities/${id}`)
+        .delete(`https://infinity-fit-backend.onrender.com/activities/${id}`)
         .then((res) => {
           navigate("/");
           console.log(res);
