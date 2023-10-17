@@ -71,12 +71,15 @@ function ActivityCard() {
         config
       )
       .then((res) => {
+        navigate("/");
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  const navigate = useNavigate();
 
   const handleDeleteClick = async () => {
     const shouldDelete = window.confirm(
@@ -86,6 +89,7 @@ function ActivityCard() {
       await axios
         .delete(`https://infinity-fit-backend.onrender.com/activities/${id}`)
         .then((res) => {
+          navigate("/");
           console.log(res);
         })
         .catch((err) => {
