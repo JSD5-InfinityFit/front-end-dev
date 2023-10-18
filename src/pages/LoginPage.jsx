@@ -1,51 +1,82 @@
-
-import { useState } from "react";
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Layout from "../Layout.jsx";
+import axios from "axios";
 
 function LoginPage() {
-  const [email, setEmail] = useState();
-  const [error, setError] = useState('')
-  const [password, setPassword] = useState();
+  // const [email, setEmail] = useState();
+  // const [error, setError] = useState("");
+  // const [password, setPassword] = useState();
+  const navigate = useNavigate();
+  const [value, setValue] = useState({
+    userEmail: "",
+    userPassword: "",
+  });
 
-  
-  
-  return (
-    <div>
-      <h1>Login</h1>
-      <label>Email :</label>
-      <input
-        type="text"
-        placeholder="email"
-        value={email}
-        onChange={(ev) => setEmail(ev.target.value)}
-      />
-      <br></br>
-      <label >Password :</label>
-      <input
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={(ev) => setPassword(ev.target.value)}
-      />
-      <br></br>
-      <button onClick={()=> {signInWithEmailAndPassword(auth, email, password).catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-			setError(error.message)
-          console.log(errorCode)
-          console.log(errorMessage)
+  const VURI = "https://infinityfitbackenddev.onrender.com";
+  const FURI = "https://infinity-fit-backend.onrender.com";
 
+  const handleChange = (e) => {
+    setValue({
+      ...value,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const logining = async (value) =>
+      await axios
+        .post(VURI + "/login", value, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          navigate("/");
+          localStorage.setItem("token", res.data.token);
+          console.log('Login Success')
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+          toast.error(err.response.data);
         });
-      
-      }}>Login</button>
+    logining(value);
+  };
 
-		<span className="error">{error}</span>
-      
-    </div>
-
-
-
+  return (
+    <Layout>
+      <div className="container">
+        <div>
+          <h1>Login Page</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>User Email</label>
+              <input
+                type="text"
+                name="userEmail"
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="text"
+                name="userPassword"
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+            <br />
+            <button className="btn btn-success">Submit</button>
+          </form>
+        </div>
+        <div>2</div>
+      </div>
+    </Layout>
   );
-  }
+}
 
 export default LoginPage;
