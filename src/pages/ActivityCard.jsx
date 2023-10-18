@@ -86,6 +86,7 @@ function ActivityCard() {
       "Are you sure you want to delete this activity?"
     );
     if (shouldDelete) {
+      console.error(id);
       await axios
         .delete(`https://infinity-fit-backend.onrender.com/activities/${id}`)
         .then((res) => {
