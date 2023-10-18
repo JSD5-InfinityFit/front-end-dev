@@ -9,7 +9,8 @@ const ActivityEditForm = ({  //new in this file
   handleDeleteClick,
   setIsEditing,
   handleFileSelect, //new in this file
-  setFileInput, //new in this file
+  setFileInput,
+  formData, //new in this file
 
 
   
@@ -27,8 +28,8 @@ const ActivityEditForm = ({  //new in this file
 
     <>
     <div className="grid bg-zinc-900">
-      <div className="row-1 ">
-        <div id="form" className="form text-white">
+      <div className="row-1">
+        <div id="form" className="form text-white sm:text-center">
 
           <form className="" onSubmit={handleSaveClick}>
             <div className="form-group">
@@ -62,20 +63,33 @@ const ActivityEditForm = ({  //new in this file
                 name="date"
                 value={activityData.date}
                 onChange={handleInputChange}
-                className="text-black"
+                className="bg-white  text-white rounded-md"
               />
             </div>
 
             <div className="form-group">
               <label htmlFor="duration">Duration</label>
               <input
-              type="text"
-              name="duration"
-              value={activityData.duration}
-              onChange={handleInputChange}
-              className="text-black"
-            />
-            </div>
+                className="in rounded-md"
+                min="0"
+                placeholder='Hour'
+                type="number"
+                name="hour"
+                value={formData?.hour || ''}
+                onChange={handleInputChange}
+              />
+              <input
+                min="0"
+                max={59}
+                className="in rounded-md"
+                placeholder='Minute'
+                type="number"
+                name="min"
+                value={formData?.min || ''}
+                onChange={handleInputChange}
+              />
+      </div>
+            
         </form>
        </div>
         <div className="img-parent">
@@ -89,7 +103,7 @@ const ActivityEditForm = ({  //new in this file
             // ref={(inputRef) => setFileInput(inputRef)} //Create a reference to the input element to interact with it
           />
 
-          <svg className='w-10 h-10 camera-icon' onClick={() => {fileInput.click() }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
+          <svg id="camera-icon" className='w-10 h-10 camera-icon' onClick={() => {fileInput.click() }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
             <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
           </svg>
@@ -109,7 +123,7 @@ const ActivityEditForm = ({  //new in this file
         <div className="b480">
         <div className="buttons">
           <button
-          className="save-button bg-blue-500"
+          className="save-button bg-blue-500 "
           type="submit"
           >
           Save
@@ -137,81 +151,7 @@ const ActivityEditForm = ({  //new in this file
     </div>
     
     </>
-    // <div className="m-36">
-    //   <form className="flex flex-col" onSubmit={handleSaveClick}>
-    //     <div className="w-3/5 bg-gray-100 rounded-md shadow-lg">
-    //       <div className="h-46">
-    //         <label className="p-4 rounded-md bg-violet-800 w-14">
-    //           Active Name
-    //         </label>
-    //         <input
-    //           className="border-2"
-    //           type="text"
-    //           placeholder="Enter Name"
-    //           name="name"
-    //           value={activityData.name}
-    //           onChange={handleInputChange}
-    //         />
-    //       </div>
-    //       <div className="h-46">
-    //         <label className="p-4 rounded-md bg-violet-800 w-14">Active Type </label>
-    //         <input
-    //           className="border-2"
-    //           type="dropdown"
-    //           placeholder="Selected Type"
-    //           name="type"
-    //           value={activityData.type}
-    //           onChange={handleInputChange}
-    //         />
-    //       </div>
-          
-    //       <div className="flex flex-row">
-    //         <label>Date</label>
-    //         <input
-    //           type="date"
-    //           name="date"
-    //           value={activityData.date}
-    //           onChange={handleInputChange}
-    //         />
-    //       </div>
-    //       <div className="flex flex-row">
-    //         <label>Duration</label>
-    //         <input
-    //           type="text"
-    //           name="duration"
-    //           value={activityData.duration}
-    //           onChange={handleInputChange}
-    //         />
-    //       </div>
-    //     </div>
-    //     <label>Description</label>
-    //     <textarea
-    //       className="w-5/6 shadow-lg h-52"
-    //       name="description"
-    //       value={activityData.description}
-    //       onChange={handleInputChange}
-    //     />
-    //   </form>
-    //   <div className="flex justify-start left-20 buttom-20">
-    //     <button
-    //       className="mt-4 btn-primary"
-    //       type="submit"
-    //     >
-    //       Save
-    //     </button>
-    //     <button
-    //       className="mt-4 btn-error"
-    //       onClick={handleDeleteClick}
-    //     >
-    //       Delete
-    //     </button>
-    //     <button 
-    //       className="mt-4 btn-accent"
-    //       onClick={() => setIsEditing(false)}>
-    //       Cancel
-    //     </button>
-    //   </div>
-    // </div>
+    
   );
 };
 

@@ -165,9 +165,9 @@ function ActivityForm() {
 
 
   return (
-    <div className="grid">
+    <div className="grid bg-zinc-900">
       <div className="row-1">
-        <div className="form">
+        <div id="form" className="form">
 
           <form>
 
@@ -178,6 +178,7 @@ function ActivityForm() {
                 placeholder='Activity Name'
                 type="text"
                 name="name"
+                className="activity-name"
                 value={formData.name}
                 onChange={handleInputChange}
               />
@@ -186,7 +187,7 @@ function ActivityForm() {
             <div className="form-group">
               <label htmlFor="activity">Activity Type</label>
 
-              <select id="activity" value={formData.type} name="type" onChange={handleInputChange}>
+              <select id="activity" className="activity-type" value={formData.type} name="type" onChange={handleInputChange}>
                 <option value="run" >Run</option>
                 <option value="dance">Dance</option>
                 <option value="swim">Swim</option>
@@ -201,13 +202,14 @@ function ActivityForm() {
                 format="DD/MM/YYYY hh:mm"
                 value={value}
                 onChange={(newValue) => setValue(newValue)}
+                className="bg-white rounded-md"
               />
             </div>
 
             <div className="form-group">
               <label htmlFor="duration">Duration</label>
               <input
-                className="in"
+                className="in text-black rounded-md"
                 min="0"
                 placeholder='Hour'
                 type="number"
@@ -218,7 +220,7 @@ function ActivityForm() {
               <input
                 min="0"
                 max={59}
-                className="in"
+                className="in text-black rounded-md"
                 placeholder='Minute'
                 type="number"
                 name="min"
