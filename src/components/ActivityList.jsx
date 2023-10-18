@@ -34,7 +34,7 @@ function ActivityList() {
 
     const dayOfWeek = daysOfWeek[date.getDay()];
     
-    
+
     return {
       dayOfWeek,day,month,
     };
@@ -47,11 +47,13 @@ function ActivityList() {
           <div className='sm:container w-full max-w-screen-xl m-auto '>
             <h1 className='text-5xl pt-6 font-semibold	'>Exercise List</h1>
 
-              <div className='grid flex-wrap justify-between grid-rows-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-3 cards container md:mx-auto'>
+              {/* <div className='flex flex-col-reverse '> */}
+              <div className='grid flex-wrap justify-between grid-row-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-3 cards container md:mx-auto'>
                 {cards.map((card) =>(
                   <Link to={`/activities/${card._id}`} key={card._id} >
                     <div 
-                      className='flex flex-row flex-shrink-0 w-full p-3 card bg-blue-950 flex-0 flex-basis-calc max-w-calc'>
+                      className='flex flex-row flex-shrink-0 w-full p-3 card bg-blue-950 flex-0 flex-basis-calc max-w-calc border-l-8'
+                      style={{borderColor: card.type === 'run' ? 'green' : card.type === 'swim' ? 'skyblue' : card.type === 'badminton' ? 'orange' : card.type === 'dance' ? 'red' : 'pink'}}>
                       
                       <div className=' mx-auto p-2 text-3xl font-black text-white date_Exercise'> 
       
@@ -67,7 +69,6 @@ function ActivityList() {
                         <p className='text-3xl font-semibold'>{card.type}</p>
                         <p className='font-semibold'>{card.name}</p>
                         <p className='font-semibold'>{card.duration}</p>
-            
                       </div>
                     </div> 
                   </Link>
@@ -96,7 +97,6 @@ function ActivityList() {
                   </div>
                 </div>
               </div>
-         
         </section>
     </>
   )
