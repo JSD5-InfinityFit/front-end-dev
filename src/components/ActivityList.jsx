@@ -81,9 +81,9 @@ function ActivityList() {
                   <div class="mx-auto flex gap-10">
                     <div class="w-auto h-auto">
                       <div class="flex-1 h-full">
-                        <div class="flex items-end justify-end flex-1 h-full p-2 bg-blue-800 text-white shadow rounded-full ">
-                          <div class="relative ">
-                          <a href={'/activity'}>
+                        <div class="flex items-center justify-end flex-1 h-full p-2 bg-blue-800 text-white shadow rounded-full">
+                          <div class="relative">
+                          <a href={'/activityform'}>
 
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
