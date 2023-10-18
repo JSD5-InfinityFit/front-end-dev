@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import LoginPage from './LoginPage';
-
+import inifityLogo from "../assets/icons/infinity.png";
+import './RegisterPage.css'
+import { colors } from '@mui/material';
 
 
 function RegisterPage() {
@@ -28,31 +30,37 @@ function RegisterPage() {
             });
     }
 
-     return (
-        <main className='center'>
-            <section>
-                <div>
+    return (
+        <main className='center-top pt-12'>
+            <section className=''>
+               
                     <div className='card'>
-                        <h1> Register </h1>
+                        <div className='box-logo'>
+                            <h1 ><img
+                                src={inifityLogo}
+                                className="h-12 "
+                                alt="Infinity Fit Logo" />
+                                INFINITY FIT </h1>
+                        </div>
                         <form >
-                            <div>
+                            <div className='formtype pt-12'>
                                 <label htmlFor="email-address">
-                                    Email address
-                                </label>
+                                    Email
+                                </label> <br></br>
                                 <input
                                     type="email"
                                     label="Email address"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
-                                    placeholder="Email address"
+                                    placeholder="Email"
                                 />
                             </div>
-
-                            <div>
-                                <label htmlFor="password">
+                                
+                            <div className='formtype'>
+                                <label  htmlFor="password">
                                     Password
-                                </label>
+                                </label> <br></br>
                                 <input
                                     type="password"
                                     label="Create password"
@@ -62,14 +70,14 @@ function RegisterPage() {
                                     placeholder="Password"
                                 />
                             </div>
-
-                            <button
-                                type="submit"
-                                onClick={onSubmit}
-                            >
-                                Sign up
-                            </button>
-
+                            <div className='register-2'>
+                                
+                                    <button className='button-register' style={{backgroundColor:'#0353A4'}}
+                                        type="submit"
+                                        onClick={onSubmit}
+                                    > Register </button>
+                                
+                            </div>
                         </form>
 
                         <p>
@@ -79,11 +87,11 @@ function RegisterPage() {
                             </NavLink>
                         </p>
                     </div>
-                </div>
-            </section>
-        </main>
+               
+            </section >
+        </main >
 
-     )
+    )
 }
-	
+
 export default RegisterPage;
