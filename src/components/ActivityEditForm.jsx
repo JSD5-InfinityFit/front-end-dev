@@ -34,7 +34,7 @@ const ActivityEditForm = ({  //new in this file
             <div className="form-group">
               <label>Activity Name</label>
               <input
-              className="border-2 text-black"
+              className="activity-name"
               type="text"
               placeholder="Enter Name"
               name="name"
@@ -46,7 +46,7 @@ const ActivityEditForm = ({  //new in this file
             <div className="form-group">
               <label htmlFor="activity">Activity Type</label>
 
-              <select id="activity"  className="text-black" name="type" onChange={handleInputChange}>
+              <select id="activity"  className="activity-type" name="type" onChange={handleInputChange}>
                 <option value="run" >Run</option>
                 <option value="dance">Dance</option>
                 <option value="swim">Swim</option>
@@ -109,7 +109,7 @@ const ActivityEditForm = ({  //new in this file
         <div className="b480">
         <div className="buttons">
           <button
-          className="save-button"
+          className="save-button bg-blue-500"
           type="submit"
           >
           Save
