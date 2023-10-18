@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.center-top {
+    height: 100vh;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: top;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 100%), url('../assets/humphrey.jpg');
+    ;
+    background-size: cover;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.box-logo h1 {
+    background-color: #7A73E6;
+    color: #F4F6F6;
+    border-radius: 4px;
+    font-size: 35px;
+    padding: 15px;
+    margin: 5px;
+    width: 320px;
+    height: 85px;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.formtype{
+    color: #F4F6F6;
+    font-size: 20px;
+}
+.formtype label {
+    margin: 0;
+    padding: 0;
+}
+.formtype input {
+    padding: 6px;
+    width: 100%;
+    margin-top:  10px;
+    margin-right: 0;
+    margin-bottom: 10px;
+    margin-left: 0;
+
+}
+
+.button-register{ 
+margin-top:10px;
+width: 100%;
+padding: 10px 60px;
+justify-content: center;
+align-items: center;
+color: #fbfbfb;
+font-size: 25px;
+}
+.w-100{
+    width: 100%;
+}
