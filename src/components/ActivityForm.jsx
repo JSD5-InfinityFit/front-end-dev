@@ -274,6 +274,7 @@ function ActivityForm() {
             Cancel
           </button>
         </div>
+
       </div>
     </div>
   )
