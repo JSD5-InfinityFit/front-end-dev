@@ -30,7 +30,7 @@ function ActivityList() {
 
   const currentUser = async (userID) =>
     await axios
-      .get(VURI + "/users/" + userID)
+      .get(FURI + "/users/" + userID)
       .then((res) => {
         console.log(res.data);
         console.log(res.data.userActivities);

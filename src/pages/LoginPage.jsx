@@ -29,7 +29,7 @@ function LoginPage() {
 
     const logining = async (value) =>
       await axios
-        .post(VURI + "/users/login", value, {
+        .post(FURI + "/users/login", value, {
           headers: {
             "Content-Type": "application/json",
           },

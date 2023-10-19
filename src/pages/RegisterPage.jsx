@@ -55,7 +55,7 @@ const [value, setValue] = useState({
   const navigate = useNavigate();
 
   const register = async (value) =>
-    await axios.post(VURI + "/users/register", value, {
+    await axios.post(FURI + "/users/register", value, {
       headers: {
         "Content-Type": "application/json",
       },
