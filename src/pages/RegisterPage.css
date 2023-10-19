@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 100%), url('../assets/humphrey.jpg');
+    ;
+    background-size: cover;
+}
+
+.center-top {
+    height: 100vh;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: top;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.box-logo h1 {
+    background-color: #7A73E6;
+    color: #F4F6F6;
+    border-radius: 4px;
+    font-size: 35px;
+    padding: 15px;
+    margin: 5px;
+    width: 500px;
+    height: 85px;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.formtype {
+    color: #F4F6F6;
+    font-size: 20px;
+}
+
+.formtype label {
+    margin: 0;
+    padding: 0;
+}
+
+.formtype input {
+    padding: 6px;
+    width: 100%;
+    margin-top: 10px;
+    margin-right: 0;
+    margin-bottom: 10px;
+    margin-left: 0;
+    color: #000;
+
+}
+
+.button-register {
+    height:50px;
+    margin-top: 10px;
+    width: 100%;
+    padding: 7px 60px;
+    justify-content: center;
+    align-items: center;
+    color: #fbfbfb;
+    font-size: 25px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.line-1 {
+    margin-top: 30px;
+    width:30%;
+    height: 1px;
+    background: #eee9d2;
+    
+
+}
+
+.line-login {
+    display: flex;
+    width: 500px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.line-2 {
+    color: #F4F6F6;
+    margin-top: 20px;
+
+}
+.social-icons{
+    color: #fcfbfb;
+    margin-top: 20px;
+    border-radius: 6px;
+    background: var(--sth-darkgrey, #484848);
+    display: flex;
+    height: 55px;
+    padding: 10px 60px;
+    justify-content: center;
+    align-items: center;
+   width: 30%;
+}
+.social-icons-2{
+    
+    color: #fcfbfb;
+    margin-top: 20px;
+    border-radius: 6px;
+    background: var(--sth-darkgrey, #484848);
+    display: flex;
+    height: 55px;
+    padding: 10px 60px;
+    justify-content: center;
+    align-items: center;
+   width: 30%;
+}
+.social-icons-3{
+    color: #fcfbfb;
+    margin-top: 20px;
+    border-radius: 6px;
+    background: var(--sth-darkgrey, #484848);
+    display: flex;
+    height: 55px;
+    padding: 10px 60px;
+    justify-content: center;
+    align-items: center;
+   width: 30%;
+}
+.main-icons{
+    display: flex;
+   justify-content: space-between;
+}
+.sign-in p {
+ font-size: 30px;
+}
+.sign-in {
+    width: 100%;
+}
+.button-sign-in{
+    margin-top: 10px;
+    width: 100%;
+}
+.sign-in-2{
+    color: #fcfbfb;
+    padding: 8px 50px;
+    background-color: #0353A4;
+    border-radius: 6px;
+    font-size: 20px;
+}

@@ -5,11 +5,11 @@ label{
     width: 140px;
 }
 
-.in{
+/* .in{
     width: 80px;
     padding: 6px;
     border-bottom: 1px solid grey;
-}
+} */
 
 #activity{
     height: 50px;
@@ -123,3 +123,10 @@ label{
 .btn-seperator{
     height: 20%;
 }
+
+#form{
+    background-color:#061A40 ;
+    color: white;
+  }
+
+  
