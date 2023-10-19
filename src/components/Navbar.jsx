@@ -76,6 +76,7 @@ const Navbar = () => {
                 Profile
               </a>
             </li>
+          
           </ul>
         </div>
       </div>
