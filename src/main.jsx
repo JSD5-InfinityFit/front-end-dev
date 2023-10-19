@@ -13,7 +13,7 @@ import ActivityListPage from './pages/ActivityListPage.jsx';
 import WelcomePage from './pages/welcome-page.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
-
+import Dashboard from './pages/Dashboard.jsx';
 
 
 const router = createBrowserRouter([
@@ -49,6 +49,9 @@ const router = createBrowserRouter([
   },{ 
     path: "*",
     element: <PageNotFound />
+  },{
+    path: '/dashboard',
+    element: <Dashboard />
   }
 ])
 
