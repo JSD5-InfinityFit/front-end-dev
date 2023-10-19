@@ -90,7 +90,7 @@ function ActivityCard() {
       await axios
         .delete(`https://infinity-fit-backend.onrender.com/activities/${id}`)
         .then((res) => {
-          navigate("/");
+          navigate("/home");
           console.log(res);
         })
         .catch((err) => {
