@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './pages/Home.jsx'
 import Activity from './pages/Activity.jsx'
 import Setting from './pages/Setting.jsx'
-import Profile from './pages/Profile.jsx'
+import Profile from './pages/Profile.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import ActivityCard from './pages/ActivityCard.jsx';
 import './index.css'
@@ -13,6 +13,7 @@ import ActivityListPage from './pages/ActivityListPage.jsx';
 import WelcomePage from './pages/welcome-page.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
+
 
 
 const router = createBrowserRouter([
