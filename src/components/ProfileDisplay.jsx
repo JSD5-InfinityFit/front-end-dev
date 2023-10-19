@@ -32,10 +32,14 @@ const ProfileDisplay = ({ setChange, information }) => {
             <span className="item-value">{information.Weight}</span>
           </div>
         </div>
-  
+        <div id="button" className="flex justify-between">
         <button className="mt-4 btn-primary w-[100px]" onClick={() => setChange(false)}>
           Edit
         </button>
+        <button className="mt-4 btn-error w-[100px]" >
+            Logout
+          </button>
+          </div>
       </div>
     );
   };

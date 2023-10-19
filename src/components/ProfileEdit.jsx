@@ -156,9 +156,6 @@ const ProfileEdit = ({ onEditClick, onDeleteClick , onLogoutClick, setChange, se
           <button className="mt-4 btn-error w-[100px]" onClick={handleDeleteClick}>
             Delete
           </button>
-          <button className="mt-4 btn-error w-[100px]" onClick={onLogoutClick}>
-            Logout
-          </button>
         </div>
         </div>
       </div>
