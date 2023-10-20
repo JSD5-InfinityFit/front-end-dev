@@ -91,7 +91,7 @@ const ProfileEdit = ({ onEditClick, onDeleteClick , onLogoutClick, setChange, se
   return (
     <div className="main-profile">
       <div className="information">
-        <form>
+        <form className='information-form'>
           <div className="informationtype">
             <label htmlFor="Name">Name</label>
             <input
@@ -105,16 +105,18 @@ const ProfileEdit = ({ onEditClick, onDeleteClick , onLogoutClick, setChange, se
           </div>
           <div className="informationtype">
             <label htmlFor="Gender">Gender</label>
+            <div className='select-g'>
             <select name="Gender" value={information.Gender} onChange={handleInputChange}  required >
               <option value="">Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
-              
             </select>
+            </div>
           </div>
           <div className="informationtype">
-            <label htmlFor="Birthdate">BirthDate</label>
+            <label  htmlFor="Birthdate">BirthDate</label>
             <input
+            style={{paddingLeft:'10px'}}
               type="date"
               name="Birthdate"
               value={information.Birthdate}
@@ -133,6 +135,7 @@ const ProfileEdit = ({ onEditClick, onDeleteClick , onLogoutClick, setChange, se
               required
               placeholder="Height"
             />
+            <label htmlFor="Height">cm.</label>
           </div>
           <div className="informationtype">
             <label htmlFor="Weight">Weight</label>
@@ -144,12 +147,11 @@ const ProfileEdit = ({ onEditClick, onDeleteClick , onLogoutClick, setChange, se
               min="0"
               required
               placeholder="Weight"
-              
-            />
+               />
+                <label htmlFor="Weight">kg.</label>
           </div>
-        </form>
-     
-        <div id="button" className="flex justify-between">
+
+          <div id="button" className="flex m-5 justify-around">
           <button onClick={handleSaveClick} className="mt-4 btn-primary w-[100px]">
             Save
           </button>
@@ -157,6 +159,9 @@ const ProfileEdit = ({ onEditClick, onDeleteClick , onLogoutClick, setChange, se
             Delete
           </button>
         </div>
+        </form>
+     
+        
         </div>
       </div>
     

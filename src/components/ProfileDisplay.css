@@ -1,0 +1,54 @@
+body {
+  background-color: #1B1B1B;
+}
+
+.main-profile-2 {
+  justify-content: center;
+  height: 100vh;
+}
+
+.card {
+  width: 100vw;
+
+}
+
+.information-2:hover {
+  box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
+  transition: 0.3s;
+}
+
+.item-label {
+  background-color: #006daa;
+  border-radius: 6px;
+  font-size: 16px;
+  color: white;
+  padding: 5px;
+  width: 40%;
+  justify-content: center;
+  text-align: center;
+}
+
+.item-value {
+  background-color: #d7263d;
+  border-radius: 6px;
+  font-size: 16px;
+  color: white;
+  padding: 5px;
+  width: 60%;
+  justify-content: center;
+  text-align: center;
+}
+
+.information-2 {
+  margin-top: 70px;
+  border-radius: 12px;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgb(211, 222, 222);
+}
+
+.profile-item {
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+}
