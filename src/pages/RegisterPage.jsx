@@ -49,7 +49,7 @@ function RegisterPage() {
         .then((res) => {
           console.log(res.data);
           // toast.success(res.data);
-          navigate("/");
+          navigate("/login");
         })
         .catch((err) => {
           // console.log(err.response.data);
