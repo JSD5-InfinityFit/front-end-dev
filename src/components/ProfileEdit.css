@@ -1,29 +1,56 @@
-
-
-
-.camera-icon {
-    color: #000;
-}
-.camera-icon:hover {
-    cursor: pointer;
-}
-
-.img-parent{
-    position: relative;
-
-}
-
 .informationtype label {
+
     color: #fcfbfb;
-    padding: 8px 50px;
     background-color: #061A40;
     border-radius: 6px;
     font-size: 20px;
 }
-.main-profile{
-    display: flex;
-    justify-content: space-between;
+
+.informationtype input {
+    color: #000000;
+    padding: 8px 50px;
+    border-radius: 6px;
+    font-size: 20px;
+
 }
-.all-button{
-   display: flex;
+
+.informationtype select {
+    color: #000000;
+    padding: 8px 50px;
+    border-radius: 6px;
+    font-size: 20px;
+}
+
+.information {
+    margin-top: 30px;
+}
+
+.main-profile {
+    justify-content: center;
+    display: flex;
+    background-color: #1B1B1B;
+    height: 100vh;
+}
+
+.all-button {
+    display: flex;
+
+}
+
+.informationtype {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+
+.information-form {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.select-g {
+    padding-left: 20px;
 }
