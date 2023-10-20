@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react';
 import Layout from '../Layout.jsx';
+import { useNavigate } from 'react-router-dom';
 import ProfileEdit from '../components/ProfileEdit.jsx';
 import ProfileDisplay from '../components/ProfileDisplay.jsx';
 import axios from 'axios';
 
 const Profile = () => {
+  
+  const navigate = useNavigate();
+   const logout = () => {
+    navigate("/");
+    const idtoken = localStorage.clear();
+  };
+  
     const [information, setInformation] = useState({
         Name: '',
         Gender: '',
