@@ -1,14 +1,11 @@
 import inifityLogo from "../assets/icons/infinity.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function LoginPage() {
-  //   const [email, setEmail] = useState();
-  //   const [error, setError] = useState('')
-  //   const [password, setPassword] = useState();
-
   const navigate = useNavigate();
+
   const [value, setValue] = useState({
     userEmail: "",
     userPassword: "",
@@ -29,44 +26,22 @@ function LoginPage() {
 
     const logining = async (value) =>
       await axios
-        .post(FURI + "/users/login", value, {
+        .post(VURI + "/users/login", value, {
           headers: {
             "Content-Type": "application/json",
           },
         })
         .then((res) => {
-          navigate("/");
+          navigate("/activity");
           localStorage.setItem("token", res.data.token);
           console.log("Login Success");
         })
         .catch((err) => {
           console.log(err.response.data);
-          toast.error(err.response.data);
+          // toast.error(err.response.data);
         });
     logining(value);
   };
-
-//   const onSubmit = (e) => {
-//     e.preventDefault();
-//     const auth = getAuth();
-//     createUserWithEmailAndPassword(auth, email, password)
-//       .then((userCredential) => {
-//         // Signed in
-//         updateProfile(auth.currentUser, {
-//           displayName: e.userName,
-//           photoURL:
-//             "https://cdn0.iconfinder.com/data/icons/communication-456/24/account_profile_user_contact_person_avatar_placeholder-512.png",
-//         });
-//         const user = userCredential.user;
-//         console.log(user);
-//       })
-//       .catch((error) => {
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//         console.log(errorCode, errorMessage);
-//         // ..
-//       });
-//   };
 
   return (
     <main className="center-top pt-12">
