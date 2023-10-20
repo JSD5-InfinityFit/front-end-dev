@@ -58,7 +58,7 @@ function ActivityList() {
     <>
       <section className='box-border bg-black p-3'>
         <div className='container w-full max-w-screen-xl m-auto bg-black '>
-          <h1 className='text-5xl pt-6 font-semibold text-white'>Exercise List</h1>
+          <h2 className='text-5xl pt-6 font-semibold text-white'>Exercise List</h2>
 
           <div className='container flex flex-col-reverse'>
             {sortedGroupKeys.map((key) => (
