@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import LoginPage from "./LoginPage";
 import inifityLogo from "../assets/icons/infinity.png";
 import "./RegisterPage.css";
-import { colors } from "@mui/material";
 import axios from "axios";
 
 function RegisterPage() {
-
   const [value, setValue] = useState({
     userEmail: "",
     userPassword: "",
@@ -42,26 +39,21 @@ function RegisterPage() {
     e.preventDefault();
     console.log(value);
     if (value.userPassword !== value.password1) {
-      // toast.error("Password not match");
       console.log("Password not match");
     } else {
       register(value)
         .then((res) => {
           console.log(res.data);
-          // toast.success(res.data);
           navigate("/");
         })
         .catch((err) => {
-          // console.log(err.response.data);
-          // toast.error(err.response.data);
           console.log(err);
-          // toast.error(err.response);
         });
     }
   };
 
   return (
-    <main className="center-top pt-12">
+    <main className="pt-12 center-top">
       <section className="">
         <div className="card">
           <div className="box-logo">
@@ -75,7 +67,7 @@ function RegisterPage() {
             </h1>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="formtype pt-8">
+            <div className="pt-8 formtype">
               <label htmlFor="email-address">Email</label> <br></br>
               <input
                 type="email"
@@ -93,7 +85,6 @@ function RegisterPage() {
               <input
                 type="password"
                 label="Create password"
-                // value={password}
                 name="userPassword"
                 onChange={handleChange}
                 required
@@ -106,7 +97,6 @@ function RegisterPage() {
               <input
                 type="password"
                 label="Confirm Password"
-                // value={password}
                 name="password1"
                 onChange={handleChange}
                 required
@@ -119,7 +109,6 @@ function RegisterPage() {
                 style={{ backgroundColor: "#0353A4" }}
                 disabled={value.userPassword.length < 6}
                 type="submit"
-                // onClick={onSubmit}
               >
                 {" "}
                 Register{" "}
@@ -135,7 +124,10 @@ function RegisterPage() {
             </div>
             <div className="main-icons">
               <div className="social-icons">
-                <div className="google">
+                <div
+                  onClick={() => useNavigate("/auth/google")}
+                  className="google"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -149,7 +141,10 @@ function RegisterPage() {
                 </div>
               </div>
               <div className="social-icons-2">
-                <div className="facebook">
+                <div
+                  onClick={() => useNavigate("/auth/facebook")}
+                  className="facebook"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -163,7 +158,10 @@ function RegisterPage() {
                 </div>
               </div>
               <div className="social-icons-3">
-                <div className="github">
+                <div
+                  onClick={() => useNavigate("/auth/github")}
+                  className="github"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
