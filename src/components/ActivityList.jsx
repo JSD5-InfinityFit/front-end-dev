@@ -48,7 +48,7 @@ function ActivityList() {
 
   const getDataFromAPI = async () => {
     await axios
-      .get('https://infinity-fit-backend.onrender.com/activities')
+      .get('http://localhost:3000/activities/')
       .catch((err) => {
         console.log('Error', err);
       })

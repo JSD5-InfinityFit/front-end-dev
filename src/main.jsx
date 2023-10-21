@@ -50,7 +50,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <PageNotFound />
   },{
-    path: '/dashboard',
+    path: '/user/:id',
     element: <Dashboard />
   }
 ])
