@@ -43,7 +43,7 @@ function Dashboard() {
         </div>
       )}
       <div>
-        <h1>Query ID:{userId}</h1>
+        <h1>{userId}</h1>
         <h2>Let's work together!</h2>
       </div>
       <div className="w-[250px] h-[250px] ml-10 bg-sky-950 rounded-[13px]" />
