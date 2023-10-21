@@ -1,6 +1,6 @@
 import inifityLogo from "../assets/icons/infinity.png";
-import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function LoginPage() {
@@ -11,8 +11,7 @@ function LoginPage() {
     userPassword: "",
   });
 
-  const VURI = "https://infinityfitbackenddev.onrender.com";
-  const FURI = "https://infinity-fit-backend.onrender.com";
+  const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   const handleChange = (e) => {
     setValue({
@@ -26,7 +25,7 @@ function LoginPage() {
 
     const logining = async (value) =>
       await axios
-        .post(VURI + "/users/login", value, {
+        .post(BACKEND_URL + "/users/login", value, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -38,13 +37,12 @@ function LoginPage() {
         })
         .catch((err) => {
           console.log(err.response.data);
-          // toast.error(err.response.data);
         });
     logining(value);
   };
 
   return (
-    <main className="center-top pt-12">
+    <main className="pt-12 center-top">
       <section className="">
         <div className="card">
           <div className="box-logo">
@@ -58,12 +56,11 @@ function LoginPage() {
             </h1>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="formtype pt-8">
+            <div className="pt-8 formtype">
               <label htmlFor="email-address">Email</label> <br></br>
               <input
                 type="email"
                 label="Email address"
-                // value={email}
                 name="userEmail"
                 onChange={handleChange}
                 required
@@ -76,7 +73,6 @@ function LoginPage() {
               <input
                 type="password"
                 label="Create password"
-                // value={password}
                 name="userPassword"
                 onChange={handleChange}
                 required
@@ -89,7 +85,6 @@ function LoginPage() {
                 className="button-register"
                 style={{ backgroundColor: "#0353A4" }}
                 type="submit"
-                // onClick={onSubmit}
               >
                 {" "}
                 Login
@@ -105,7 +100,10 @@ function LoginPage() {
             </div>
             <div className="main-icons">
               <div className="social-icons">
-                <div className="google">
+                <div
+                  onClick={() => useNavigate("/auth/google")}
+                  className="google"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -119,7 +117,10 @@ function LoginPage() {
                 </div>
               </div>
               <div className="social-icons-2">
-                <div className="facebook">
+                <div
+                  onClick={() => useNavigate("/auth/facebook")}
+                  className="facebook"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -133,7 +134,10 @@ function LoginPage() {
                 </div>
               </div>
               <div className="social-icons-3">
-                <div className="github">
+                <div
+                  onClick={() => useNavigate("/auth/github")}
+                  className="github"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
