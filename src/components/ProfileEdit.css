@@ -1,0 +1,29 @@
+
+
+
+.camera-icon {
+    color: #000;
+}
+.camera-icon:hover {
+    cursor: pointer;
+}
+
+.img-parent{
+    position: relative;
+
+}
+
+.informationtype label {
+    color: #fcfbfb;
+    padding: 8px 50px;
+    background-color: #061A40;
+    border-radius: 6px;
+    font-size: 20px;
+}
+.main-profile{
+    display: flex;
+    justify-content: space-between;
+}
+.all-button{
+   display: flex;
+}

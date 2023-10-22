@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import jwt_decode from "jwt-decode";
 
 function ActivityList() {
   const [cards, setCards] = useState([]);
@@ -8,6 +9,42 @@ function ActivityList() {
   useEffect(() => {
     getDataFromAPI();
   }, []);
+
+  useEffect(() => {
+    currentUser(userID);
+  }, []);
+
+
+
+  const VURI = "https://infinityfitbackenddev.onrender.com";
+  const FURI = "https://infinity-fit-backend.onrender.com";
+
+  let idtoken = localStorage.getItem("token");
+  // console.log(idtoken);
+  if (idtoken) {
+    const decoded = jwt_decode(idtoken);
+    var userID = decoded.user.userID;
+    var userEmail = decoded.user.userEmail;
+    console.log(userEmail);
+  }
+
+  const currentUser = async (userID) =>
+    await axios
+      .get(FURI + "/users/" + userID)
+      .then((res) => {
+        console.log(res.data);
+        console.log(res.data.userActivities);
+        setCards(res.data.userActivities);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  const navigate = useNavigate();
+  const logout = () => {
+    navigate("/");
+    const idtoken = localStorage.clear();
+  };
 
   const getDataFromAPI = async () => {
     await axios
@@ -58,7 +95,8 @@ function ActivityList() {
     <>
       <section className='box-border bg-black p-3'>
         <div className='container w-full max-w-screen-xl m-auto bg-black '>
-          <h2 className='text-5xl pt-6 font-semibold text-white'>Exercise List</h2>
+          {/* <h2 className='text-5xl pt-6 font-semibold text-white'>Exercise List</h2> */}
+          <h1 className='text-5xl pt-6 font-semibold text-white'>Exercise List of {userEmail}</h1>
 
           <div className='container flex flex-col-reverse'>
             {sortedGroupKeys.map((key) => (
