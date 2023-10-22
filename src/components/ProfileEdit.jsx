@@ -11,13 +11,8 @@ const ProfileEdit = ({
   setInformation,
   information,
 }) => {
-  // const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(information);
-  // };
   const id = information._id;
   const navigate = useNavigate();
 
@@ -27,16 +22,14 @@ const ProfileEdit = ({
   };
 
   const VURI = "https://infinityfitbackenddev.onrender.com";
-  const FURI = "https://infinity-fit-backend.onrender.com";
+  const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   const fetchInformation = async (id) => {
     axios
-      .get(`${VURI}/users/${id}`)
+      .get(`${BACKEND_URL}/users/${id}`)
       .then((res) => {
         setInformation(res.data);
-        // console.error(res.data);
         if (information) {
-          // console.error(information);
           setIsLoading(false);
         }
       })
@@ -52,13 +45,12 @@ const ProfileEdit = ({
       // set headers for axios.post
       headers: {
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "*",
       },
     };
     // setChange(true);
     await axios
-      .put(
-        `${VURI}/users/${id}`,
+      // .put(`${VURI}/users/${id}`,
+      .put(`${BACKEND_URL}/users/${id}`,
         {
           userEmail: information.userEmail,
           // userPassword: information.userPassword,
@@ -83,12 +75,12 @@ const ProfileEdit = ({
       "Are you sure you want to delete this activity?"
     );
     if (shouldDelete) {
-      console.error(id);
+      console.log(id);
+      const idtoken = localStorage.clear();
+      navigate("/");
       await axios
-        .delete(`${VURI}/users/${id}`)
+        .delete(`${BACKEND_URL}/users/${id}`)
         .then((res) => {
-          navigate("/home");
-          const idtoken = localStorage.clear();
           console.log(res);
         })
         .catch((err) => {
@@ -96,8 +88,6 @@ const ProfileEdit = ({
         });
     }
   };
-  // console.log(information);
-  // console.log(isEditing);
 
   return (
     <div className="main-profile">

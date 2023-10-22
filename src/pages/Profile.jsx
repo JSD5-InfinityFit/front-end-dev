@@ -25,7 +25,8 @@ const Profile = () => {
     await axios
       .get(`${VURI}/users/${userID}`)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
+        console.log('delete or get current')
         setInformation(res.data);
       })
       .catch((err) => {

@@ -13,26 +13,28 @@ function ActivityList() {
   useEffect(() => {
     currentUser(userID);
   }, []);
-  
-  const idtoken = localStorage.getItem("token");
-  
+
+  const VURI = "https://infinityfitbackenddev.onrender.com";
+  const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
+
+  let idtoken = localStorage.getItem("token");
+
   if (idtoken) {
     const decoded = jwt_decode(idtoken);
     var userID = decoded.user.userID;
     var userEmail = decoded.user.userEmail;
     console.log(userEmail);
   }
-  const VURI = "https://infinityfitbackenddev.onrender.com";
-  const FURI = "https://infinity-fit-backend.onrender.com";
 
   const currentUser = async (userID) =>
     await axios
-      .get(VURI + "/users/" + userID)
+      // .get(VURI + "/users/" + userID)
+      .get(BACKEND_URL + "/users/" + userID)
       .then((res) => {
         // console.log(res.data);
         console.log(res.data.userActivities);
         setCards(res.data.userActivities);
-        console.log(cards)
+        console.log(cards);
       })
       .catch((err) => {
         console.log(err);
@@ -40,7 +42,8 @@ function ActivityList() {
 
   const getDataFromAPI = async () => {
     await axios
-      .get("https://infinity-fit-backend.onrender.com/activities")
+      // .get(VURI + "/activities/")
+      .get(BACKEND_URL+'/activities/')
       .catch((err) => {
         console.log("Error", err);
       })
