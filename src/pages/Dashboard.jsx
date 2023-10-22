@@ -7,26 +7,33 @@ import ActivityList from "../components/ActivityList.jsx";
 function Dashboard() {
   
   const [queryId, setQueryId] = useState("");
-  const [userId, setUserId] = useState("");
+  // const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState(null);
+  const [information, setInformation] = useState({});
   
   useEffect(() => {
-    const idtoken = localStorage.getItem("token");
-    if (idtoken) {
-      const decoded = jwt_decode(idtoken);
-      var userId = decoded.user.userID;
-      var userEmail = decoded.user.userEmail;
-      console.log(userEmail);
-
-      axios.get(`http://localhost:3000/user/${userId}`)
-        .then(response => {
-          setQueryId(response.data[0]._Id);
-          console.log(response.data[0]._Id);
-        })
-        .catch(error => console.error(error));
-          console.log(queryId);
-    }
+    fetchInformation(userID);
   }, []);
+
+  const idtoken = localStorage.getItem("token");
+  if (idtoken) {
+    const decoded = jwt_decode(idtoken);
+    var userID = decoded.user.userID;
+  }
+  
+  const VURI = "https://infinityfitbackenddev.onrender.com";
+  const FURI = "https://infinity-fit-backend.onrender.com";
+  
+  const fetchInformation = async (userID) => {
+    await axios
+    .get(`${VURI}/users/${userID}`)
+    .then((res) => {
+      setInformation(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
 
 
   return (
@@ -43,10 +50,14 @@ function Dashboard() {
         </div>
       )}
       <div>
-        <h1>{userId}</h1>
+        <h1>{information.userEmail}</h1>
         <h2>Let's work together!</h2>
       </div>
       <div className="w-[250px] h-[250px] ml-10 bg-sky-950 rounded-[13px]" />
+      <div className="">
+        <h2>Your BMI is </h2>
+        <h2>{(information.userWeight*10000/(information.userHeight*information.userHeight)).toFixed(2)}</h2>
+      </div>
     </Layout>
   ) 
 }
