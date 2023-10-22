@@ -13,18 +13,17 @@ function ActivityList() {
   useEffect(() => {
     currentUser(userID);
   }, []);
-
-  const VURI = "https://infinityfitbackenddev.onrender.com";
-  const FURI = "https://infinity-fit-backend.onrender.com";
-
-  let idtoken = localStorage.getItem("token");
-
+  
+  const idtoken = localStorage.getItem("token");
+  
   if (idtoken) {
     const decoded = jwt_decode(idtoken);
     var userID = decoded.user.userID;
     var userEmail = decoded.user.userEmail;
     console.log(userEmail);
   }
+  const VURI = "https://infinityfitbackenddev.onrender.com";
+  const FURI = "https://infinity-fit-backend.onrender.com";
 
   const currentUser = async (userID) =>
     await axios
@@ -33,6 +32,7 @@ function ActivityList() {
         // console.log(res.data);
         console.log(res.data.userActivities);
         setCards(res.data.userActivities);
+        console.log(cards)
       })
       .catch((err) => {
         console.log(err);

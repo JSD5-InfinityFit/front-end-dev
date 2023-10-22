@@ -19,6 +19,7 @@ function RegisterPage() {
     userActivities: "",
   });
 
+  const navigate = useNavigate();
   const VURI = "https://infinityfitbackenddev.onrender.com";
   const FURI = "https://infinity-fit-backend.onrender.com";
 
@@ -29,15 +30,14 @@ function RegisterPage() {
     });
   };
 
-  const navigate = useNavigate();
-
+  
   const register = async (value) =>
-    await axios.post(VURI + "/users/register", value, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
+  await axios.post(VURI + "/users/register", value, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(value);
@@ -52,8 +52,9 @@ function RegisterPage() {
           navigate("/login");
         })
         .catch((err) => {
-          // console.log(err.response.data);
+          console.log(err.response.data);
           // toast.error(err.response.data);
+          navigate("/login");
           console.log(err);
           // toast.error(err.response);
         });
