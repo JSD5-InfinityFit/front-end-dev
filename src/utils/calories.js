@@ -1,39 +1,16 @@
 function calculateMET(activityType) {
     // Metabolic Equivalent for Task (MET)
-    let MET = 0;
     switch(activityType) {
-        case 'run':
-        MET = 8;
-        break;
-        case 'cycle':
-        MET = 6;
-        break;
-        case 'swim':
-        MET = 4;
-        break;
-        case 'walk':
-        MET = 2;
-        break;
-        case 'yoga':
-        MET = 2;
-        break;
-        case 'dance':
-        MET = 2;
-        break;
-        case 'hike':
-        MET = 2;
-        break;
-        case 'badminton':
-        MET = 2;
-        break;
-        default:
-        MET = 0;
+        case 'run': return 10;
+        case 'dance': return 6;
+        case 'swim': return 4.5;
+        case 'badminton': return 4.5;
+        case 'yoga' : return 4.5;
+        default: return 1;
     }
 }
 
 export default function calculateCalories(activityType, weight, duration) {
-    let calories = 0;
-    let MET = calculateMET(activityType);
-    calories = (MET * weight * duration);
-    return calories.toFixed(2);
+    const MET = calculateMET(activityType);
+    return (MET * 3.5 * weight * duration / 200).toFixed(0);
 }

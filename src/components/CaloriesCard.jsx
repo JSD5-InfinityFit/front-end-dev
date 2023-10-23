@@ -1,46 +1,38 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
+import calculateCalories from "../utils/calories";
+import { ListItemText } from "@mui/material";
 
-const CaloriesCard = () => {
+const CaloriesCard = ({activityData, weight}) => {
+  let calories = 0;
+  activityData.map((activity) => {
+    calories += calculateCalories(activity.type, weight, activity.duration);
+  })
+
   return (
-    <div>
-        <Card sx={{ minWidth: 300, minHeight: 300 }}>
-            <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Calories Burned
-                </Typography>
-                <Typography variant="h5" component="div">
-                be{bull}nev{bull}o{bull}lent
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-                </Typography>
-                <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
-            </Card>
-    </div>
-  )
-}
+    <Card sx={{ minWidth: 250, minHeight: 250, maxWidth: 300, maxHeight: 300 }}>
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Calories Burned
+        </Typography>
+        <Typography variant="h5" component="div">
+          {calories}
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          kCal
+        </Typography>
+        <Typography variant="body2">Exercise for good help</Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+  );
+};
 
-export default CaloriesCard
+export default CaloriesCard;

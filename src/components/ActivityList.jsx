@@ -14,11 +14,11 @@ function ActivityList() {
   useEffect(() => {
     currentUser(userID);
   }, []);
-  
+
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   let idtoken = localStorage.getItem("token");
-
+  // console.log(idtoken);
   if (idtoken) {
     const decoded = jwt_decode(idtoken);
     var userID = decoded.user.userID;
@@ -32,11 +32,17 @@ function ActivityList() {
       .then((res) => {
         console.log(res.data.userActivities);
         setUserCards(res.data.userActivities);
-        console.log('user:',userCards);
+        console.log("user:", userCards);
       })
       .catch((err) => {
         console.log(err);
       });
+
+  const navigate = useNavigate();
+  const logout = () => {
+    navigate("/");
+    const idtoken = localStorage.clear();
+  };
 
   const getDataFromAPI = async () => {
     await axios
@@ -70,20 +76,18 @@ function ActivityList() {
       "Nov",
       "Dec",
     ];
-    
-    if (apiDate) {
-      const date = new Date(apiDate);
-      const day = date.getDate().toString().padStart(2, "0");
-      const month = monthsOfYear[date.getMonth() - 1];
 
-      const dayOfWeek = daysOfWeek[date.getDay()];
+    const date = new Date(apiDate);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = monthsOfYear[date.getMonth() - 1];
 
-      return {
-        dayOfWeek,
-        day,
-        month,
-      };
-    }
+    const dayOfWeek = daysOfWeek[date.getDay()];
+
+    return {
+      dayOfWeek,
+      day,
+      month,
+    };
   };
 
   // Group cards by formattedDate
@@ -103,48 +107,54 @@ function ActivityList() {
       <section className="box-border p-3 bg-black">
         <div className="container w-full max-w-screen-xl m-auto bg-black ">
           <h1 className="pt-6 text-5xl font-semibold text-white">
-            Exercise List of {userEmail}
+            {" "}
+            Exercise List of {userEmail}{" "}
           </h1>
+        </div>
 
-          <div className="container flex flex-col-reverse">
-            {sortedGroupKeys.map((key) => (
-              <div key={key} className="container flex flex-row">
-                {/* Date */}
-                <div className="flex sm:px-2">
-                  <h2 className="text-2xl font-semibold text-white mt-14">
-                    {key}
-                  </h2>
-                </div>
-
-                {/* Avtivity Data */}
-                <div className="grid flex-row w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                  {groupedCards[key].map((card) => (
-                    <Link to={`/activities/${card._id}`} key={card._id}>
-                      <div
-                        className="flex flex-row flex-shrink-0 w-full p-3 border-l-8 card bg-blue-950 flex-0 flex-basis-calc max-w-calc "
-                        style={{
-                          borderColor:
-                            card.type === "run" ? "green" : 
-                            card.type === "swim" ? "skyblue" : 
-                            card.type === "badminton" ? "orange" : 
-                            card.type === "dance" ? "red" : "pink",
-                        }}
-                      >
-                        <div className="container mx-auto p-2 m-3 text-white information text truncate ... flex flex-col items-start">
-                          <p className="text-2xl font-semibold">
-                            {card.type.charAt(0).toUpperCase() +
-                              card.type.slice(1)}
-                          </p>
-                          <p className="font-semibold">{card.name}</p>
-                          <p className="font-semibold">{card.duration}</p>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+        <div className="container flex flex-col-reverse">
+          {sortedGroupKeys.map((key) => (
+            <div key={key} className="container flex flex-row">
+              {/* Date */}
+              <div className="flex sm:px-2">
+                <h2 className="text-2xl font-semibold text-white mt-14">
+                  {key}
+                </h2>
               </div>
-            ))}
-          </div>
+
+              {/* Avtivity Data */}
+              <div className="grid flex-row w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {groupedCards[key].map((card) => (
+                  <Link to={`/activities/${card._id}`} key={card._id}>
+                    <div
+                      className="flex flex-row flex-shrink-0 w-full p-3 border-l-8 card bg-blue-950 flex-0 flex-basis-calc max-w-calc "
+                      style={{
+                        borderColor:
+                          card.type === "run"
+                            ? "green"
+                            : card.type === "swim"
+                            ? "skyblue"
+                            : card.type === "badminton"
+                            ? "orange"
+                            : card.type === "dance"
+                            ? "red"
+                            : "pink",
+                      }}
+                    >
+                      <div className="container mx-auto p-2 m-3 text-white information text truncate ... flex flex-col items-start">
+                        <p className="text-2xl font-semibold">
+                          {card.type.charAt(0).toUpperCase() +
+                            card.type.slice(1)}
+                        </p>
+                        <p className="font-semibold">{card.name}</p>
+                        <p className="font-semibold">{card.duration}</p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Button  add activity */}

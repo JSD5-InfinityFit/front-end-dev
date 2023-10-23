@@ -1,29 +1,36 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import BMI from "../components/BMI.jsx";
+import Layout from "../Layout.jsx";
+import BMICard from "../components/BMICard.jsx";
+import RadarChart from "../components/RadarChart.jsx";
+import CaloriesCard from "../components/CaloriesCard.jsx";
 
 function Dashboard() {
-  const [queryId, setQueryId] = useState("");
+  
   const [userId, setUserId] = useState("");
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
+  const [activityData, setActivityData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
-  useEffect(() => {
-    fetchUserID();
-    fetchUserData(userID);
-    fetchUserActivity(userID);
+  useEffect(async () => {
+    await fetchUserID();
+    await fetchUserData(userId);
+    await fetchUserActivity(userId);
+    setIsLoading(false);
   }, []);
 
   const fetchUserID = () => {
     const idtoken = localStorage.getItem("token");
     if (idtoken) {
     const decoded = jwt_decode(idtoken);
-    setUserID(decoded.user.userID);
+    setUserId(decoded.user.userID);
     }
   }
 
   const fetchUserData = async (uid) => {
+    console.log('user id:',uid)
     await axios
     .get(`${BACKEND_URL}/users/${uid}`)
     .then((res) => {
@@ -37,7 +44,6 @@ function Dashboard() {
 
   const fetchUserActivity = async (uid) => {
     await axios
-    // .get(`${BACKEND_URL}/activities/users/${uid}`)
     .get(`${BACKEND_URL}/activities/`)
     .then((res) => {
       setActivityData(res.data);
@@ -57,26 +63,26 @@ function Dashboard() {
               Welcome back, {userData.userEmail}!
             </h1>
             <h2 className="text-xl font-semibold">Let's work together!</h2>
+            <BMICard weight={userData.userWeight} height={userData.userHeight} />
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center">
             <h1 className="text-2xl font-bold">Welcome back!</h1>
             <h2 className="text-xl font-semibold">Let's work together!</h2>
+            <BMICard />
           </div>
         )}
       </div>
-
-      <BMI weight={information.userWeight} height={information.userHeight} />
-
-
-      <div id="fai-charts" className="flex flex-col items-center justify-center md:flex-row">
-        <RadarChart />
-        <ProgressBar  />
-        <GaugeChart />
-        <RadialProgress />
-        <CaloriesCard />
-      </div>
       
+      <div id="fai-charts" className="flex flex-col items-center justify-center md:flex-row">
+        { isLoading ? 
+          (
+            <h2>Loading ... </h2>
+          ) : (
+            <CaloriesCard activityData={activityData} weight={userData.userWeight} />
+          )
+        }
+      </div>
     </Layout>
   );
 }

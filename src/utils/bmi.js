@@ -5,5 +5,5 @@
  * @returns 
  */
 export default function calculateBMI(weight, height) {
-  return (weight * 10000/ (height * height)).toFixed(2);
+  return (weight * 10000/ (height * height)).toFixed(2) || 0;
 }
