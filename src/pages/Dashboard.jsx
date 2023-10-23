@@ -6,90 +6,73 @@ import ActivityList from "../components/ActivityList.jsx";
 import Totalduration from "../components/TotalDuration.jsx";
 
 function Dashboard() {
-  
   Totalduration();
+
   const [queryId, setQueryId] = useState("");
-  const [userId, setUserId] = useState("");
+  // const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState(null);
+  const [information, setInformation] = useState({});
   
   useEffect(() => {
-    const idtoken = localStorage.getItem("token");
-    if (idtoken) {
-      const decoded = jwt_decode(idtoken);
-      var userId = decoded.user.userID;
-      var userEmail = decoded.user.userEmail;
-      console.log(userEmail);
-
-      axios.get(`http://localhost:3000/user/${userId}`)
-        .then(response => {
-          setQueryId(response.data[0]._Id);
-          console.log(response.data[0]._Id);
-        })
-        .catch(error => console.error(error));
-          console.log(queryId);
-    }
+    fetchInformation(userID);
   }, []);
 
-  // useEffect(() => {
-  //   if (userData && bmi) {
-  //     axios.put(`http://localhost:3000/user/${queryId}`, {
-  //       ...userData,
-  //       bmi: bmi
-  //     })
-  //     .then(response => console.log(response))
-  //     .catch(error => console.error(error));
-  //   }
-  // }, [bmi]);
-
-  function calculateBMI(weight, height) {
-    const bmi = weight / (height * height);
-    return bmi;
+  const idtoken = localStorage.getItem("token");
+  if (idtoken) {
+    const decoded = jwt_decode(idtoken);
+    var userID = decoded.user.userID;
   }
-
-  const weight = 70; // in kg
-  const height = 1.75; // in meters
-
-  const bmi = calculateBMI(weight, height);
-  console.log(bmi.toFixed(2)); // output: 22.86
-
   
+  const VURI = "https://infinityfitbackenddev.onrender.com";
+  const FURI = "https://infinity-fit-backend.onrender.com";
+  
+  const fetchInformation = async (userID) => {
+    await axios
+    .get(`${VURI}/users/${userID}`)
+    .then((res) => {
+      setInformation(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
+
 
   return (
     <Layout>
-      {/* {userData ? (
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-2xl font-bold">Welcome back, {userData.userEmail}!</h1>
-          <h2 className="text-xl font-semibold">Let's work together!</h2>
+      <div className=" max-md:m-auto lg:mx-40 max-2xl:mx-56 mt-20">
+        <div className="user-id-banner max-md:text-center">
+          <h2 className="text-white text-4xl ">Welcome back, {userID} 🎉</h2>
+          <h2 className="text-white text-2xl">let's get to work out !</h2>
         </div>
-      ) : (
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-2xl font-bold">Welcome back!</h1>
-          <h2 className="text-xl font-semibold">Let's work together!</h2>
-        </div>
-      )}
-      <div>
-        <h1>{userId}</h1>
-        <h2>Let's work together!</h2>
-      </div> */}
-      <div className="grip grid-cols-3">
-          <div className="w-[250px] h-[250px] ml-10 bg-sky-950 rounded-[13px] flex flex-col items-center justify-center">
-            <h2 className="text-white font-bold text-2xl mb-4">Total Duration</h2>
-            <Totalduration />
-          </div>
-          
-          <div className="w-[250px] h-[250px] ml-10 bg-sky-950 rounded-[13px] flex flex-col items-center justify-center">
-            <h2 className="text-white font-bold text-2xl mb-4">Your BMI</h2>
-            <h1 className="text-white font-bold text-6xl">insert data</h1>
+  
+        <div id="main-card-dashboard" className="max-md:mt-10 lg:grid grid-cols-3 ">
+          <div className="lg:w-[250px] h-[250px] bg-sky-950 rounded-[13px] max-md:w-[420px] m-10">
+              <div className="bmi-card">
+                <img src="https://cdn-icons-png.flaticon.com/128/12130/12130857.png" className="w-16 pl-4 pt-4" alt="bmi-pic"/>
+                    <div className="bmi-shown">
+                    <h2 className="text-2xl text-bold text-white text-center pt-7">Your BMI is </h2>
+                    <h2 className="text-5xl text-bold text-blue-500 text-center">{(information.userWeight*10000/(information.userHeight*information.userHeight)).toFixed(2)}</h2>
+                    </div>
+                </div> 
           </div>
 
-          <div className="w-[250px] h-[250px] ml-10 bg-sky-950 rounded-[13px] flex flex-col items-center justify-center">
-            <h2 className="text-white font-bold text-2xl mb-4">Your BMI</h2>
-            <h1 className="text-white font-bold text-6xl">insert data</h1>
-          </div>
 
-          
+                 
+                    <div>
+                      <Totalduration/>
+                    </div>
+                    {/* <div>
+                      <Totalduration/>
+                    </div> */}
+
 
         </div>
+
+       
+
+
+      </div>
     </Layout>
   ) 
 }
