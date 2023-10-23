@@ -1,16 +1,10 @@
-
-
-
-
+import './ProfileDisplay.css'
 const ProfileDisplay = ({ setChange, information }) => {
-    // Check if the 'information' prop is defined
-    // if (!information) {
-    //   return 
-    // }
-  
-    return (
-      <div className="main-profile">
-        <div className="information">
+ 
+  return (
+    <div className="main-profile-2">
+      <section className='card items-center mt-16 mb-16 '>
+        <div className="information-2  w-2/5 grid gap-4  p-5">
           <div className="profile-item">
             <span className="item-label">Name:</span>
             <span className="item-value">{information.Name}</span>
@@ -32,17 +26,27 @@ const ProfileDisplay = ({ setChange, information }) => {
             <span className="item-value">{information.Weight}</span>
           </div>
         </div>
-        <div id="button" className="flex justify-between">
-        <button className="mt-4 btn-primary w-[100px]" onClick={() => setChange(false)}>
+
+        <div id="button" className="flex m-5 justify-around w-3/6">
+      <button className="mt-4 btn-primary w-[100px]" onClick={() => setChange(false)}>
           Edit
         </button>
         <button className="mt-4 btn-error w-[100px]" >
-            Logout
-          </button>
-          </div>
+          Logout
+        </button>
+        </div>
+        
+      </section>
+
+
+      
+       
       </div>
-    );
-  };
-  
-  export default ProfileDisplay;
-  
+   
+
+  );
+};
+
+export default ProfileDisplay;
+
+

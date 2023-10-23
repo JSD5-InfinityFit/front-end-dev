@@ -16,8 +16,7 @@ function ActivityList() {
 
 
 
-  const VURI = "https://infinityfitbackenddev.onrender.com";
-  const FURI = "https://infinity-fit-backend.onrender.com";
+  const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   let idtoken = localStorage.getItem("token");
   // console.log(idtoken);
@@ -30,7 +29,7 @@ function ActivityList() {
 
   const currentUser = async (userID) =>
     await axios
-      .get(FURI + "/users/" + userID)
+      .get(BACKEND_URL + "/users/" + userID)
       .then((res) => {
         console.log(res.data);
         console.log(res.data.userActivities);
@@ -48,7 +47,7 @@ function ActivityList() {
 
   const getDataFromAPI = async () => {
     await axios
-      .get('https://infinity-fit-backend.onrender.com/activities')
+      .get(BACKEND_URL+'/activities/')
       .catch((err) => {
         console.log('Error', err);
       })
@@ -131,7 +130,7 @@ function ActivityList() {
                           {card.type.charAt(0).toUpperCase() + card.type.slice(1)}
                         </p>
                         <p className='font-semibold'>{card.name}</p>
-                        <p className='font-semibold'>{card.duration}</p>
+                        <p className='font-semibold'>{card.duration} min</p>
                       </div>
                     </div>
                   </Link>
