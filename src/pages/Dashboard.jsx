@@ -3,6 +3,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Layout from "../Layout.jsx";
 import BMI from "../components/BMI.jsx";
+import Totalduration from "../components/TotalDuration.jsx";
 
 function Dashboard() {
   const [queryId, setQueryId] = useState("");
@@ -38,11 +39,14 @@ function Dashboard() {
   return (
     <Layout>
       <div>
-        <h1>{information.userEmail}</h1>
+        <h1> Welcome Back,{information.userEmail}</h1>
         <h2>Let's work together!</h2>
       </div>
-      <div className="w-[250px] h-[250px] ml-10 bg-sky-950 rounded-[13px]"></div>
+      
       <BMI weight={information.userWeight} height={information.userHeight} />
+      <div>
+         <Totalduration/>
+      </div>
     </Layout>
   );
 }
