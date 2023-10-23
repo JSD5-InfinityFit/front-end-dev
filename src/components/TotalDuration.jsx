@@ -1,35 +1,10 @@
 
   import {React, useState, useEffect} from 'react';
   import axios from 'axios';
-  import jwt_decode from "jwt-decode";
+
 
   function Totalduration() {
-    // ActivityData();
-    const [duration, setDuration] = useState(0);
-    const [weeklyTotals, setWeeklyTotals] = useState([]);
-    
-    const idtoken = localStorage.getItem("token");
-    if (idtoken) {
-      const decoded = jwt_decode(idtoken);
-      var userID = decoded.user.userID;
-    }
-
-    const VURI = "https://infinityfitbackenddev.onrender.com";
-    const FURI = "https://infinity-fit-backend.onrender.com";
-    
-    const fetchWeeklyTotals = async() => {
-      const response = await axios.get(`${VURI}/users/${userID}`);
-    } 
-    
-
-
-    ///find total duration per week
-
-    useEffect(() => {
-      fetchWeeklyTotals();
-      
-    }, []);
-
+    const [cards, setCards] = useState([]);
 
     return (
       <div>
@@ -40,7 +15,7 @@
                 <img src="https://cdn-icons-png.flaticon.com/128/11432/11432052.png" className="pt-16 pl-7" alt="duration-pic"/>
                 </div>
                     <div className="bmi-shown">
-                        <h2 className="text-2xl text-bold text-white text-center pt-10 pl-14">Total Duration </h2>
+                        <h2 className="text-2xl text-bold text-white text-center pt-10 pl-14">Total Duration</h2>
                         <h2 className="text-3xl text-bold text-blue-500 text-center pt-7 pl-10"></h2>
                         <progress className="progress progress-info w-56 pl-10 mt-10" value="70" max="100"></progress>
                         <h3></h3>
