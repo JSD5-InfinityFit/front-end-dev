@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Layout from "../Layout.jsx";
-import ActivityList from "../components/ActivityList.jsx";
 import BMI from "../components/BMI.jsx";
 
 function Dashboard() {
@@ -38,19 +37,6 @@ function Dashboard() {
 
   return (
     <Layout>
-      {userData ? (
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-2xl font-bold">
-            Welcome back, {userData.userEmail}!
-          </h1>
-          <h2 className="text-xl font-semibold">Let's work together!</h2>
-        </div>
-      ) : (
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-2xl font-bold">Welcome back!</h1>
-          <h2 className="text-xl font-semibold">Let's work together!</h2>
-        </div>
-      )}
       <div>
         <h1>{information.userEmail}</h1>
         <h2>Let's work together!</h2>
