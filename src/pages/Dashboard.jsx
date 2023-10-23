@@ -3,6 +3,13 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Layout from '../Layout.jsx'
 import ActivityList from "../components/ActivityList.jsx";
+import CaloriesCard from '../components/CaloriesCard.jsx'
+
+// Charts
+import RadarChart from "../components/RadarChart.jsx";
+import ProgressBar from "../components/ProgressBar.jsx";
+import GaugeChart from "../components/GaugeChart.jsx";
+import RadialProgress from "../components/RadialProgress.jsx";
 
 function Dashboard() {
   
@@ -53,11 +60,23 @@ function Dashboard() {
         <h1>{information.userEmail}</h1>
         <h2>Let's work together!</h2>
       </div>
+
       <div className="w-[250px] h-[250px] ml-10 bg-sky-950 rounded-[13px]" />
+
       <div className="">
         <h2>Your BMI is </h2>
         <h2>{(information.userWeight*10000/(information.userHeight*information.userHeight)).toFixed(2)}</h2>
       </div>
+
+
+      <div id="fai-charts" className="flex flex-col items-center justify-center md:flex-row">
+        <RadarChart />
+        <ProgressBar />
+        {/* <GaugeChart /> */}
+        <RadialProgress />
+        <CaloriesCard />
+      </div>
+      
     </Layout>
   ) 
 }
