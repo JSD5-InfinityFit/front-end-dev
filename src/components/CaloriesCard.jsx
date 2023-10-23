@@ -21,7 +21,7 @@ const CaloriesCard = () => {
         <Card sx={{ minWidth: 300, minHeight: 300 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Word of the Day
+                Calories Burned
                 </Typography>
                 <Typography variant="h5" component="div">
                 be{bull}nev{bull}o{bull}lent

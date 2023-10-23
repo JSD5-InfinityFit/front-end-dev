@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 
 function ActivityList() {
   const [cards, setCards] = useState([]);
+  const [userCards, setUserCards] = useState([]);
 
   useEffect(() => {
     getDataFromAPI();
@@ -13,8 +14,7 @@ function ActivityList() {
   useEffect(() => {
     currentUser(userID);
   }, []);
-
-  const VURI = "https://infinityfitbackenddev.onrender.com";
+  
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   let idtoken = localStorage.getItem("token");
@@ -28,13 +28,11 @@ function ActivityList() {
 
   const currentUser = async (userID) =>
     await axios
-      // .get(VURI + "/users/" + userID)
       .get(BACKEND_URL + "/users/" + userID)
       .then((res) => {
-        // console.log(res.data);
         console.log(res.data.userActivities);
-        setCards(res.data.userActivities);
-        console.log(cards);
+        setUserCards(res.data.userActivities);
+        console.log('user:',userCards);
       })
       .catch((err) => {
         console.log(err);
@@ -42,8 +40,7 @@ function ActivityList() {
 
   const getDataFromAPI = async () => {
     await axios
-      // .get(VURI + "/activities/")
-      .get(BACKEND_URL+'/activities/')
+      .get(BACKEND_URL + "/activities/")
       .catch((err) => {
         console.log("Error", err);
       })
@@ -73,18 +70,20 @@ function ActivityList() {
       "Nov",
       "Dec",
     ];
+    
+    if (apiDate) {
+      const date = new Date(apiDate);
+      const day = date.getDate().toString().padStart(2, "0");
+      const month = monthsOfYear[date.getMonth() - 1];
 
-    const date = new Date(apiDate);
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = monthsOfYear[date.getMonth() - 1];
+      const dayOfWeek = daysOfWeek[date.getDay()];
 
-    const dayOfWeek = daysOfWeek[date.getDay()];
-
-    return {
-      dayOfWeek,
-      day,
-      month,
-    };
+      return {
+        dayOfWeek,
+        day,
+        month,
+      };
+    }
   };
 
   // Group cards by formattedDate
@@ -101,15 +100,15 @@ function ActivityList() {
 
   return (
     <>
-      <section className="box-border bg-black p-3">
+      <section className="box-border p-3 bg-black">
         <div className="container w-full max-w-screen-xl m-auto bg-black ">
-          <h1 className="text-5xl pt-6 font-semibold text-white">
+          <h1 className="pt-6 text-5xl font-semibold text-white">
             Exercise List of {userEmail}
           </h1>
 
           <div className="container flex flex-col-reverse">
             {sortedGroupKeys.map((key) => (
-              <div key={key} className="flex flex-row container">
+              <div key={key} className="container flex flex-row">
                 {/* Date */}
                 <div className="flex sm:px-2">
                   <h2 className="text-2xl font-semibold text-white mt-14">
@@ -118,22 +117,17 @@ function ActivityList() {
                 </div>
 
                 {/* Avtivity Data */}
-                <div className="flex-row grid grid-cols-1 gap-4 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <div className="grid flex-row w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                   {groupedCards[key].map((card) => (
                     <Link to={`/activities/${card._id}`} key={card._id}>
                       <div
-                        className="flex flex-row flex-shrink-0 w-full p-3 card bg-blue-950 flex-0 flex-basis-calc max-w-calc border-l-8 "
+                        className="flex flex-row flex-shrink-0 w-full p-3 border-l-8 card bg-blue-950 flex-0 flex-basis-calc max-w-calc "
                         style={{
                           borderColor:
-                            card.type === "run"
-                              ? "green"
-                              : card.type === "swim"
-                              ? "skyblue"
-                              : card.type === "badminton"
-                              ? "orange"
-                              : card.type === "dance"
-                              ? "red"
-                              : "pink",
+                            card.type === "run" ? "green" : 
+                            card.type === "swim" ? "skyblue" : 
+                            card.type === "badminton" ? "orange" : 
+                            card.type === "dance" ? "red" : "pink",
                         }}
                       >
                         <div className="container mx-auto p-2 m-3 text-white information text truncate ... flex flex-col items-start">
@@ -155,12 +149,12 @@ function ActivityList() {
 
         {/* Button  add activity */}
         <div className="fixed bottom-0 right-0 m-4">
-          <div className="p-2 bg-blue-800 text-white shadow rounded-full">
+          <div className="p-2 text-white bg-blue-800 rounded-full shadow">
             <div className="relative">
               <a href={"/activityform"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="w-6 h-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

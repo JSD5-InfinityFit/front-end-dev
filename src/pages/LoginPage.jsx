@@ -11,7 +11,6 @@ function LoginPage() {
     userPassword: "",
   });
 
-  const VURI = "https://infinityfitbackenddev.onrender.com";
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   const handleChange = (e) => {
@@ -27,7 +26,6 @@ function LoginPage() {
     const logining = async (value) =>
       await axios
         .post(BACKEND_URL + "/users/login", value, {
-        // .post(VURI + "/users/login", value, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -42,6 +40,49 @@ function LoginPage() {
         });
     logining(value);
   };
+
+  const handleGoogleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.get(BACKEND_URL + "/auth/google")
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        navigate("/activity");
+        console.log('Login through Google Success')
+      });
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+  const handleFacebookLogin = async () => {
+    e.preventDefault();
+    try {
+      await axios.get(BACKEND_URL + "/auth/facebook")
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        navigate("/activity");
+        console.log('Login through Facebook Success')
+      })
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+  const handleGitHubLogin = async () => {
+    e.preventDefault();
+    try {
+      await axios.get(BACKEND_URL + "/auth/github")
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        navigate("/activity");
+        console.log('Login through GitHub Success');
+      })
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <main className="pt-12 center-top">
@@ -102,8 +143,16 @@ function LoginPage() {
             </div>
             <div className="main-icons">
               <div className="social-icons">
-                <a href={BACKEND_URL + "/auth/google"}>
-                  <div className="google">
+                  <div 
+                    onClick={handleGoogleLogin} 
+                    style={{ cursor: "pointer" }} 
+                    type="submit" 
+                    name="google" 
+                    value="Google" 
+                    id="google" 
+                    href={BACKEND_URL + "/auth/google"} 
+                    target="_blank"
+                    className="google">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
@@ -115,7 +164,6 @@ function LoginPage() {
                       <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
                     </svg>
                   </div>
-                </a>
               </div>
               <div className="social-icons-2">
                 <a href={BACKEND_URL + "/auth/facebook"}>
