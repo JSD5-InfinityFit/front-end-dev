@@ -17,7 +17,9 @@ function RegisterPage() {
     userActivities: "",
   });
 
-  const BACKEND_URL = "http://infinity-fit-backend.onrender.com";
+  const navigate = useNavigate();
+  const VURI = "https://infinityfitbackenddev.onrender.com";
+  const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   const handleChange = (e) => {
     setValue({
@@ -26,10 +28,9 @@ function RegisterPage() {
     });
   };
 
-  const navigate = useNavigate();
-
   const register = async (value) =>
     await axios.post(BACKEND_URL + "/users/register", value, {
+    // await axios.post(VURI + "/users/register", value, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -37,14 +38,13 @@ function RegisterPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
     if (value.userPassword !== value.password1) {
       console.log("Password not match");
     } else {
       register(value)
         .then((res) => {
-          console.log(res.data);
-          navigate("/");
+          // toast.success(res.data);
+          navigate("/login");
         })
         .catch((err) => {
           console.log(err);
@@ -125,23 +125,23 @@ function RegisterPage() {
               </div>
               <div className="main-icons">
                 <div className="social-icons">
-                <a href={BACKEND_URL + '/auth/google'}>
-                  <div className="google">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      className="bi bi-google"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
-                    </svg>
-                  </div>
+                  <a href={BACKEND_URL + "/auth/google"}>
+                    <div className="google">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        className="bi bi-google"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
+                      </svg>
+                    </div>
                   </a>
                 </div>
                 <div className="social-icons-2">
-                  <a href={BACKEND_URL + '/auth/facebook'}>
+                  <a href={BACKEND_URL + "/auth/facebook"}>
                     <div className="facebook">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +157,7 @@ function RegisterPage() {
                   </a>
                 </div>
                 <div className="social-icons-3">
-                  <a href={BACKEND_URL + '/auth/github'}>
+                  <a href={BACKEND_URL + "/auth/github"}>
                     <div className="github">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
