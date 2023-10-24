@@ -15,7 +15,7 @@ function Totalduration() {
 
 
   const fetchDuration = async (userID) => {
-    const res = await axios.get(`${BACKEND_URL}/activities/`);
+    const res = await axios.get(`${BACKEND_URL}/activities/`); /// อย่าลืมเปลี่ยน URL
     const activities = res.data;
     console.log(activities);
 
@@ -33,8 +33,8 @@ function Totalduration() {
 
   return (
     <div>
-      <div className="card-total-duration mt-10 max-lg:ml-10">
-        <div className="w-[450px] h-[250px] bg-sky-950 rounded-[13px]">
+      <div className="card-total-duration mt-10">
+        <div className="shadow-lg shadow-blue-500/50 hover:scale-110  bg-sky-950 rounded-[13px] lg:w-[450px] h-[250px] md:w-[420px] m-10 ">
           <div className="bmi-card flex flex-auto">
             <div>
               <img
@@ -50,11 +50,6 @@ function Totalduration() {
               <h2 className="text-3xl text-bold text-blue-500 text-center pt-7 pl-10">
                 {duration} Minutes
               </h2>
-              <progress
-                className="progress progress-info w-56 pl-10 mt-10"
-                value="70"
-                max="100"
-              ></progress>
               <h3></h3>
             </div>
           </div>
