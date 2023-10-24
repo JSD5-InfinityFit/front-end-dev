@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Layout from "../Layout.jsx";
 import BMI from "../components/BMI.jsx";
 import Totalduration from "../components/TotalDuration.jsx";
-import RadarChart from "../components/charts/RadarChart.jsx";
-import CaloriesCard from "../components/CaloriesCard.jsx";
 
 function Dashboard() {
   const [activitiesData, setActivitiesData] = useState("");
   const [information, setInformation] = useState({});
 
   useEffect(() => {
-    fetchInformation(userID);
+
+    fetchInformation(userId);
   }, []);
 
   useEffect(() => {
@@ -22,7 +21,7 @@ function Dashboard() {
   const idtoken = localStorage.getItem("token");
   if (idtoken) {
     const decoded = jwt_decode(idtoken);
-    var userID = decoded.user.userID;
+    var userID = decoded.user.userId;
   }
 
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
@@ -53,14 +52,12 @@ function Dashboard() {
           </div>
       </div>
       
-        <div className="mx-56 lg:flex max-md:mx-auto">
+        <div className="lg:flex mx-56 max-md:mx-auto">
               <BMI weight={information.userWeight} height={information.userHeight} />
               <Totalduration/>
         </div>
-        <div className="mx-56 lg:flex max-md:mx-auto">
-              <RadarChart/>
-              { activitiesData ? <CaloriesCard activitiesData={activitiesData} weight={information.userWeight} /> : ""}
-        </div>
+        
+       
     </Layout>
   );
 }
