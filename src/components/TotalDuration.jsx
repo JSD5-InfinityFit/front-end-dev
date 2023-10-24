@@ -4,9 +4,10 @@ import axios from "axios";
 function Totalduration() {
   const [duration, setDuration] = useState(0);
   const idtoken = localStorage.getItem("idtoken");
+  let decoded, userID;
   if (idtoken) {
-    const decoded = jwt_decode(idtoken);
-    var userID = decoded.user.userID;
+    decoded = jwt_decode(idtoken);
+    userID = decoded.user.userID;
   }
 
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
@@ -14,13 +15,11 @@ function Totalduration() {
   const fetchDuration = async (userID) => {
     const res = await axios.get(`${BACKEND_URL}/activities/`); /// อย่าลืมเปลี่ยน URL
     const activities = res.data;
-    console.log(activities);
 
     const totalDuration = activities.reduce((accumulator, activity) => {
       return accumulator + activity.duration;
     }, 0);
     setDuration(totalDuration);
-    console.log(totalDuration);
   };
 
   useEffect(() => {
