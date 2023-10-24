@@ -63,7 +63,8 @@ function Linechart () {
 
       // Group day by formattedDate
     const groupedDay = duration.reduce((acc, card) => {
-        const key = `${card.formattedDate.day}`;
+        
+        const key = `${card.formattedDate.dayOfWeek}`;
         if (!acc[key]) {
             acc[key] = 0;
         }
@@ -75,19 +76,21 @@ function Linechart () {
       fetchDuration(userID);
     }, [userID]);
 
-
+    const labels = daysOfWeek;
     const data = {
-        // labels: Object.keys(groupedDay).map((day) => groupedDay[day].dayOfWeek),
-        labels: Object.keys(groupedDay),
+
+        labels: daysOfWeek,
+
         datasets: [{
           label: 'Exercise duration of the Week',
-        //   data: [6, 3, 9,15,7,3,5,13],
-          data: Object.values(groupedDay),
+
+          data: daysOfWeek.map(day => groupedDay[day] || 0),
           backgroundColor: 'aqua',
           borderColor: 'red',
           pointBorderColor: 'aqua',
           fill: true,
-          tension: 0.4
+          tension: 0.4,
+          borderWidth: 5,
         }
       ] 
       }
@@ -95,32 +98,32 @@ function Linechart () {
       console.log("Labels",data.labels)
 
     const options = {
-        plugins: {
-          legend: true
-        },
         scales: {
-          y:{
-            min: 3,
-            max:6
-          }
+          x: [
+            {
+              title: {
+                display: false,
+                labelString: 'X Axis Name'
+              }
+            }
+          ],
+          y: [
+            {
+              title: {
+                display: true,
+                labelString: 'Y Axis Name'
+              }
+            }
+          ]
         }
-      }
+      };
 
     return (
-        <div>
-        
-          <div style={
-            {
-              width: '600px',
-              height: '300px',
-              padding: '20px',
-            //   background: 'white'
-            }
-            
-          }>
-            <Line
+        <div className="flex justify-center items-center  hover:scale-110">
+          <div className="w-600 h-300 p-10  bg-sky-950 rounded-[13px] lg:w-[450px] h-[250px] md:w-[420px] m-10 " >
+            <Line 
               data = {data}
-              option = {options}
+              options = {options}
             >
             </Line>
           </div>
@@ -129,4 +132,3 @@ function Linechart () {
 }
 
 export default Linechart;
-
