@@ -4,15 +4,18 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
-import calculateCalories from "../utils/calories";
 import { ListItemText } from "@mui/material";
+import calculateCalories from "../utils/calories";
 
-const CaloriesCard = ({activityData, weight}) => {
+const CaloriesCard = ({isLoading, activityData, weight}) => {
   let calories = 0;
-  activityData.map((activity) => {
-    calories += calculateCalories(activity.type, weight, activity.duration);
-  })
+  console.log('Calories for',activityData);
+  if(activityData) {
+    activityData.map((activity) => {
+      calories += calculateCalories(activity.type, weight, activity.duration);
+      console.log('burned total',calories);
+    })  
+  }
 
   return (
     <Card sx={{ minWidth: 250, minHeight: 250, maxWidth: 300, maxHeight: 300 }}>

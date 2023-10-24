@@ -32,7 +32,7 @@ export const data = {
   ],
 };
 
-const RadarChart = (props) => {
+const RadarChart = ({activityData}) => {
   return (
     <>
         <div className='bg-white w-[250px] h-[250px] m-10 rounded-[13px] border-pink-300 border-2'>
