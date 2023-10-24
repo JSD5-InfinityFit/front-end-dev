@@ -14,7 +14,8 @@ import WelcomePage from './pages/welcome-page.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import Dashboard from './pages/Dashboard.jsx';
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   { 
@@ -58,5 +59,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div className="mobile">
     <RouterProvider router={router} />
+    <ToastContainer />
   </div>
 )

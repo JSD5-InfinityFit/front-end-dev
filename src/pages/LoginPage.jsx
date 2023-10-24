@@ -2,6 +2,7 @@ import inifityLogo from "../assets/icons/infinity.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function LoginPage() {
     const logining = async (value) =>
       await axios
         .post(BACKEND_URL + "/users/login", value, {
-        // .post(VURI + "/users/login", value, {
+          // .post(VURI + "/users/login", value, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -35,10 +36,10 @@ function LoginPage() {
         .then((res) => {
           navigate("/activity");
           localStorage.setItem("token", res.data.token);
-          console.log("Login Success");
+          toast.success("Login Success");
         })
         .catch((err) => {
-          console.log(err.response.data);
+          toast.error(err.response.data);
         });
     logining(value);
   };
@@ -46,7 +47,7 @@ function LoginPage() {
   return (
     <main className="pt-12 center-top">
       <section className="">
-        <div className="card">
+        <div className="card2">
           <div className="box-logo">
             <h1>
               <img
