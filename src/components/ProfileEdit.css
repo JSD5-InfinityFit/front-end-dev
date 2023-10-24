@@ -54,3 +54,49 @@
 .select-g {
     padding-left: 20px;
 }
+
+@media screen and (max-width: 768px) {
+    .main-profile {
+        flex-direction: column;
+    }
+
+    .main-profile {
+        flex-direction: column;
+    }
+
+   
+
+    .information {
+        margin-top: 30px;
+       
+        flex-direction: column;
+        }
+
+    
+
+     /*  .information-form {
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .select-g {
+        padding-left: 0px;
+    }
+
+    .informationtype input {
+        padding: 8px 10px;
+    }
+
+    .informationtype select {
+        padding: 8px 10px;
+    }
+
+    .informationtype label {
+        padding: 8px 10px;
+    }
+
+    .all-button {
+        flex-direction: column;
+    } */
+}

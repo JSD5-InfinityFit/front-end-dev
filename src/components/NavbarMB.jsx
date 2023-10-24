@@ -9,7 +9,7 @@ const NavbarMB = () => {
     return (
         <div className="navbar">
             <a href={'/'}><img src={homeLogo} className="icons" alt="home logo" /></a>
-            <a href={'/dashboard'}><img src={gearLogo} className="icons" alt="dashboard" /></a>
+            <a href={'/user/:id'}><img src={gearLogo} className="icons" alt="dashboard" /></a>
             <a href={'/activity'}><img src={screenLogo} className="icons" alt="activity logo" /></a>
             <a href={'/profile'}><img src={profileLogo} className="icons" alt="profile logo" /></a>
         </div>

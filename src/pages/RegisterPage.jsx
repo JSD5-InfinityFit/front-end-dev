@@ -53,7 +53,7 @@ function RegisterPage() {
   };
 
   return (
-    <Layout>
+    
       <main className="pt-12 center-top">
         <section className="">
           <div className="card">
@@ -190,7 +190,7 @@ function RegisterPage() {
           </div>
         </section>
       </main>
-    </Layout>
+   
   );
 }
 
