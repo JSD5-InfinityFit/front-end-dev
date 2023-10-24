@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import Layout from "../Layout.jsx";
 import BMI from "../components/BMI.jsx";
 import Totalduration from "../components/TotalDuration.jsx";
+import Linechart from "../components/Linechart.jsx";
 
 function Dashboard() {
   const [queryId, setQueryId] = useState("");
@@ -19,7 +20,7 @@ function Dashboard() {
   const idtoken = localStorage.getItem("token");
   if (idtoken) {
     const decoded = jwt_decode(idtoken);
-    var userId = decoded.user.userId;
+    var userID = decoded.user.userId;
   }
 
   const VURI = "https://infinityfitbackenddev.onrender.com";

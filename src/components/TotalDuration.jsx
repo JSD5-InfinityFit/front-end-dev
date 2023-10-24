@@ -25,7 +25,6 @@ function Totalduration() {
     setDuration(totalDuration);
     console.log(totalDuration);
   };
-
   
   useEffect(() => {
     fetchDuration(userID);
