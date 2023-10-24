@@ -12,5 +12,5 @@ function calculateMET(activityType) {
 
 export default function calculateCalories(activityType, weight, duration) {
     const MET = calculateMET(activityType);
-    return parseInt(Math.round((MET * 3.5 * weight * duration/200)));
+    return (MET * 3.5 * weight * duration / 200).toFixed(0);
 }
