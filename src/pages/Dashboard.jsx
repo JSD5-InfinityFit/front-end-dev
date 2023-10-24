@@ -16,20 +16,22 @@ function Dashboard() {
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   useEffect(async () => {
-    await fetchUserID();
     await fetchUserData(userId);
+  }, [userId]);
+
+  useEffect(async () => {
     await fetchUserActivity(userId);
-    setIsLoading(false);
   }, []);
+  
 
   const fetchUserID = () => {
     const idtoken = localStorage.getItem("token");
     if (idtoken) {
     const decoded = jwt_decode(idtoken);
-    setUserId(decoded.user.userID);
+    var userId = decoded.user.userID;
     }
   }
-
+  fetchUserID();
   const fetchUserData = async (uid) => {
     console.log('user id:',uid)
     await axios
@@ -49,6 +51,7 @@ function Dashboard() {
     .then((res) => {
       setActivityData(res.data);
       console.log('get activity success',res.data);
+      setIsLoading(false);
     })
     .catch((err) => {
       console.log(err);
@@ -63,10 +66,15 @@ function Dashboard() {
             <h2 className="pt-3 text-xl font-semibold">Let's work out together!</h2>
           </div>
       </div>
-      <div className="mx-56 lg:flex max-md:mx-auto">
-        <BMICard weight={userData.userWeight} height={userData.userHeight} />
-        <Totalduration/>
-        { isLoading ? <h2>Loading ... </h2> : <CaloriesCard activityData={activityData} weight={userData.userWeight} />}
+      <div className="flex flex-col">
+        <div className="mx-56 lg:flex max-md:mx-auto">
+          <BMICard weight={userData.userWeight} height={userData.userHeight} />
+          <Totalduration/>
+        </div>
+        <div className="mx-56 lg:flex max-md:mx-auto">
+          { isLoading ? <h2>Loading ... </h2> : <CaloriesCard activityData={activityData} weight={userData.userWeight} />}
+          { isLoading ? <h2>Loading ... </h2> : <RadarChart activityData={activityData} />}
+        </div>
       </div>
     </Layout>
   );
