@@ -26,17 +26,19 @@ function ActivityForm() {
     min: 0,
     hour: 0,
     date: new Date(),
-    imageURL: '',
+    imageURL: 'test',
+    img: null,
+    imgType: ''
   })
 
-  const handleFileSelect = (e) =>{
+  const handleFileSelect = async (e) =>{
     let [ file ] = e.target.files
 
     // To display them as images as is, Have to transform them to dataUrl using the URL.createObjectURL method.
     let pic = URL.createObjectURL(file)
     
     setImg(pic)
-    setFormData({ ...formData, imageURL: pic });
+    setFormData({ ...formData, imageURL: "custom", img: file, imgType: file.type});
   }
 
   const handleInputChange = (e) => {
@@ -125,10 +127,11 @@ function ActivityForm() {
     const config = {
       // set headers for axios.post
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': "multipart/form-data",
         'Access-Control-Allow-Origin': '*',
       }
-    };
+    }
+
     const postObject = {
       name: formData.name,
       type: formData.type,
@@ -136,8 +139,12 @@ function ActivityForm() {
       duration: parseInt(formData.hour * 60 + formData.min),
       date: formData.date,
       userID: '60f9b0b3c9b0a40015f1b0a4',
+      imageURL: formData.imageURL,
+      img: formData.img,
+      imgType: formData.imgType
     };
-    await axios.post('https://infinity-fit-backend.onrender.com/activities',postObject, config)
+    console.log(postObject)
+    await axios.post('http://localhost:3001/activities',postObject, config)
     .then(res => {
       console.log(res);
       console.log(res.data);
