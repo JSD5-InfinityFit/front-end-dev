@@ -10,10 +10,11 @@ import CaloriesCard from "../components/CaloriesCard.jsx";
 function Dashboard() {
   const [activitiesData, setActivitiesData] = useState("");
   const [information, setInformation] = useState({});
+  let decoded, userID;
 
   useEffect(() => {
     fetchInformation(userID);
-  }, []);
+  }, [userID]);
 
   useEffect(() => {
     fetchActivity(userID);
@@ -21,8 +22,8 @@ function Dashboard() {
 
   const idtoken = localStorage.getItem("token");
   if (idtoken) {
-    const decoded = jwt_decode(idtoken);
-    var userID = decoded.user.userID;
+    decoded = jwt_decode(idtoken);
+    userID = decoded.user.userID;
   }
 
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
@@ -47,20 +48,22 @@ function Dashboard() {
   return (
     <Layout>
       <div className="mx-56 lg:flex pt-14 max-md:m-auto">
-          <div className="flex flex-col text-white lg:mt-5 max-md:text-center ">
+          <div className="flex flex-col text-center text-white lg:mt-5 ">
             <h1 className="text-3xl font-bold"> Welcome Back,{information.userEmail}🎉</h1>
             <h2 className="pt-3 text-xl font-semibold">Let's work out together!</h2>
           </div>
       </div>
-      
-        <div className="mx-56 lg:flex max-md:mx-auto">
-              <BMI weight={information.userWeight} height={information.userHeight} />
-              <Totalduration/>
-        </div>
-        <div className="mx-56 lg:flex max-md:mx-auto">
-              <RadarChart/>
-              { activitiesData ? <CaloriesCard activitiesData={activitiesData} weight={information.userWeight} /> : ""}
-        </div>
+      <div className="justify-center lg:flex">
+        <BMI weight={information.userWeight} height={information.userHeight} />
+        <Totalduration/>
+      </div>
+      <div id="radar-card" className="justify-center lg:flex">
+        { activitiesData ? <RadarChart activitiesData={activitiesData} /> : "" }
+        { activitiesData ? <CaloriesCard activitiesData={activitiesData} weight={information.userWeight} /> : ""}
+      </div>
+      <div id="line-chart">
+        
+      </div>
     </Layout>
   );
 }

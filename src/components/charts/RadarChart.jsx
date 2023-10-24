@@ -35,15 +35,15 @@ export const data = {
 const RadarChart = (props) => {
   return (
     <>
-      <div className="mt-10 card">
-      <div className="shadow-lg shadow-blue-500/50 hover:scale-110 lg:w-[250px] h-[250px] bg-sky-950 rounded-[13px] md:w-[420px] m-10 ">
-            <Radar data={data}
-            // options={...}
-            // data={...}
-            // {...props}
-            />
-          </div>
+      <div className="max-mt-10">
+        <div className="shadow-lg shadow-blue-500/50 hover:scale-110 lg:w-[250px] h-[250px] bg-sky-950 rounded-[13px] md:w-[420px] m-10 ">
+          <Radar data={data}
+          // options={...}
+          // data={...}
+          // {...props}
+          />
         </div>
+      </div>
     </>    
   )
 }
