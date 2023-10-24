@@ -53,10 +53,10 @@ function RegisterPage() {
   };
 
   return (
-    <Layout>
+   
       <main className="pt-12 center-top">
         <section className="">
-          <div className="card">
+          <div className="card2">
             <div className="box-logo">
               <h1>
                 <img
@@ -190,7 +190,7 @@ function RegisterPage() {
           </div>
         </section>
       </main>
-    </Layout>
+   
   );
 }
 
