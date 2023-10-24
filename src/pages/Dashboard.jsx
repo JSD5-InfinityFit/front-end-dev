@@ -49,8 +49,8 @@ function Dashboard() {
     <Layout>
       <div className="items-center justify-center pt-4 lg:flex max-md:m-auto">
           <div className="flex flex-col text-white lg:mt-5 ">
-            <h1 className="text-3xl font-bold"> Welcome, {information.userEmail}🎉</h1>
-            <h2 className="pt-3 text-xl font-semibold">Let's work out together!</h2>
+            <h1 className="text-3xl font-bold text-center"> Welcome, {information.userEmail}🎉</h1>
+            <h2 className="pt-3 text-xl font-semibold text-center">Let's work out together!</h2>
           </div>
       </div>
       <div className="justify-center lg:flex">
