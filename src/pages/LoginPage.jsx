@@ -46,7 +46,7 @@ function LoginPage() {
   return (
     <main className="pt-12 center-top">
       <section className="">
-        <div className="card">
+        <div className="card2">
           <div className="box-logo">
             <h1>
               <img
