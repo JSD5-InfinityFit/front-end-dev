@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 const ActivityDisplay = ({ activityData, onEditClick, onDeleteClick }) => {
   console.log(activityData);
-  console.log(activityData.type);
   // value for the img
   let swim =
     "https://images.unsplash.com/photo-1560089000-7433a4ebbd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3012&q=80";
@@ -16,7 +15,8 @@ const ActivityDisplay = ({ activityData, onEditClick, onDeleteClick }) => {
     "https://images.unsplash.com/photo-1603988363607-e1e4a66962c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80";
 
   const [img, setImg] = useState(run);
-  useEffect (() => {
+
+  useEffect ( () => {
     if (activityData.type === "swim") {
       setImg(swim);
     } else if (activityData.type === "run") {
@@ -28,7 +28,21 @@ const ActivityDisplay = ({ activityData, onEditClick, onDeleteClick }) => {
     } else if (activityData.type === "yoga") {
       setImg(yoga);
     } 
-    console.log(img);
+
+    let ImgInit = async ()=>{
+      let imgURL = `data:${activityData.imgType};base64,${activityData.img}`
+      setImg(imgURL)
+      console.log(imgURL)
+    }
+
+    console.log(activityData.img)
+
+    if(activityData.imageURL == 'custom'){
+      try{
+        ImgInit()
+      } catch (err) {console.log(err)}
+    }
+    
   }, [])
 
   return (
