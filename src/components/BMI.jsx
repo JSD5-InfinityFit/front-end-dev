@@ -1,5 +1,4 @@
 import React from "react";
-import bmiicon from "../assets/icons/bmi.png";
 
 function BMI({weight,height}) {
 
