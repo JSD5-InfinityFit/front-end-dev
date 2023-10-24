@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
@@ -18,7 +18,7 @@ function ActivityList() {
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   let idtoken = localStorage.getItem("token");
-  // console.log(idtoken);
+
   if (idtoken) {
     const decoded = jwt_decode(idtoken);
     var userID = decoded.user.userID;
@@ -37,12 +37,6 @@ function ActivityList() {
       .catch((err) => {
         console.log(err);
       });
-
-  const navigate = useNavigate();
-  const logout = () => {
-    navigate("/");
-    const idtoken = localStorage.clear();
-  };
 
   const getDataFromAPI = async () => {
     await axios
@@ -63,19 +57,7 @@ function ActivityList() {
 
   const formatApiDate = (apiDate) => {
     const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const monthsOfYear = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
+    const monthsOfYear = ["Jan", "Feb", "Mar", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     const date = new Date(apiDate);
     const day = date.getDate().toString().padStart(2, "0");
@@ -106,23 +88,19 @@ function ActivityList() {
     <>
       <section className="box-border p-3 bg-black">
         <div className="container w-full max-w-screen-xl m-auto bg-black ">
-          <h1 className="pt-6 text-5xl font-semibold text-white">
-            {" "}
-            Exercise List of {userEmail}{" "}
-          </h1>
+          <h1 className="pt-6 text-5xl font-semibold text-white">Exercise List of {userEmail}</h1>
         </div>
 
         <div className="container flex flex-col-reverse">
           {sortedGroupKeys.map((key) => (
             <div key={key} className="container flex flex-row">
-              {/* Date */}
+              
               <div className="flex sm:px-2">
                 <h2 className="text-2xl font-semibold text-white mt-14">
                   {key}
                 </h2>
               </div>
 
-              {/* Avtivity Data */}
               <div className="grid flex-row w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {groupedCards[key].map((card) => (
                   <Link to={`/activities/${card._id}`} key={card._id}>
