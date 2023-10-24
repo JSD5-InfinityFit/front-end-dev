@@ -136,7 +136,7 @@ function ActivityList() {
         </div>
 
         {/* Button  add activity */}
-        <div className="fixed bottom-0 right-0 m-4">
+        <div className="fixed bottom-0 right-0 m-4 max-sm:mb-20">
           <div className="p-2 text-white bg-blue-800 rounded-full shadow">
             <div className="relative">
               <a href={"/activityform"}>

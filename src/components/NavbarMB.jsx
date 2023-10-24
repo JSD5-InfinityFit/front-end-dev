@@ -1,14 +1,29 @@
 import React from 'react';
+import HomeIcon from '@mui/icons-material/Home';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
-import './Navbar.css'
+import ViewListRoundedIcon from '@mui/icons-material/ViewListRounded';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import { createTheme } from '@mui/material/styles';
+import { purple, red } from '@mui/material/colors';
 import { Grid } from '@mui/material';
 
+
+
 const NavbarMB = () => {
+   const payotu = purple[500];
+
     return (
         
-        <div>
-            <Grid href={"/"}>
-            <AnalyticsIcon/>
+        <div className='navbar'>
+        <Grid container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center">
+            <a href={'/'}><HomeIcon color="payutu"  sx={{fontSize: 50}}/></a>
+            <a href={'/dashboard/:id'}><AnalyticsIcon color="secondary" sx={{ fontSize: 50 }} /></a>
+            <a href={'/activity'}><ViewListRoundedIcon color="secondary"  sx={{fontSize: 50}}/></a>
+            <a href={'/profile'}><ManageAccountsIcon color="secondary"  sx={{fontSize: 50}}/></a>
+
             </Grid>
         </div>
 
