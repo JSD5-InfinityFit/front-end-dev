@@ -39,18 +39,21 @@ function Dashboard() {
   return (
     <Layout>
       <div className="lg:flex pt-14 mx-56 max-md:m-auto">
-          <div className="text-white lg:mt-5 flex flex-col max-md:text-center ">
-            <h1 className="text-3xl font-bold"> Welcome Back,{information.userEmail}🎉</h1>
-            <h2 className="text-xl font-semibold pt-3">Let's work out together!</h2>
-          </div>
-      </div>
-      
-        <div className="lg:flex mx-56 max-md:mx-auto">
-              <BMI weight={information.userWeight} height={information.userHeight} />
-              <Totalduration/>
+        <div className="text-white lg:mt-5 flex flex-col max-md:text-center ">
+          <h1 className="text-3xl font-bold">
+            {" "}
+            Welcome Back,{information.userEmail}🎉
+          </h1>
+          <h2 className="text-xl font-semibold pt-3">
+            Let's work out together!
+          </h2>
         </div>
-        
-       
+      </div>
+
+      <div className="lg:flex mx-56 max-md:mx-auto">
+        <BMI weight={information.userWeight} height={information.userHeight} />
+        <Totalduration />
+      </div>
     </Layout>
   );
 }

@@ -4,6 +4,7 @@ import inifityLogo from "../assets/icons/infinity.png";
 import Layout from "../Layout";
 import "./RegisterPage.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function RegisterPage() {
   const [value, setValue] = useState({
@@ -30,7 +31,7 @@ function RegisterPage() {
 
   const register = async (value) =>
     await axios.post(BACKEND_URL + "/users/register", value, {
-    // await axios.post(VURI + "/users/register", value, {
+      // await axios.post(VURI + "/users/register", value, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -40,6 +41,7 @@ function RegisterPage() {
     e.preventDefault();
     if (value.userPassword !== value.password1) {
       console.log("Password not match");
+      toast.error("Password not match");
     } else {
       register(value)
         .then((res) => {
@@ -47,7 +49,8 @@ function RegisterPage() {
           navigate("/login");
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data);
+          toast.error(err.response.data);
         });
     }
   };
@@ -82,7 +85,10 @@ function RegisterPage() {
               </div>
 
               <div className="formtype">
-                <label htmlFor="password">Password</label> <br></br>
+                <label htmlFor="password">
+                  Password (Must more than 5 alphabets)
+                </label>{" "}
+                <br></br>
                 <input
                   type="password"
                   label="Create password"
