@@ -1,6 +1,10 @@
+
+
 body {
   margin: 0; /* Remove the margin */
-  background-color: #1B1B1B;
+  /* background-color: #d19797; */
+  font-family: 'Nosifer', sans-serif;
+   background-image: url(https://images7.alphacoders.com/875/875083.jpg);
 }
 
 .information-2:hover {
@@ -9,7 +13,7 @@ body {
 }
 
 .item-label {
-  background-color: #006daa;
+  background-color: #7b2cbf;
   border-radius: 6px;
   font-size: 16px;
   color: white;
@@ -20,7 +24,7 @@ body {
 }
 
 .item-value {
-  background-color: #d7263d;
+  background-color: #ee5622;
   border-radius: 6px;
   font-size: 16px;
   color: white;
@@ -35,7 +39,7 @@ body {
   border-radius: 12px;
   transition: 0.3s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  background-color: rgb(211, 222, 222);
+  background-color: #eca72c;
   padding-top: 100[z];
  
 }

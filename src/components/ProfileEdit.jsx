@@ -121,7 +121,7 @@ const ProfileEdit = ({
             </div>
           </div>
           <div className="informationtype">
-            <label htmlFor="Birthdate">BirthDate</label>
+            <label htmlFor="Birthdate" className="w-44">BirthDate</label>
             <input
               style={{ paddingLeft: "10px" }}
               type="date"
@@ -166,7 +166,7 @@ const ProfileEdit = ({
               Save
             </button>
             <button
-              className="mt-4 btn-error w-[100px]"
+              id="del-button" className="mt-4 pl-2 text-white w-[100px]"
               onClick={handleDeleteClick}
             >
               Delete

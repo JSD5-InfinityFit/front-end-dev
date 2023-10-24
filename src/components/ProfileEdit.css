@@ -1,7 +1,7 @@
 .informationtype label {
 
     color: #fcfbfb;
-    background-color: #061A40;
+    background-color: #7b2cbf;
     border-radius: 6px;
     font-size: 20px;
 }
@@ -11,6 +11,7 @@
     padding: 8px 50px;
     border-radius: 6px;
     font-size: 20px;
+    text-align: center;
 
 }
 
@@ -28,7 +29,7 @@
 .main-profile {
     justify-content: center;
     display: flex;
-    background-color: #1B1B1B;
+    
     height: 100vh;
 }
 
@@ -49,6 +50,18 @@
     gap: 10px;
     display: flex;
     flex-direction: column;
+    background-color: #eca72c;
+    border-radius: 12px;
+}
+
+
+    
+
+#del-button{
+    background-color: #ee5622;
+}
+#del-button:hover{
+    background-color: #cc5803;
 }
 
 .select-g {

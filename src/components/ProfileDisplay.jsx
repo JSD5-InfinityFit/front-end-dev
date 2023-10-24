@@ -43,11 +43,13 @@ const ProfileDisplay = ({ setChange, information }) => {
   <button className="mt-4 btn-primary w-[100px] mx-32 max-md:mx-20" onClick={() => setChange(false)}>
       Edit
     </button>
-    <button className="mt-4 btn-error w-[100px] mx-32 max-md:mx-12" onClick={logout}>
+    <button id="del-button"className="mt-4 pl-2 w-[100px] mx-32 max-md:mx-12" onClick={logout}>
       Logout
     </button>
     </div>
-  
+    <div className='grid justify-items-stretch'>
+   <img src='https://cdn-icons-png.flaticon.com/128/3684/3684816.png' className='w-60  justify-self-center'/>
+    </div>
 </section>
 
 
