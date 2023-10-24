@@ -40,7 +40,7 @@ function Dashboard() {
     <Layout>
       <div>
         <h1> Welcome Back,{information.userEmail}</h1>
-        <h2>Let's work together!</h2>
+        <h1>Let's work together!</h1>
       </div>
       
       <BMI weight={information.userWeight} height={information.userHeight} />

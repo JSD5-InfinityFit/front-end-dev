@@ -30,7 +30,7 @@ function RegisterPage() {
 
   const register = async (value) =>
     await axios.post(BACKEND_URL + "/users/register", value, {
-    // await axios.post(VURI + "/users/register", value, {
+      // await axios.post(VURI + "/users/register", value, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -47,7 +47,7 @@ function RegisterPage() {
           navigate("/login");
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data);
         });
     }
   };
