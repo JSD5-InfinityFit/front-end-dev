@@ -9,7 +9,7 @@ const ActivityEditForm = ({  //new in this file
   handleDeleteClick,
   setIsEditing,
   handleFileSelect, //new in this file
-  setFileInput,
+  fileInput,
   formData, //new in this file
 
 

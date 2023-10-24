@@ -5,6 +5,7 @@ import Layout from "../Layout.jsx";
 import BMICard from "../components/BMICard.jsx";
 import RadarChart from "../components/RadarChart.jsx";
 import CaloriesCard from "../components/CaloriesCard.jsx";
+import Totalduration from "../components/Totalduration.jsx";
 
 function Dashboard() {
   
@@ -56,32 +57,16 @@ function Dashboard() {
 
   return (
     <Layout>
-      <div id="greeting">
-        { userData ? (
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl font-bold">
-              Welcome back, {userData.userEmail}!
-            </h1>
-            <h2 className="text-xl font-semibold">Let's work together!</h2>
-            <BMICard weight={userData.userWeight} height={userData.userHeight} />
+      <div className="mx-56 lg:flex pt-14 max-md:m-auto">
+          <div className="flex flex-col text-white lg:mt-5 max-md:text-center ">
+            <h1 className="text-3xl font-bold"> Welcome Back,{userData.userEmail}🎉</h1>
+            <h2 className="pt-3 text-xl font-semibold">Let's work out together!</h2>
           </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl font-bold">Welcome back!</h1>
-            <h2 className="text-xl font-semibold">Let's work together!</h2>
-            <BMICard />
-          </div>
-        )}
       </div>
-      
-      <div id="fai-charts" className="flex flex-col items-center justify-center md:flex-row">
-        { isLoading ? 
-          (
-            <h2>Loading ... </h2>
-          ) : (
-            <CaloriesCard activityData={activityData} weight={userData.userWeight} />
-          )
-        }
+      <div className="mx-56 lg:flex max-md:mx-auto">
+        <BMICard weight={userData.userWeight} height={userData.userHeight} />
+        <Totalduration/>
+        { isLoading ? <h2>Loading ... </h2> : <CaloriesCard activityData={activityData} weight={userData.userWeight} />}
       </div>
     </Layout>
   );
