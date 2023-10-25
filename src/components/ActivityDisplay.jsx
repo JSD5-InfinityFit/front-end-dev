@@ -30,7 +30,13 @@ const ActivityDisplay = ({ activityData, onEditClick, onDeleteClick }) => {
     } 
 
     let ImgInit = async ()=>{
-      let imgURL = `data:${activityData.imgType};base64,${activityData.img}`
+      // let imgURL = `data:${activityData.imgType};base64,${activityData.img}`
+      let imgURL = `data:${activityData.imgType};base64,${btoa(
+        new Uint8Array(activityData.img.data).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ''
+        )
+      )}`;
       setImg(imgURL)
       console.log(imgURL)
     }
