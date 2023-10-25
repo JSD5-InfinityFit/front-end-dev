@@ -112,20 +112,6 @@ function ActivityForm() {
 
   // validateForm code here
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const currentDate = new Date();
-  //   setFormData({ ...formData, date: currentDate });
-  //   const activityValid = validateActivity(formData.name, formData.type, formData.description, currentDate, parseInt(formData.hour * 60 + formData.min));
-  //   console.log(activityValid);
-  //   console.log(formData);
-
-  //   if (activityValid) {
-  //     // post to server
-  //     postData();
-  //   }
-  // }
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -136,7 +122,6 @@ function ActivityForm() {
     console.log(activityValid);
     console.log(formData);
     
-
     if (activityValid) {
       // post to server
       postData();
