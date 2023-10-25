@@ -31,6 +31,8 @@ function ActivityForm() {
     imgType: ''
   })
 
+  const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
+
   const handleFileSelect = async (e) =>{
     let [ file ] = e.target.files
 
@@ -144,7 +146,7 @@ function ActivityForm() {
       imgType: formData.imgType
     };
     console.log(postObject)
-    await axios.post('http://localhost:3001/activities',postObject, config)
+    await axios.post(BACKEND_URL + '/activities',postObject, config)
     .then(res => {
       console.log(res);
       console.log(res.data);
@@ -216,24 +218,24 @@ function ActivityForm() {
             <div className="form-group">
               <label htmlFor="duration">Duration</label>
               <input
-                className="in text-black rounded-md"
+                className="text-black rounded-md in"
                 min="0"
                 placeholder='Hour'
                 type="number"
                 name="hour"
                 value={formData.hour}
                 onChange={handleInputChange}
-              />
+              /> <p>Hour</p>
               <input
                 min="0"
                 max={59}
-                className="in text-black rounded-md"
+                className="text-black rounded-md in"
                 placeholder='Minute'
                 type="number"
                 name="min"
                 value={formData.min}
                 onChange={handleInputChange}
-              />
+              /> <p>Minute</p>
             </div>
 
           </form>

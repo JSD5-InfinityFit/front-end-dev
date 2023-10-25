@@ -1,4 +1,4 @@
-.center {
+/* .center {
     height: 100vh;
     flex-direction: column;
     display: flex;
@@ -71,3 +71,102 @@
     margin: 10px;
 }
 
+
+@media only screen and (max-width: 600px) {
+  .welcome h1 {
+    font-size: 24px;
+  }
+  
+  .register h1 {
+    font-size: 18px;
+  }
+} */
+
+.center {
+    height: 100vh;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(0, 0, 0, 1) 100%
+        ),
+        url('../assets/humphrey.jpg');
+    background-size: cover;
+}
+
+.welcome {
+    color: orange; /* Updated color */
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: rgba(255, 255, 255, 1) 0px 0px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome img {
+    width: auto;
+    height: 100px;
+}
+
+.login {
+    position: absolute;
+    right: 2vw;
+}
+
+.login .link {
+    color: white;
+    text-decoration: inherit;
+    cursor: 'pointer';
+}
+
+.register {
+    padding-top: 30vh;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: orange; /* Updated color */
+}
+
+.register .link {
+    text-shadow: rgb(0, 0, 0) 0px 0px 35px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: orange; /* Updated color */
+    text-decoration: inherit;
+    cursor: 'pointer';
+    transition: 0.4s;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 5px solid orange; /* Updated color */
+}
+
+.register .link:hover {
+    text-shadow: rgba(0, 0, 0, 0.9) 0px 0px 30px;
+    font-size: 40px;
+    color: white;
+}
+
+.register .link h1 {
+    margin: 10px;
+}
+
+.register .link h2 {
+    margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .welcome h1 {
+        font-size: 24px;
+    }
+
+    .register h1 {
+        font-size: 18px;
+    }
+}
