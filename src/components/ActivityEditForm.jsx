@@ -2,6 +2,7 @@ import React from "react";
 import './ActivityEditForm.css' //new in this file
 import { useState } from "react"; //new in this file
 import { useNavigate } from 'react-router-dom';
+import { colors } from "@mui/material";
 
 const ActivityEditForm = ({  //new in this file
   activityData,
@@ -78,7 +79,8 @@ const ActivityEditForm = ({  //new in this file
                 name="hour"
                 value={formData?.hour || ''}
                 onChange={handleInputChange}
-              />
+              /> <p>Hour</p>
+        
               <input
                 min="0"
                 max={59}
@@ -88,9 +90,9 @@ const ActivityEditForm = ({  //new in this file
                 name="min"
                 value={formData?.min || ''}
                 onChange={handleInputChange}
-              />
+              />  <p>Minute</p>
       </div>
-            
+  
         </form>
        </div>
         <div className="img-parent">
