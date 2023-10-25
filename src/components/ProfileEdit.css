@@ -39,7 +39,7 @@
 }
 
 .informationtype {
-    padding: 10px;
+    
     display: flex;
     align-items: center;
     border-radius: 10px;
@@ -47,11 +47,12 @@
 
 
 .information-form {
-    gap: 10px;
+    
     display: flex;
     flex-direction: column;
     background-color: #eca72c;
     border-radius: 12px;
+    margin-top:10%;
 }
 
 
@@ -85,31 +86,22 @@
         flex-direction: column;
         }
 
+}
+
+@media screen and (max-width: 580px) {
+    .information-form {
+        margin-left: 40px;
+        margin-top:10%;
+        margin-right: 40px;
+        
+        
+    }
     
 
-     /*  .information-form {
-        gap: 10px;
-        display: flex;
-        flex-direction: column;
+    .lable{
+        display: none;
     }
-
-    .select-g {
-        padding-left: 0px;
+    .input{
+        display: none;
     }
-
-    .informationtype input {
-        padding: 8px 10px;
-    }
-
-    .informationtype select {
-        padding: 8px 10px;
-    }
-
-    .informationtype label {
-        padding: 8px 10px;
-    }
-
-    .all-button {
-        flex-direction: column;
-    } */
 }

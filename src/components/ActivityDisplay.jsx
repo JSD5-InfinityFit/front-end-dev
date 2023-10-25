@@ -93,7 +93,7 @@ const ActivityDisplay = ({ activityData, onEditClick, onDeleteClick }) => {
           <button className="mt-4 btn-primary w-[100px]" onClick={onEditClick}>
             Edit
           </button>
-          <button className="mt-4 btn-error w-[100px]" onClick={onDeleteClick}>
+          <button className="mt-4 btn-error pl-2 w-[100px]" onClick={onDeleteClick}>
             Delete
           </button>
         </div>
