@@ -7,6 +7,7 @@ function ActivityList() {
   const [cards, setCards] = useState([]);
   const [userCards, setUserCards] = useState([]);
 
+
   useEffect(() => {
     getDataFromAPI();
   }, []);
@@ -26,17 +27,32 @@ function ActivityList() {
     console.log(userEmail);
   }
 
-  const currentUser = async (userID) =>
-    await axios
-      .get(BACKEND_URL + "/users/" + userID)
-      .then((res) => {
-        console.log(res.data.userActivities);
-        setUserCards(res.data.userActivities);
-        console.log("user:", userCards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  // const currentUser = async (userID) =>
+  //   await axios
+  //     .get(BACKEND_URL + "/users/" + userID)
+  //     .then((res) => {
+  //       console.log(res.data.userActivities);
+  //       setUserCards(res.data.userActivities);
+  //       console.log("user:", userCards);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+
+  const currentUser = async (userID) => {
+    try {
+      const res = await axios.get(BACKEND_URL + "/users/" + userID);
+      const userActivities = res.data.userActivities;
+  
+      if (userActivities.length === 0) {
+        setUserCards([]); // Set initial state for new users
+      } else {
+        setUserCards(userActivities);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const getDataFromAPI = async () => {
     await axios
@@ -136,7 +152,7 @@ function ActivityList() {
         </div>
 
         {/* Button  add activity */}
-        <div className="fixed bottom-0 right-0 m-4">
+        <div id ="add activity" className="fixed bottom-0 right-0 m-4">
           <div className="p-2 text-white bg-blue-800 rounded-full shadow">
             <div className="relative">
               <a href={"/activityform"}>
@@ -164,3 +180,4 @@ function ActivityList() {
 }
 
 export default ActivityList;
+

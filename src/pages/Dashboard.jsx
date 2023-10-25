@@ -6,6 +6,7 @@ import BMI from "../components/BMI.jsx";
 import Totalduration from "../components/TotalDuration.jsx";
 import RadarChart from "../components/charts/RadarChart.jsx";
 import CaloriesCard from "../components/CaloriesCard.jsx";
+import Linechart from "../components/Linechart.jsx";
 
 function Dashboard() {
   const [activitiesData, setActivitiesData] = useState("");
@@ -61,8 +62,8 @@ function Dashboard() {
         { activitiesData ? <RadarChart activitiesData={activitiesData} /> : "" }
         { activitiesData ? <CaloriesCard activitiesData={activitiesData} weight={information.userWeight} /> : ""}
       </div>
-      <div id="line-chart">
-        
+      <div id="line-chart" className = "justify-center lg:flex" >
+        <Linechart />
       </div>
     </Layout>
   );
