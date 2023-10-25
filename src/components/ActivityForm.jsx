@@ -5,6 +5,7 @@ import './ActivityForm.css'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
 import axios from 'axios'; 
+import { useParams, useNavigate } from "react-router-dom";
 
 function ActivityForm() {
 
@@ -111,6 +112,8 @@ function ActivityForm() {
 
   // validateForm code here
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const currentDate = new Date();
@@ -118,10 +121,11 @@ function ActivityForm() {
     const activityValid = validateActivity(formData.name, formData.type, formData.description, currentDate, parseInt(formData.hour * 60 + formData.min));
     console.log(activityValid);
     console.log(formData);
-
+    
     if (activityValid) {
       // post to server
       postData();
+      
     }
   }
 
@@ -150,6 +154,7 @@ function ActivityForm() {
     .then(res => {
       console.log(res);
       console.log(res.data);
+      navigate("/activity");
     })
     .catch(err => {
       console.log(err);
@@ -168,10 +173,9 @@ function ActivityForm() {
 
     setValue(dayjs())
     setImg(run)
+    navigate("/activity");
 
   }
-
-
 
   return (
     <div className="grid ">
