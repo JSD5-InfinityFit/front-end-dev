@@ -127,6 +127,7 @@ const ActivityEditForm = ({  //new in this file
         <div className="buttons">
           <button
           className="save-button bg-blue-500 "
+          onClick={handleSaveClick}
           type="submit"
           >
           Save
