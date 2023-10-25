@@ -4,6 +4,8 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import "./ActivityList.css";
 
+import Tooltip from '@mui/material/Tooltip';
+
 function ActivityList() {
   const [cards, setCards] = useState([]);
   const [userCards, setUserCards] = useState([]);
@@ -93,7 +95,7 @@ function ActivityList() {
     <>
       <section className="box-border p-3">
         <div className="container w-full max-w-screen-xl m-auto ">
-          <h1 className="pt-6 text-5xl font-semibold text-white">Exercise List of {userEmail}</h1>
+          <h1 className="pt-6 text-base sm:text-4xl text-center font-semibold text-white">Activity List of {userEmail}</h1>
         </div>
 
         <div className="container flex flex-col-reverse">
@@ -108,32 +110,37 @@ function ActivityList() {
 
               <div className="grid flex-row w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {groupedCards[key].map((card) => (
-                  <Link to={`/activities/${card._id}`} key={card._id}>
-                    <div
-                      className="flex flex-row flex-shrink-0 w-full p-3 border-l-8 card bg-blue-950 flex-0 flex-basis-calc max-w-calc "
-                      style={{
-                        borderColor:
-                          card.type === "run"
-                            ? "green"
-                            : card.type === "swim"
-                            ? "skyblue"
-                            : card.type === "badminton"
-                            ? "orange"
-                            : card.type === "dance"
-                            ? "red"
-                            : "pink",
-                      }}
+
+                    <Link to={`/activities/${card._id}`} key={card._id} 
+                    className="hover:scale-110"
                     >
-                      <div className="container mx-auto p-2 m-3 text-white information text truncate ... flex flex-col items-start">
-                        <p className="text-2xl font-semibold">
-                          {card.type.charAt(0).toUpperCase() +
-                            card.type.slice(1)}
-                        </p>
-                        <p className="font-semibold">{card.name}</p>
-                        <p className="font-semibold">{card.duration} min</p>
-                      </div>
-                    </div>
-                  </Link>
+                      <Tooltip title="Click me to see details" followCursor>
+                        <div
+                          className="flex flex-row flex-shrink-0 w-full p-3 border-l-8 card bg-blue-950 flex-0 flex-basis-calc max-w-calc "
+                          style={{
+                            borderColor:
+                              card.type === "run"
+                                ? "green"
+                                : card.type === "swim"
+                                ? "skyblue"
+                                : card.type === "badminton"
+                                ? "orange"
+                                : card.type === "dance"
+                                ? "red"
+                                : "pink",
+                          }}
+                        >
+                          <div className="container mx-auto p-2 m-3 text-white information text truncate ... flex flex-col items-start">
+                            <p className="text-2xl font-semibold">
+                              {card.type.charAt(0).toUpperCase() +
+                                card.type.slice(1)}
+                            </p>
+                            <p className="font-semibold">{card.name}</p>
+                            <p className="font-semibold">{card.duration} min</p>
+                          </div>
+                        </div>
+                      </Tooltip>
+                    </Link>
                 ))}
               </div>
             </div>
