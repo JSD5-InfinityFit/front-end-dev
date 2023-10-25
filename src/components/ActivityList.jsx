@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import "./ActivityList.css";
 
 function ActivityList() {
   const [cards, setCards] = useState([]);
@@ -86,8 +87,8 @@ function ActivityList() {
 
   return (
     <>
-      <section className="box-border p-3 bg-black">
-        <div className="container w-full max-w-screen-xl m-auto bg-black ">
+      <section className="box-border p-3">
+        <div className="container w-full max-w-screen-xl m-auto ">
           <h1 className="pt-6 text-5xl font-semibold text-white">Exercise List of {userEmail}</h1>
         </div>
 
@@ -136,7 +137,7 @@ function ActivityList() {
         </div>
 
         {/* Button  add activity */}
-        <div className="fixed bottom-0 right-0 m-4">
+        <div className="fixed bottom-0 right-0 m-4 max-sm:mb-20">
           <div className="p-2 text-white bg-blue-800 rounded-full shadow">
             <div className="relative">
               <a href={"/activityform"}>

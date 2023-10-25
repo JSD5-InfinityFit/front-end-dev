@@ -172,7 +172,7 @@ function ActivityForm() {
 
 
   return (
-    <div className="grid bg-zinc-900">
+    <div className="grid ">
       <div className="row-1">
         <div id="form" className="form">
 
