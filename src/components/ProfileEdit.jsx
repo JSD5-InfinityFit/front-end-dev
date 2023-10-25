@@ -93,7 +93,12 @@ const ProfileEdit = ({
   return (
     <div className="main-profile">
       <div className="information">
+         <div>
+            <h1 className="text-white">Profile Edit</h1>
+          </div>
         <form className="information-form">
+         
+
           <div className="informationtype">
             <label htmlFor="Name">Email</label>
             <input
@@ -106,9 +111,10 @@ const ProfileEdit = ({
             />
           </div>
           <div className="informationtype">
-            <label htmlFor="Gender">Gender</label>
+            <label className="" htmlFor="Gender">Gender</label>
             <div className="select-g">
               <select
+                className="max-md:w-44"
                 name="userBiologicalGender"
                 defaultValue={information.userBiologicalGender}
                 onChange={handleInputChange}
@@ -141,8 +147,8 @@ const ProfileEdit = ({
               min="0"
               required
               placeholder="Height"
-            />
-            <label htmlFor="Weight">cm.</label>
+            /> 
+            <label  className=" max-md:hidden" htmlFor="Weight">cm.</label>
           </div>
           <div className="informationtype">
             <label htmlFor="Weight">Weight</label>
@@ -155,7 +161,7 @@ const ProfileEdit = ({
               required
               placeholder="Weight"
             />
-            <label htmlFor="Weight">kg.</label>
+            <label className=" max-md:hidden" htmlFor="Weight">kg.</label>
           </div>
 
           <div id="button" className="flex m-5 justify-around">

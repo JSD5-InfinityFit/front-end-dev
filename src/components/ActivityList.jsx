@@ -93,7 +93,7 @@ function ActivityList() {
     <>
       <section className="box-border p-3">
         <div className="container w-full max-w-screen-xl m-auto ">
-          <h1 className="pt-6 text-5xl font-semibold text-white">Exercise List of {userEmail}</h1>
+          <h1 className="lg:pt-6 font-semibold text-white max-md: text-2xl text-center">Exercise List of {userEmail}</h1>
         </div>
 
         <div className="container flex flex-col-reverse">

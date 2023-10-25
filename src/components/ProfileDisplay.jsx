@@ -13,19 +13,19 @@ const ProfileDisplay = ({ setChange, information }) => {
   return (
    
     <section id='card-item' className='card-items-center'>
-    <div className='pt-20 md:mx-60 lg:mx-96  max-md:mx-16'>
+    <div className='pt-20 md:mx-60 lg:mx-96  max-md:mx-16 '>
         <div className="information-2 grid gap-4 p-5 ">
           <div className="profile-item">
             <span className="item-label ">Email:</span>
-            <span className="item-value">{information.userEmail}</span>
+            <span className="item-value truncate">{information.userEmail}</span>
           </div>
           <div className="profile-item">
             <span className="item-label">Gender:</span>
-            <span className="item-value">{information.userBiologicalGender}</span>
+            <span className="item-value truncate">{information.userBiologicalGender}</span>
           </div>
           <div className="profile-item">
             <span className="item-label ">Birthdate:</span>
-            <span className="item-value">{information.userBD}</span>
+            <span className="item-value truncate">{information.userBD}</span>
           </div>
           <div className="profile-item">
             <span className="item-label">Height:</span>
