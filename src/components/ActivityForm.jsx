@@ -225,7 +225,7 @@ function ActivityForm() {
                 name="hour"
                 value={formData.hour}
                 onChange={handleInputChange}
-              />
+              /> <p>Hour</p>
               <input
                 min="0"
                 max={59}
@@ -235,7 +235,7 @@ function ActivityForm() {
                 name="min"
                 value={formData.min}
                 onChange={handleInputChange}
-              />
+              /> <p>Minute</p>
             </div>
 
           </form>
