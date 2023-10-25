@@ -57,12 +57,10 @@ function Dashboard() {
       <div className="justify-center lg:flex">
         <BMI weight={information.userWeight} height={information.userHeight} />
         <Totalduration/>
+        { activitiesData ? <RadarChart activitiesData={activitiesData} /> : "" }
       </div>
       <div id="radar-card" className="justify-center lg:flex">
-        { activitiesData ? <RadarChart activitiesData={activitiesData} /> : "" }
         { activitiesData ? <CaloriesCard activitiesData={activitiesData} weight={information.userWeight} /> : ""}
-      </div>
-      <div id="line-chart" className = "justify-center lg:flex" >
         <Linechart />
       </div>
     </Layout>

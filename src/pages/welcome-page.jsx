@@ -5,12 +5,6 @@ import infty from '../assets/Infinity-Symbol.png'
 function WelcomePage() {
     return (
     <>
-      <div className='login'>
-        <Link to ='./home' className='link'>
-          <h2>Login</h2>
-        </Link>
-      </div>    
-
       <div  className='center'>
 
         <div className='welcome'>
