@@ -35,18 +35,28 @@ function Linechart () {
     const BACKEND_URL = 'https://infinity-fit-backend.onrender.com';
     
     const fetchDuration = async (userID) => {
-        try {
-            const res = await axios.get(`${BACKEND_URL}/activities/`);
-            const activities = res.data;
-            setDuration(activities.map((activity) => ({
-                ...activity,
-                formattedDate: formatApiDate(activity.date),
-            })));
-        } catch (error) {
-            console.error('Error fetching data:', error);
-            // Handle error (e.g., display an error message)
-        }
-    };
+      try {
+          const now = new Date();
+          const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay());
+          const endOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay() + 6);
+          
+          const res = await axios.get(`${BACKEND_URL}/activities/`);
+          const activities = res.data;
+  
+          const filteredActivities = activities.filter(activity => {
+              const activityDate = new Date(activity.date);
+              return activityDate >= startOfWeek && activityDate <= endOfWeek;
+          });
+  
+          setDuration(filteredActivities.map((activity) => ({
+              ...activity,
+              formattedDate: formatApiDate(activity.date),
+          })));
+      } catch (error) {
+          console.error('Error fetching data:', error);
+          // Handle error (e.g., display an error message)
+      }
+  };
 
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const formatApiDate = (apiDate) => {
@@ -63,7 +73,6 @@ function Linechart () {
 
       // Group day by formattedDate
     const groupedDay = duration.reduce((acc, card) => {
-        
         const key = `${card.formattedDate.dayOfWeek}`;
         if (!acc[key]) {
             acc[key] = 0;
@@ -85,12 +94,12 @@ function Linechart () {
           label: 'Exercise duration of the Week',
 
           data: daysOfWeek.map(day => groupedDay[day] || 0),
-          backgroundColor: 'aqua',
+          // backgroundColor: 'aqua',
           borderColor: 'red',
           pointBorderColor: 'aqua',
           fill: true,
           tension: 0.4,
-          borderWidth: 5,
+          borderWidth: 1,
         }
       ] 
       }
@@ -102,8 +111,12 @@ function Linechart () {
           x: [
             {
               title: {
-                display: false,
-                labelString: 'X Axis Name'
+                display: true,
+              },
+              ticks: {
+                font: {
+                  size: 32, // Increase the font size for x-axis ticks
+                }
               }
             }
           ],
@@ -111,7 +124,11 @@ function Linechart () {
             {
               title: {
                 display: true,
-                labelString: 'Y Axis Name'
+              },
+              ticks: {
+                font: {
+                  size: 32, // Increase the font size for y-axis ticks
+                }
               }
             }
           ]
@@ -119,8 +136,8 @@ function Linechart () {
       };
 
     return (
-        <div className="flex justify-center items-center  hover:scale-110">
-          <div className="w-600 h-300 p-10  bg-sky-950 rounded-[13px] lg:w-[450px] h-[250px] md:w-[420px] m-10 " >
+        <div className=" shadow-lg shadow-blue-500/50 hover:scale-110 bg-sky-950 rounded-[13px] lg:w-[450px] h-[250px] md:w-[420px] m-10 flex items-center justify-center">
+          <div className="flex items-center justify-center max-mt-10 ">
             <Line 
               data = {data}
               options = {options}

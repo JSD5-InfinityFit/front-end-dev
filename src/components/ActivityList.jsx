@@ -8,6 +8,7 @@ function ActivityList() {
   const [cards, setCards] = useState([]);
   const [userCards, setUserCards] = useState([]);
 
+
   useEffect(() => {
     getDataFromAPI();
   }, []);
@@ -27,17 +28,20 @@ function ActivityList() {
     console.log(userEmail);
   }
 
-  const currentUser = async (userID) =>
-    await axios
-      .get(BACKEND_URL + "/users/" + userID)
-      .then((res) => {
-        console.log(res.data.userActivities);
-        setUserCards(res.data.userActivities);
-        console.log("user:", userCards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const currentUser = async (userID) => {
+    try {
+      const res = await axios.get(BACKEND_URL + "/users/" + userID);
+      const userActivities = res.data.userActivities;
+  
+      if (userActivities.length === 0) {
+        setUserCards([]); // Set initial state for new users
+      } else {
+        setUserCards(userActivities);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const getDataFromAPI = async () => {
     await axios
@@ -126,7 +130,7 @@ function ActivityList() {
                             card.type.slice(1)}
                         </p>
                         <p className="font-semibold">{card.name}</p>
-                        <p className="font-semibold">{card.duration}</p>
+                        <p className="font-semibold">{card.duration} min</p>
                       </div>
                     </div>
                   </Link>
@@ -165,3 +169,4 @@ function ActivityList() {
 }
 
 export default ActivityList;
+
