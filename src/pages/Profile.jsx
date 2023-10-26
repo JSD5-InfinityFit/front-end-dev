@@ -4,6 +4,7 @@ import ProfileEdit from "../components/ProfileEdit.jsx";
 import ProfileDisplay from "../components/ProfileDisplay.jsx";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [information, setInformation] = useState({});
@@ -16,6 +17,9 @@ const Profile = () => {
   if (idtoken) {
     const decoded = jwt_decode(idtoken);
     var userID = decoded.user.userID;
+  } else {
+    const navigate = useNavigate();
+    navigate("/");
   }
 
   const VURI = "https://infinityfitbackenddev.onrender.com";
