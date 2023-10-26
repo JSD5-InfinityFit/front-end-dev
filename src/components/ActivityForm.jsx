@@ -6,7 +6,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
 import axios from 'axios'; 
 import { useParams, useNavigate } from "react-router-dom";
-
+import jwt_decode from "jwt-decode";
 function ActivityForm() {
 
   // value for the img 
@@ -33,6 +33,18 @@ function ActivityForm() {
   })
 
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
+
+  let idtoken = localStorage.getItem("token");
+
+  if (idtoken) {
+    const decoded = jwt_decode(idtoken);
+    var userID = decoded.user.userID;
+    var userEmail = decoded.user.userEmail;
+  } else {
+    const navigate = useNavigate();
+    navigate("/");
+  }
+
 
   const handleFileSelect = async (e) =>{
     let [ file ] = e.target.files
@@ -144,7 +156,7 @@ function ActivityForm() {
       description: formData.description,
       duration: parseInt(formData.hour * 60 + formData.min),
       date: formData.date,
-      userID: '60f9b0b3c9b0a40015f1b0a4',
+      userID: userID,
       imageURL: formData.imageURL,
       img: formData.img,
       imgType: formData.imgType

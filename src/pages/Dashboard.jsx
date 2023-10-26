@@ -7,7 +7,7 @@ import Totalduration from "../components/TotalDuration.jsx";
 import RadarChart from "../components/charts/RadarChart.jsx";
 import CaloriesCard from "../components/CaloriesCard.jsx";
 import Linechart from "../components/Linechart.jsx";
-
+import { useNavigate } from "react-router-dom";
 function Dashboard() {
   const [activitiesData, setActivitiesData] = useState("");
   const [information, setInformation] = useState({});
@@ -21,10 +21,13 @@ function Dashboard() {
     fetchActivity(userID);
   }, [userID]);
 
+  const navigate = useNavigate();
   const idtoken = localStorage.getItem("token");
   if (idtoken) {
     decoded = jwt_decode(idtoken);
     userID = decoded.user.userID;
+  } else {
+    navigate("/");
   }
 
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
