@@ -95,7 +95,8 @@ function ActivityList() {
     <>
       <section className="box-border p-3">
         <div className="container w-full max-w-screen-xl m-auto ">
-          <h1 className="text-5xl font-semibold text-white lg:pt-6 max-md:text-2xl">Exercise List of {userEmail ? userEmail : "Thanos"}</h1>
+          {/* <h1 className="text-5xl font-semibold text-white lg:pt-6 max-md:text-2xl">Exercise List of {userEmail ? userEmail : "Thanos"}</h1> */}
+          <h1 className="pt-6 text-2xl sm:text-4xl text-center font-semibold text-white lg:pt-6">Activity List of {userEmail ? userEmail : "Thanos"}</h1>
         </div>
 
         <div className="container flex flex-col-reverse">
