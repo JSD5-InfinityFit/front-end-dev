@@ -1,31 +1,11 @@
 import inifityLogo from "../assets/icons/infinity.png";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { handleSocialLogin } from "../utils/handleSocialLogin";
 
 function LoginPage() {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const providers = ["google", "facebook", "github"]; 
-      for (const provider of providers) {
-        try {
-          const res = await handleSocialLogin(provider);
-          const { token } = res;
-          if (token ) {
-            navigate("/home");
-            return; 
-          }
-        } catch (err) {
-          console.log(err);
-        }
-      }
-    };
-    checkLoginStatus();
-  }, [navigate]);
 
   const [value, setValue] = useState({
     userEmail: "",

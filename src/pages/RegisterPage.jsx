@@ -4,7 +4,6 @@ import inifityLogo from "../assets/icons/infinity.png";
 import "./RegisterPage.css";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { handleSocialLogin } from "../utils/handleSocialLogin";
 
 function RegisterPage() {
   const [value, setValue] = useState({
@@ -20,26 +19,6 @@ function RegisterPage() {
 
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const providers = ["google", "facebook", "github"]; 
-      for (const provider of providers) {
-        try {
-          const res = await handleSocialLogin(provider);
-          const { token } = res;
-          if (token ) {
-            navigate("/home");
-            return; 
-          }
-        } catch (err) {
-          console.log(err);
-        }
-      }
-    };
-    checkLoginStatus();
-  }, [navigate]);
-  
 
   const handleChange = (e) => {
     setValue({
