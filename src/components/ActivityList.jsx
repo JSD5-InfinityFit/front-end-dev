@@ -49,8 +49,7 @@ function ActivityList() {
 
   const getDataFromAPI = async () => {
     await axios
-      // .get(BACKEND_URL + `/activities/users/${userID}`)
-      .get(BACKEND_URL + `/activities`)
+      .get(BACKEND_URL + `/activities/users/${userID}`)
       .catch((err) => {
       })
       .then((res) => {

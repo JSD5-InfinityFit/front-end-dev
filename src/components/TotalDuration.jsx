@@ -1,30 +1,12 @@
-import { React, useState, useEffect } from "react";
-import axios from "axios";
+import { React } from "react";
 
-function Totalduration() {
-  const [duration, setDuration] = useState(0);
-  const idtoken = localStorage.getItem("idtoken");
-  let decoded, userID;
-  if (idtoken) {
-    decoded = jwt_decode(idtoken);
-    userID = decoded.user.userID;
+function Totalduration({ activitiesData }) {
+  let duration = 0;
+  if (activitiesData) {
+    activitiesData.map((activity) => {
+      duration += activity.duration;
+    });
   }
-
-  const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
-
-  const fetchDuration = async (userID) => {
-    const res = await axios.get(`${BACKEND_URL}/activities/`); /// อย่าลืมเปลี่ยน URL
-    const activities = res.data;
-
-    const totalDuration = activities.reduce((accumulator, activity) => {
-      return accumulator + activity.duration;
-    }, 0);
-    setDuration(totalDuration);
-  };
-
-  useEffect(() => {
-    fetchDuration(userID);
-  }, [userID]);
 
   return (
     <div>
