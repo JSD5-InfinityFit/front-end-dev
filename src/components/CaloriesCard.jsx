@@ -16,7 +16,7 @@ const CaloriesCard = ({ activitiesData, weight }) => {
         <div className="flex flex-col-reverse items-center justify-center flex-auto mt-4 md:flex-row">
           <div className="mt-7">
             <Gauge
-              value={calories ? calories : 3000}
+              value={calories ? calories : 0}
               size="large"
               showValue={true}
             />
