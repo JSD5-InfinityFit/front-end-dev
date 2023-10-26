@@ -35,7 +35,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <ActivityList/>
+      Now Loading ...
     </Layout>
   )
 }
