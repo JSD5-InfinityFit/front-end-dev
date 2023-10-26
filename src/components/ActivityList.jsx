@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import "./ActivityList.css";
-
+import { Link, useNavigate } from 'react-router-dom'
 import Tooltip from '@mui/material/Tooltip';
 
 function ActivityList() {
@@ -28,6 +27,9 @@ function ActivityList() {
     var userID = decoded.user.userID;
     var userEmail = decoded.user.userEmail;
     console.log(userEmail);
+  } else {
+    const navigate = useNavigate();
+    navigate("/");
   }
 
   const currentUser = async (userID) => {
@@ -47,7 +49,8 @@ function ActivityList() {
 
   const getDataFromAPI = async () => {
     await axios
-      .get(BACKEND_URL + "/activities/")
+      // .get(BACKEND_URL + `/activities/users/${userID}`)
+      .get(BACKEND_URL + `/activities`)
       .catch((err) => {
         console.log("Error", err);
       })

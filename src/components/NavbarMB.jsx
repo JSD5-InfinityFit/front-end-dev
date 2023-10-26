@@ -19,7 +19,7 @@ const NavbarMB = () => {
                 justifyContent="space-between"
                 alignItems="center">
             <a href={'/'}><HomeIcon  color="secondary" sx={{ fontSize: 50 }} /></a>
-            <a href={'/dashboard/:id'}><AnalyticsIcon color="secondary" sx={{ fontSize: 50 }} /></a>
+            <a href={'/dashboard'}><AnalyticsIcon color="secondary" sx={{ fontSize: 50 }} /></a>
             <a href={'/activity'}><ViewListRoundedIcon color="secondary"  sx={{fontSize: 50}}/></a>
             <a href={'/profile'}><ManageAccountsIcon color="secondary"  sx={{fontSize: 50}}/></a>
 
