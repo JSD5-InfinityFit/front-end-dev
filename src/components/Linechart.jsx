@@ -103,8 +103,6 @@ function Linechart () {
         }
       ] 
       }
-      console.log("Data",data)
-      console.log("Labels",data.labels)
 
     const options = {
         scales: {

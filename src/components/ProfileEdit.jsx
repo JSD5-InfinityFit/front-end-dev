@@ -40,7 +40,6 @@ const ProfileEdit = ({
 
   const handleSaveClick = async (e) => {
     e.preventDefault(); // prevent default form submission behavior
-    console.log(information);
     const config = {
       // set headers for axios.post
       headers: {
@@ -76,7 +75,6 @@ const ProfileEdit = ({
       "Are you sure you want to delete this activity?"
     );
     if (shouldDelete) {
-      console.log(id);
       const idtoken = localStorage.clear();
       navigate("/");
       await axios
@@ -164,7 +162,7 @@ const ProfileEdit = ({
             <label className=" max-md:hidden" htmlFor="Weight">kg.</label>
           </div>
 
-          <div id="button" className="flex m-5 justify-around">
+          <div id="button" className="flex justify-around m-5">
             <button
               onClick={handleSaveClick}
               className="mt-4 btn-primary w-[100px]"

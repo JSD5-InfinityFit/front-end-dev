@@ -49,7 +49,6 @@ function ActivityCard() {
 
   const handleSaveClick = async (e) => {
     e.preventDefault(); // prevent default form submission behavior
-    console.log(activityData);
     const config = {
       // set headers for axios.post
       headers: {
@@ -72,7 +71,6 @@ function ActivityCard() {
       )
       .then((res) => {
         navigate("/");
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -91,15 +89,12 @@ function ActivityCard() {
         .delete(`https://infinity-fit-backend.onrender.com/activities/${id}`)
         .then((res) => {
           navigate("/home");
-          console.log(res);
         })
         .catch((err) => {
           console.log(err);
         });
     }
   };
-  console.log(activityData);
-  console.log(isEditing);
   return (
     <Layout>
       { isLoading ? (

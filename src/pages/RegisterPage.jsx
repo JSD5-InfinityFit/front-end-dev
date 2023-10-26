@@ -40,17 +40,14 @@ function RegisterPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (value.userPassword !== value.password1) {
-      console.log("Password not match");
       toast.error("Password not match");
     } else {
       register(value)
         .then((res) => {
-          // toast.success(res.data);
           navigate("/login");
         })
         .catch((err) => {
           console.log(err.response.data);
-          toast.error(err.response.data);
         });
     }
   };

@@ -22,14 +22,12 @@ const Profile = () => {
     navigate("/");
   }
 
-  const VURI = "https://infinityfitbackenddev.onrender.com";
-  const FURI = "https://infinity-fit-backend.onrender.com";
+  const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   const fetchInformation = async (userID) => {
     await axios
-      .get(`${VURI}/users/${userID}`)
+      .get(`${BACKEND_URL}/users/${userID}`)
       .then((res) => {
-        // console.log(res.data)
         setInformation(res.data);
       })
       .catch((err) => {
