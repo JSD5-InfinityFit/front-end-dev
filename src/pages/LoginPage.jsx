@@ -1,18 +1,37 @@
 import inifityLogo from "../assets/icons/infinity.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { handleSocialLogin } from "../utils/handleSocialLogin";
 
 function LoginPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const providers = ["google", "facebook", "github"]; 
+      for (const provider of providers) {
+        try {
+          const res = await handleSocialLogin(provider);
+          const { token } = res;
+          if (token ) {
+            navigate("/home");
+            return; 
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+    checkLoginStatus();
+  }, [navigate]);
 
   const [value, setValue] = useState({
     userEmail: "",
     userPassword: "",
   });
 
-  const VURI = "https://infinityfitbackenddev.onrender.com";
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   const handleChange = (e) => {
@@ -28,7 +47,6 @@ function LoginPage() {
     const logining = async (value) =>
       await axios
         .post(BACKEND_URL + "/users/login", value, {
-          // .post(VURI + "/users/login", value, {
           headers: {
             "Content-Type": "application/json",
           },

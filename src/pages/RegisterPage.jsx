@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import inifityLogo from "../assets/icons/infinity.png";
-import Layout from "../Layout";
 import "./RegisterPage.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { handleSocialLogin } from "../utils/handleSocialLogin";
 
 function RegisterPage() {
   const [value, setValue] = useState({
@@ -18,9 +18,28 @@ function RegisterPage() {
     userActivities: "",
   });
 
-  const navigate = useNavigate();
-  const VURI = "https://infinityfitbackenddev.onrender.com";
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const providers = ["google", "facebook", "github"]; 
+      for (const provider of providers) {
+        try {
+          const res = await handleSocialLogin(provider);
+          const { token } = res;
+          if (token ) {
+            navigate("/home");
+            return; 
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+    checkLoginStatus();
+  }, [navigate]);
+  
 
   const handleChange = (e) => {
     setValue({
@@ -31,7 +50,6 @@ function RegisterPage() {
 
   const register = async (value) =>
     await axios.post(BACKEND_URL + "/users/register", value, {
-      // await axios.post(VURI + "/users/register", value, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -53,7 +71,6 @@ function RegisterPage() {
   };
 
   return (
-   
       <main className="pt-12 center-top">
         <section className="">
           <div className="card2">
@@ -73,7 +90,6 @@ function RegisterPage() {
                 <input
                   type="email"
                   label="Email address"
-                  // value={email}
                   name="userEmail"
                   onChange={handleChange}
                   required
@@ -193,7 +209,6 @@ function RegisterPage() {
           </div>
         </section>
       </main>
-   
   );
 }
 
