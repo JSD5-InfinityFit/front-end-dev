@@ -26,7 +26,7 @@ const CaloriesCard = ({ activitiesData, weight }) => {
               Total Calories Burned
             </h2>
             <h2 className="hidden pl-10 text-3xl text-center text-blue-500 md:block text-bold pt-7">
-              {calories ? calories : 3000} kCal
+              {calories ? calories : 0} kCal
             </h2>
           </div>
         </div>
