@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ProfileEdit.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ProfileEdit = ({
@@ -21,7 +21,6 @@ const ProfileEdit = ({
     setInformation({ ...information, [name]: value });
   };
 
-  const VURI = "https://infinityfitbackenddev.onrender.com";
   const BACKEND_URL = "https://infinity-fit-backend.onrender.com";
 
   const fetchInformation = async (id) => {
@@ -41,19 +40,15 @@ const ProfileEdit = ({
   const handleSaveClick = async (e) => {
     e.preventDefault(); // prevent default form submission behavior
     const config = {
-      // set headers for axios.post
       headers: {
         "Content-Type": "application/json",
       },
     };
-    // setChange(true);
     await axios
-      // .put(`${VURI}/users/${id}`,
       .put(
         `${BACKEND_URL}/users/${id}`,
         {
           userEmail: information.userEmail,
-          // userPassword: information.userPassword,
           userBiologicalGender: information.userBiologicalGender,
           userBD: information.userBD,
           userHeight: information.userHeight,
