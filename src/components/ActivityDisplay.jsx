@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 const ActivityDisplay = ({ activityData, onEditClick, onDeleteClick }) => {
-  console.log(activityData);
   // value for the img
   let swim =
     "https://images.unsplash.com/photo-1560089000-7433a4ebbd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3012&q=80";
@@ -38,10 +37,7 @@ const ActivityDisplay = ({ activityData, onEditClick, onDeleteClick }) => {
         )
       )}`;
       setImg(imgURL)
-      console.log(imgURL)
     }
-
-    console.log(activityData.img)
 
     if (activityData.imageURL == 'custom') {
       try {
@@ -59,7 +55,7 @@ const ActivityDisplay = ({ activityData, onEditClick, onDeleteClick }) => {
             className="p-5 h-[100vh]"
             src={img}
           />
-         
+
         </div>
         <div id="information" className="flex flex-col justify-start w-full mt-4 md:ml-10 md:w-3/5">
           <div className="rounded-md ml-[calc(7vw + 18px)] h-full p-4 font-semibold text-white bg-blue-900 border-l-8 w-full" style={{ borderColor: activityData.type === 'run' ? 'green' : activityData.type === 'swim' ? 'skyblue' : activityData.type === 'badminton' ? 'orange' : activityData.type === 'dance' ? 'red' : 'pink' }}>

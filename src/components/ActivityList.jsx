@@ -52,10 +52,8 @@ function ActivityList() {
       // .get(BACKEND_URL + `/activities/users/${userID}`)
       .get(BACKEND_URL + `/activities`)
       .catch((err) => {
-        console.log("Error", err);
       })
       .then((res) => {
-        console.log("Success", res.data);
         setCards(
           res.data.map((card) => ({
             ...card,
@@ -99,7 +97,7 @@ function ActivityList() {
       <section className="box-border p-3">
         <div className="container w-full max-w-screen-xl m-auto ">
 
-          <h1 className="pt-6 text-2xl sm:text-4xl text-center font-semibold text-white lg:pt-6">Activity List of {userEmail ? userEmail : "Thanos"}</h1>
+          <h1 className="pt-6 text-2xl font-semibold text-center text-white sm:text-4xl lg:pt-6">Activity List of {userEmail ? userEmail : "Thanos"}</h1>
         </div>
 
         <div className="container flex flex-col-reverse">

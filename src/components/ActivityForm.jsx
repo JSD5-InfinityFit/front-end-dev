@@ -80,7 +80,6 @@ function ActivityForm() {
      * @param {Date} date - Date of the Activity
      * @param {number} durationTime - Duration of the Activity in minutes
      */
-    console.log(name, type, description, date, durationTime);
 
     if (typeof name != 'string') {
       toast('Error! Activity Name is not a string');
@@ -118,7 +117,6 @@ function ActivityForm() {
       toast('Error! Activity Duration is not a valid number');
       return false;
     }
-    console.log('Activity Form Submission is valid');
     return true;
   }
 
@@ -131,8 +129,6 @@ function ActivityForm() {
     const currentDate = new Date();
     setFormData({ ...formData, date: currentDate });
     const activityValid = validateActivity(formData.name, formData.type, formData.description, currentDate, parseInt(formData.hour * 60 + formData.min));
-    console.log(activityValid);
-    console.log(formData);
     
     if (activityValid) {
       // post to server
@@ -161,11 +157,8 @@ function ActivityForm() {
       img: formData.img,
       imgType: formData.imgType
     };
-    console.log(postObject)
     await axios.post(BACKEND_URL + '/activities',postObject, config)
     .then(res => {
-      console.log(res);
-      console.log(res.data);
       navigate("/activity");
     })
     .catch(err => {

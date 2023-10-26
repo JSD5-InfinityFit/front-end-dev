@@ -46,7 +46,6 @@ function Dashboard() {
   const fetchActivity = async (userID) => {
     const res = await axios.get(`${BACKEND_URL}/activities/`); /// อย่าลืมเปลี่ยน URL
     setActivitiesData(res.data);
-    console.log(activitiesData);
   };
 
   return (

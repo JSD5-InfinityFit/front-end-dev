@@ -13,9 +13,6 @@ const ActivityEditForm = ({  //new in this file
   handleFileSelect, //new in this file
   fileInput,
   formData, //new in this file
-
-
-  
 }) => {
 
   let swim = 'https://images.unsplash.com/photo-1560089000-7433a4ebbd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3012&q=80'
@@ -31,7 +28,7 @@ const ActivityEditForm = ({  //new in this file
     <>
     <div className="grid bg-zinc-900">
       <div className="row-1">
-        <div id="form" className="form text-white sm:text-center">
+        <div id="form" className="text-white form sm:text-center">
 
           <form className="" onSubmit={handleSaveClick}>
             <div className="form-group">
@@ -65,14 +62,14 @@ const ActivityEditForm = ({  //new in this file
                 name="date"
                 value={activityData.date}
                 onChange={handleInputChange}
-                className="bg-white  text-white rounded-md"
+                className="text-white bg-white rounded-md"
               />
             </div>
 
             <div className="form-group">
               <label htmlFor="duration">Duration</label>
               <input
-                className="in rounded-md"
+                className="rounded-md in"
                 min="0"
                 placeholder='Hour'
                 type="number"
@@ -84,7 +81,7 @@ const ActivityEditForm = ({  //new in this file
               <input
                 min="0"
                 max={59}
-                className="in rounded-md"
+                className="rounded-md in"
                 placeholder='Minute'
                 type="number"
                 name="min"
@@ -126,7 +123,7 @@ const ActivityEditForm = ({  //new in this file
         <div className="b480">
         <div className="buttons">
           <button
-          className="save-button bg-blue-500 "
+          className="bg-blue-500 save-button "
           onClick={handleSaveClick}
           type="submit"
           >
