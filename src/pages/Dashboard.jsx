@@ -44,7 +44,7 @@ function Dashboard() {
   };
 
   const fetchActivity = async (userID) => {
-    const res = await axios.get(`${BACKEND_URL}/activities/`); /// อย่าลืมเปลี่ยน URL
+    const res = await axios.get(BACKEND_URL + `/activities/users/${userID}`)
     setActivitiesData(res.data);
   };
 
@@ -58,7 +58,7 @@ function Dashboard() {
       </div>
       <div className="justify-center lg:flex">
         <BMI weight={information.userWeight} height={information.userHeight} />
-        <Totalduration/>
+        { activitiesData ? <Totalduration activitiesData={activitiesData} /> : "" }
         { activitiesData ? <RadarChart activitiesData={activitiesData} /> : "" }
       </div>
       <div id="radar-card" className="justify-center lg:flex">
